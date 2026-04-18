@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adobe Premiere Pro 基礎編集 1DAY セミナー | 海老原 愛</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-deep:    #4A6D84;
+      --blue-mid:     #6F93A8;
+      --blue-muted:   #8BAFC4;
+      --blue-light:   #BACFDB;
+      --blue-pale:    #D9E8F0;
+      --blue-ghost:   #EDF4F8;
+      --bg:           #F7FAFB;
+      --white:        #FFFFFF;
+      --text-dark:    #2E3D47;
+      --text-mid:     #4A5C67;
+      --text-light:   #7A9BAD;
+      --gold:         #C8A882;
+      --gold-light:   #E5D4BE;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text-dark);
+      background: var(--bg);
+      line-height: 1.8;
+      font-size: 15px;
+      overflow-wrap: break-word;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── UTILITIES ─────────────────────────────── */
+    .section { padding: 80px 24px; }
+    .section--tight { padding: 60px 24px; }
+    .inner { max-width: 720px; margin: 0 auto; }
+    .inner--wide { max-width: 960px; margin: 0 auto; }
+
+    .label {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      border-bottom: 1px solid var(--blue-light);
+      padding-bottom: 4px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 600;
+      font-size: clamp(22px, 4vw, 30px);
+      line-height: 1.5;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .section-lead {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 2;
+      margin-bottom: 48px;
+    }
+
+    /* ─── HERO ──────────────────────────────────── */
+    .hero {
+      background: linear-gradient(160deg, #E2EEF5 0%, #D0E3ED 40%, #C4D8E6 100%);
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 80% 30%, rgba(255,255,255,.45) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(74,109,132,.12) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero__inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      padding: 80px 0;
+    }
+
+    .hero__tag {
+      display: inline-block;
+      background: rgba(255,255,255,.65);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 12px;
+      letter-spacing: .12em;
+      color: var(--blue-deep);
+      margin-bottom: 24px;
+    }
+
+    .hero__catch {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 600;
+      font-size: clamp(24px, 4.5vw, 38px);
+      line-height: 1.55;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+
+    .hero__catch em {
+      font-style: normal;
+      color: var(--blue-deep);
+      position: relative;
+    }
+
+    .hero__sub {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 2;
+      margin-bottom: 36px;
+      padding-left: 16px;
+      border-left: 2px solid var(--blue-muted);
+    }
+
+    .hero__meta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .hero__badge {
+      background: rgba(255,255,255,.7);
+      border: 1px solid var(--blue-pale);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 12px;
+      color: var(--blue-deep);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .hero__badge strong { display: block; font-size: 18px; font-weight: 700; }
+
+    .hero__photo-wrap {
+      position: relative;
+    }
+
+    .hero__photo-frame {
+      border-radius: 2px 40% 2px 40%;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(74,109,132,.2), 0 4px 12px rgba(74,109,132,.1);
+      aspect-ratio: 3/4;
+      background: var(--blue-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero__photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .hero__photo-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--blue-mid);
+    }
+
+    .hero__photo-placeholder svg { opacity: .4; }
+
+    .hero__deco {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 140px;
+      height: 140px;
+      border: 1px solid var(--blue-light);
+      border-radius: 50%;
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    .hero__deco2 {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 80px;
+      height: 80px;
+      background: rgba(255,255,255,.5);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      color: var(--white) !important;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      padding: 18px 48px;
+      border-radius: 100px;
+      box-shadow: 0 6px 24px rgba(74,109,132,.35);
+      transition: transform .2s, box-shadow .2s;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(74,109,132,.45);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--blue-deep) !important;
+      border: 2px solid var(--blue-mid);
+      box-shadow: none;
+    }
+
+    .btn--outline:hover {
+      background: var(--blue-ghost);
+      box-shadow: none;
+    }
+
+    /* ─── INTRO STRIP ───────────────────────────── */
+    .intro-strip {
+      background: var(--blue-deep);
+      color: var(--white);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .intro-strip p {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(13px, 2.5vw, 16px);
+      letter-spacing: .1em;
+      line-height: 2;
+      opacity: .92;
+    }
+
+    /* ─── WORRIES ───────────────────────────────── */
+    .worries { background: var(--white); }
+
+    .worry-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+
+    .worry-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px 28px;
+      background: var(--blue-ghost);
+      border-radius: 12px;
+      border-left: 3px solid var(--blue-muted);
+    }
+
+    .worry-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--blue-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .worry-text { font-size: 15px; line-height: 1.8; color: var(--text-mid); }
+    .worry-text strong { display: block; font-size: 16px; color: var(--text-dark); margin-bottom: 4px; }
+
+    /* ─── TARGETS ───────────────────────────────── */
+    .targets { background: var(--blue-ghost); }
+
+    .target-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .target-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(74,109,132,.08);
+      border-top: 3px solid var(--blue-muted);
+    }
+
+    .target-card__icon { font-size: 32px; margin-bottom: 14px; }
+    .target-card__text { font-size: 14px; line-height: 1.9; color: var(--text-mid); }
+
+    /* ─── BENEFITS ──────────────────────────────── */
+    .benefits { background: var(--white); }
+
+    .benefit-list { display: flex; flex-direction: column; gap: 32px; }
+
+    .benefit-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--blue-pale);
+    }
+
+    .benefit-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .benefit-num {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .benefit-body {}
+    .benefit-body h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    .benefit-body p { font-size: 14px; color: var(--text-mid); line-height: 2; }
+
+    .benefit-arrow {
+      display: inline-block;
+      background: var(--blue-pale);
+      color: var(--blue-deep);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-top: 8px;
+    }
+
+    /* ─── PRICING ───────────────────────────────── */
+    .pricing {
+      background: linear-gradient(160deg, #D6E8F2 0%, #C4D8E6 100%);
+      text-align: center;
+    }
+
+    .price-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 52px 48px;
+      box-shadow: 0 20px 60px rgba(74,109,132,.15);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .price-card__name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 13px;
+      letter-spacing: .2em;
+      color: var(--blue-mid);
+      margin-bottom: 8px;
+    }
+
+    .price-card__price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 300;
+      color: var(--blue-deep);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .price-card__price span { font-size: 28px; vertical-align: .4em; }
+    .price-card__price small { font-size: 20px; color: var(--text-mid); }
+
+    .price-card__note { font-size: 12px; color: var(--text-light); margin-bottom: 32px; }
+
+    .price-details {
+      list-style: none;
+      text-align: left;
+      border-top: 1px solid var(--blue-pale);
+      padding-top: 24px;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .price-details li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-mid);
+    }
+
+    .price-details li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--blue-muted);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .price-card__cta-note {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 14px;
+    }
+
+    /* ─── PROFILE ───────────────────────────────── */
+    .profile { background: var(--white); }
+
+    .profile__grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 52px;
+      align-items: start;
+    }
+
+    .profile__photo-wrap { position: relative; }
+
+    .profile__photo {
+      border-radius: 2px 30% 2px 30%;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--blue-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .profile__photo-placeholder {
+      width: 100%;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--blue-mid);
+      font-size: 12px;
+    }
+
+    .profile__name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .profile__title {
+      font-size: 13px;
+      color: var(--text-light);
+      letter-spacing: .1em;
+      margin-bottom: 28px;
+    }
+
+    .profile__text {
+      font-size: 15px;
+      line-height: 2.2;
+      color: var(--text-mid);
+      margin-bottom: 28px;
+    }
+
+    .profile__text p + p { margin-top: 12px; }
+
+    .profile__social {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .profile__social a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--blue-deep);
+      border: 1px solid var(--blue-light);
+      padding: 8px 16px;
+      border-radius: 100px;
+      transition: background .2s;
+    }
+
+    .profile__social a:hover { background: var(--blue-ghost); }
+
+    /* ─── FINAL CTA ─────────────────────────────── */
+    .final-cta {
+      background: var(--blue-deep);
+      text-align: center;
+      padding: 80px 24px;
+    }
+
+    .final-cta .label { color: var(--blue-pale); border-color: var(--blue-mid); }
+
+    .final-cta h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .final-cta p {
+      font-size: 14px;
+      color: var(--blue-pale);
+      margin-bottom: 40px;
+      line-height: 2;
+    }
+
+    .btn--white {
+      background: var(--white);
+      color: var(--blue-deep) !important;
+      box-shadow: 0 6px 24px rgba(0,0,0,.15);
+    }
+
+    .btn--white:hover { box-shadow: 0 10px 32px rgba(0,0,0,.22); }
+
+    /* ─── FOOTER ────────────────────────────────── */
+    footer {
+      background: #1E2D35;
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    footer .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    footer .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      color: rgba(255,255,255,.7);
+      font-size: 18px;
+      transition: border-color .2s, color .2s;
+    }
+
+    footer .footer-social a:hover { border-color: rgba(255,255,255,.6); color: var(--white); }
+
+    footer p { font-size: 11px; letter-spacing: .08em; }
+
+    /* ─── DIVIDER ORNAMENT ──────────────────────── */
+    .ornament {
+      text-align: center;
+      color: var(--blue-light);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      letter-spacing: .6em;
+      margin-bottom: 48px;
+    }
+
+    /* ─── FLOATING CTA ──────────────────────────── */
+    .floating-cta {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+      width: calc(100% - 48px);
+      max-width: 360px;
+    }
+
+    .floating-cta.visible { opacity: 1; pointer-events: auto; }
+    .floating-cta .btn { width: 100%; box-shadow: 0 8px 32px rgba(74,109,132,.5); }
+
+    /* ─── RESPONSIVE ────────────────────────────── */
+    @media (max-width: 768px) {
+      .section { padding: 60px 20px; }
+      .section--tight { padding: 48px 20px; }
+
+      .worry-item { flex-direction: column; gap: 12px; }
+      .worry-icon { width: 36px; height: 36px; font-size: 16px; }
+      .worry-text strong { font-size: 15px; }
+
+      .hero__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .hero__photo-wrap { order: -1; max-width: 280px; margin: 0 auto; }
+
+      .hero__sub { text-align: left; }
+
+      .hero__meta { justify-content: center; }
+
+      .target-grid { grid-template-columns: 1fr; }
+
+      .profile__grid { grid-template-columns: 1fr; }
+
+      .profile__photo { max-width: 200px; margin: 0 auto 32px; }
+
+      .price-card { padding: 36px 24px; }
+
+      .price-card__price { font-size: 56px; }
+
+      .benefit-item { grid-template-columns: 44px 1fr; gap: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero__catch { font-size: 22px; }
+      .section-title { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="hero__inner inner--wide">
+    <div class="hero__text">
+      <div class="hero__tag">✦ 子連れOK · 対面 1DAY × 2回</div>
+      <h1 class="hero__catch">
+        動画編集者としての<br/>
+        <em>第一歩</em>を、<br/>
+        一緒に踏み出そう。
+      </h1>
+      <p class="hero__sub">
+        Adobe Premiere Pro の基礎編集<br/>
+        1DAY セミナー<br/>
+        <br/>
+        なぜ Premiere Pro なのか？<br/>
+        それは、多くの現場で選ばれている<br/>編集ソフトだから。
+      </p>
+      <div class="hero__meta">
+        <div class="hero__badge"><strong>¥9,000</strong>税込</div>
+        <div class="hero__badge"><strong>対面</strong>1DAY × 2回</div>
+        <div class="hero__badge"><strong>子連れ</strong>OK</div>
+      </div>
+      <a href="#contact" class="btn">申し込む →</a>
+    </div>
+    <div class="hero__photo-wrap">
+      <div class="hero__photo-frame">
+        <img src="images/ちびえび - 6.png" alt="海老原 愛" onerror="this.parentElement.innerHTML='<div class=\'hero__photo-placeholder\'><svg width=\'64\' height=\'64\' viewBox=\'0 0 64 64\' fill=\'none\'><circle cx=\'32\' cy=\'22\' r=\'12\' fill=\'#8BAFC4\'/><path d=\'M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24\' fill=\'#8BAFC4\'/></svg><span style=\'font-size:12px;color:#8BAFC4\'>海老原 愛</span></div>'" />
+      </div>
+      <div class="hero__deco"></div>
+      <div class="hero__deco2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     INTRO STRIP
+══════════════════════════════════════════ -->
+<div class="intro-strip">
+  <p>動画編集コミュニティ「おうちクリエイターラボ」主宰 ─ 海老原 愛 が贈る、初めての一歩のための講座</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     WORRIES
+══════════════════════════════════════════ -->
+<section class="section worries" id="worries">
+  <div class="inner">
+    <div class="ornament">─ ✦ ─</div>
+    <div class="label">For You</div>
+    <h2 class="section-title">こんな気持ち、ありませんか？</h2>
+    <p class="section-lead">多くの方が、最初の一歩を踏み出す前に同じ壁にぶつかっています。</p>
+
+    <ul class="worry-list">
+      <li class="worry-item">
+        <div class="worry-icon">😔</div>
+        <div class="worry-text">
+          <strong>何から始めればいいかわからない</strong>
+          動画編集をお仕事にしたいけれど、ソフトも種類が多すぎて、どこに手をつければいいのか迷ってしまう…
+        </div>
+      </li>
+      <li class="worry-item">
+        <div class="worry-icon">😓</div>
+        <div class="worry-text">
+          <strong>独学だと「これで合ってる？」が止まらない</strong>
+          触ってはみるものの、正しいやり方なのかわからなくて、途中で手が止まってしまう。
+        </div>
+      </li>
+      <li class="worry-item">
+        <div class="worry-icon">💭</div>
+        <div class="worry-text">
+          <strong>「いつかはプレミア」とずっと思っていた</strong>
+          難しそう、という先入観から、ずっと後回しにしてきた。でも、そろそろ始めたい。
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TARGETS
+══════════════════════════════════════════ -->
+<section class="section--tight targets">
+  <div class="inner">
+    <div class="label">This Seminar is for ...</div>
+    <h2 class="section-title">こんな方へ向けたセミナーです</h2>
+
+    <div class="target-grid">
+      <div class="target-card">
+        <div class="target-card__icon">🎬</div>
+        <p class="target-card__text">Premiere Pro を触ってみたいけど、一人では不安な人</p>
+      </div>
+      <div class="target-card">
+        <div class="target-card__icon">🌱</div>
+        <p class="target-card__text">難しそうで後回しにしてきたけど、そろそろ始めたい人</p>
+      </div>
+      <div class="target-card">
+        <div class="target-card__icon">✨</div>
+        <p class="target-card__text">まず１日、楽しさだけ体感しに来てほしい人</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BENEFITS
+══════════════════════════════════════════ -->
+<section class="section benefits" id="benefits">
+  <div class="inner">
+    <div class="ornament">─ ✦ ─</div>
+    <div class="label">What You Get</div>
+    <h2 class="section-title">参加後に得られること</h2>
+    <p class="section-lead">「知識として知っている」ではなく、<strong>手が動く体験</strong>をお持ち帰りいただけます。</p>
+
+    <ul class="benefit-list">
+      <li class="benefit-item">
+        <div class="benefit-num">01</div>
+        <div class="benefit-body">
+          <h3>画面を開いても迷わない、手が動くようになる</h3>
+          <p>「何からすればいい？」でフリーズする時間がなくなります。セミナー後は、迷わず編集をスタートできる状態に。</p>
+          <span class="benefit-arrow">フリーズする時間 → ゼロに</span>
+        </div>
+      </li>
+      <li class="benefit-item">
+        <div class="benefit-num">02</div>
+        <div class="benefit-body">
+          <h3>独学の「これで合ってる？」がなくなり、一本を最後まで完成させられる</h3>
+          <p>迷いながらの数時間が、迷いのない編集へ。正しい手順を身体で覚えることで、作業スピードが格段に上がります。</p>
+          <span class="benefit-arrow">迷いの時間 → 迷いのない編集へ</span>
+        </div>
+      </li>
+      <li class="benefit-item">
+        <div class="benefit-num">03</div>
+        <div class="benefit-body">
+          <h3>Premiere Pro で一通り編集できたという実感が残る</h3>
+          <p>「自分でできた」という体験が自信になります。この小さな成功体験が、次のステップへの大きな推進力になるのです。</p>
+          <span class="benefit-arrow">体験 → 自信へ</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PRICING / CTA
+══════════════════════════════════════════ -->
+<section class="section pricing" id="contact">
+  <div class="inner">
+    <div class="ornament" style="color: var(--blue-mid)">─ ✦ ─</div>
+    <div class="label">Seminar Details</div>
+    <h2 class="section-title" style="margin-bottom:48px">セミナー詳細・お申し込み</h2>
+
+    <div class="price-card">
+      <p class="price-card__name">Adobe Premiere Pro 基礎編集 1DAY セミナー</p>
+      <div class="price-card__price"><span>¥</span>9,000<small></small></div>
+      <p class="price-card__note">（税込 · 子連れOK）</p>
+
+      <ul class="price-details">
+        <li>形式：対面レッスン</li>
+        <li>回数：1DAY × 2回</li>
+        <li>対象：Adobe Premiere Pro 初心者の方</li>
+        <li>持ち物：PC（Premiere Proインストール済み推奨）</li>
+        <li>子連れでのご参加、大歓迎です</li>
+      </ul>
+
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn" style="width:100%; font-size:16px; padding:20px 24px;">
+        申し込みフォームへ進む →
+      </a>
+      <p class="price-card__cta-note">※ 申し込みフォームに遷移します</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PROFILE
+══════════════════════════════════════════ -->
+<section class="section profile" id="about">
+  <div class="inner">
+    <div class="ornament">─ ✦ ─</div>
+    <div class="label">About</div>
+    <h2 class="section-title" style="margin-bottom:48px">講師プロフィール</h2>
+
+    <div class="profile__grid">
+      <div class="profile__photo-wrap">
+        <div class="profile__photo">
+          <img src="images/ちびえび - 6.png" alt="海老原 愛" onerror="this.parentElement.innerHTML='<div class=\'profile__photo-placeholder\'><svg width=\'48\' height=\'48\' viewBox=\'0 0 64 64\' fill=\'none\'><circle cx=\'32\' cy=\'22\' r=\'12\' fill=\'#8BAFC4\'/><path d=\'M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24\' fill=\'#8BAFC4\'/></svg></div>'" />
+        </div>
+      </div>
+
+      <div>
+        <h3 class="profile__name">海老原 愛</h3>
+        <p class="profile__title">動画編集コミュニティ「おうちクリエイターラボ」主宰</p>
+
+        <div class="profile__text">
+          <p>未経験からスタートし、現在は制作チームを運営し企業案件を手掛ける。</p>
+          <p>フリーランスは基本一人行動。一人で悩み、辞めていく仲間を多く見てきました。</p>
+          <p>だからこそ相談し、高め合える「一緒に頑張る環境」を作りたい。</p>
+          <p>この講座は、その仲間と出会うためのスタートラインです。</p>
+        </div>
+
+        <div class="profile__social">
+          <a href="https://www.instagram.com/ebi.styling/" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @ebi.styling
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FINAL CTA
+══════════════════════════════════════════ -->
+<section class="final-cta">
+  <div class="inner" style="text-align:center">
+    <div class="label">First Step</div>
+    <h2>さあ、最初の一歩を<br/>踏み出しましょう。</h2>
+    <p>
+      難しく考えなくていい。<br/>
+      まず１日、楽しさだけ体感しに来てください。
+    </p>
+    <a href="#contact" class="btn btn--white">申し込みフォームへ →</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/ebi.styling?igsh=MWdqY3dieTF0MnFmeg%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </div>
+  <p>© 2026 海老原 愛 / おうちクリエイターラボ. All Rights Reserved.</p>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     FLOATING CTA
+══════════════════════════════════════════ -->
+<div class="floating-cta" id="floatingCta">
+  <a href="#contact" class="btn">申し込みはこちら →</a>
+</div>
+
+<script>
+  const hero = document.querySelector('.hero');
+  const floatingCta = document.getElementById('floatingCta');
+
+  const observer = new IntersectionObserver(
+    ([entry]) => { floatingCta.classList.toggle('visible', !entry.isIntersecting); },
+    { threshold: 0.1 }
+  );
+  observer.observe(hero);
+</script>
+
+</body>
+</html>

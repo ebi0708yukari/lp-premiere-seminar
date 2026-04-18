@@ -317,6 +317,13 @@
       overflow: hidden;
       background-color: var(--pale);
       margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .worry-face img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
     }
 
     .worry-body {}
@@ -725,7 +732,7 @@
 
     <ul class="worry-list">
       <li class="worry-item">
-        <div class="worry-face" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;"></div>
+        <div class="worry-face"><img src="images/chara.png" alt="キャラクター" /></div>
         <div class="worry-body">
           <p class="worry-q">何から始めればいいかわからない…</p>
           <p class="worry-a">動画編集をお仕事にしたいけれど、どこに手をつければいいのか迷ってしまう</p>
@@ -733,7 +740,7 @@
         </div>
       </li>
       <li class="worry-item">
-        <div class="worry-face" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;"></div>
+        <div class="worry-face"><img src="images/chara.png" alt="キャラクター" /></div>
         <div class="worry-body">
           <p class="worry-q">独学だと「これで合ってる？」が止まらない</p>
           <p class="worry-a">触ってはみるものの、正しいやり方なのかわからなくて途中で止まってしまう</p>
@@ -741,7 +748,7 @@
         </div>
       </li>
       <li class="worry-item">
-        <div class="worry-face" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;"></div>
+        <div class="worry-face"><img src="images/chara.png" alt="キャラクター" /></div>
         <div class="worry-body">
           <p class="worry-q">「いつかはプレミア」とずっと思っていた</p>
           <p class="worry-a">難しそうという先入観から、ずっと後回しにしてきた。でも、そろそろ始めたい！</p>

@@ -6,30 +6,26 @@
   <title>Premiere 基礎編集 1DAY セミナー | 海老原 愛</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --sky:      #4BB8F0;
-      --sky-dark: #1A8FD4;
-      --sky-pale: #D6EFFC;
-      --coral:    #FF6B6B;
-      --coral-lt: #FFB3B3;
-      --yellow:   #FFD93D;
-      --yellow-lt:#FFF3B0;
-      --mint:     #6BCFA8;
-      --navy:     #1A3A5C;
-      --white:    #FFFFFF;
-      --off:      #F4FBFF;
-      --text:     #1A3A5C;
-      --text-mid: #4A6880;
+      --blue:       #6B9AB8;
+      --blue-dark:  #4A7A96;
+      --blue-mid:   #8EB4C8;
+      --blue-light: #C5DCE8;
+      --blue-pale:  #EBF4F8;
+      --blue-ultra: #F3F9FC;
+      --white:      #FFFFFF;
+      --text:       #2E4F62;
+      --text-mid:   #5A7A8E;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
       color: var(--text);
       background: var(--white);
       overflow-wrap: break-word;
@@ -38,45 +34,46 @@
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
 
-    /* ── ZIGZAG DIVIDER ── */
     .zz { display: block; width: 100%; line-height: 0; }
     .zz svg { display: block; width: 100%; }
 
-    /* ── DOTS PATTERN ── */
-    .dots-bg {
-      background-image: radial-gradient(circle, rgba(75,184,240,.15) 1px, transparent 1px);
-      background-size: 24px 24px;
+    /* ══ BTN ══ */
+    .btn {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white) !important;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 18px 48px;
+      border-radius: 100px;
+      box-shadow: 4px 4px 0 var(--blue-dark);
+      transition: transform .15s, box-shadow .15s;
+      cursor: pointer;
+      text-align: center;
+      letter-spacing: .04em;
     }
+    .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--blue-dark); }
+    .btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--blue-dark); }
 
-    /* ══════════════════════════════
-       HERO
-    ══════════════════════════════ */
+    .btn--outline {
+      background: var(--white);
+      color: var(--blue) !important;
+      border: 3px solid var(--blue);
+      box-shadow: 4px 4px 0 var(--blue-light);
+    }
+    .btn--outline:hover { box-shadow: 6px 6px 0 var(--blue-light); }
+
+    /* ══ HERO ══ */
     .hero {
-      background: linear-gradient(160deg, #E8F7FF 0%, #C8ECFC 50%, #B0E3FA 100%);
-      padding: 60px 24px 0;
+      background: var(--white);
       overflow: hidden;
       position: relative;
     }
 
-    /* floating shapes */
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 320px; height: 320px;
-      background: radial-gradient(circle, rgba(255,217,61,.35) 0%, transparent 70%);
-      top: -60px; right: -60px;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      width: 180px; height: 180px;
-      background: radial-gradient(circle, rgba(107,207,168,.3) 0%, transparent 70%);
-      bottom: 120px; left: -40px;
-      border-radius: 50%;
-      pointer-events: none;
+    .hero__top {
+      background: var(--blue-ultra);
+      padding: 64px 24px 0;
+      position: relative;
     }
 
     .hero__inner {
@@ -87,48 +84,35 @@
       gap: 40px;
       align-items: flex-end;
       position: relative;
-      z-index: 1;
     }
 
-    .hero__text { padding-bottom: 60px; }
+    .hero__text { padding-bottom: 64px; }
 
-    .hero__sticker {
+    .hero__badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--yellow);
-      color: var(--navy);
+      background: var(--white);
+      color: var(--blue-dark);
       font-weight: 800;
       font-size: 13px;
       padding: 8px 20px;
       border-radius: 100px;
+      border: 2px solid var(--blue-light);
       margin-bottom: 24px;
-      box-shadow: 3px 3px 0 rgba(0,0,0,.1);
+      box-shadow: 2px 2px 0 var(--blue-light);
     }
 
     .hero__catch {
       font-weight: 900;
-      font-size: clamp(26px, 5vw, 48px);
+      font-size: clamp(28px, 5vw, 50px);
       line-height: 1.4;
-      color: var(--navy);
-      margin-bottom: 12px;
+      color: var(--text);
+      margin-bottom: 20px;
     }
 
     .hero__catch .accent {
-      color: var(--sky-dark);
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero__catch .accent::after {
-      content: '';
-      position: absolute;
-      bottom: 2px; left: 0; right: 0;
-      height: 6px;
-      background: var(--yellow);
-      opacity: .6;
-      z-index: -1;
-      border-radius: 3px;
+      color: var(--blue-dark);
     }
 
     .hero__sub {
@@ -136,152 +120,112 @@
       color: var(--text-mid);
       line-height: 2;
       margin-bottom: 32px;
-      background: rgba(255,255,255,.7);
-      border-radius: 12px;
-      padding: 14px 18px;
-      border-left: 4px solid var(--sky);
+      background: var(--white);
+      border-radius: 14px;
+      padding: 16px 20px;
+      border-left: 4px solid var(--blue);
+      box-shadow: 2px 2px 0 var(--blue-pale);
     }
 
-    .hero__badges {
+    .hero__info {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
-    .badge {
+    .hero__info-item {
       background: var(--white);
-      border: 2px solid var(--sky);
+      border: 2px solid var(--blue-light);
       border-radius: 100px;
-      padding: 8px 18px;
+      padding: 7px 16px;
       font-size: 13px;
       font-weight: 700;
-      color: var(--sky-dark);
-      box-shadow: 2px 2px 0 var(--sky-pale);
+      color: var(--blue-dark);
     }
-
-    .badge--coral { border-color: var(--coral); color: var(--coral); box-shadow: 2px 2px 0 var(--coral-lt); }
-    .badge--yellow { border-color: var(--yellow); color: #B07A00; box-shadow: 2px 2px 0 var(--yellow-lt); }
-
-    .btn {
-      display: inline-block;
-      background: var(--coral);
-      color: var(--white) !important;
-      font-weight: 800;
-      font-size: 16px;
-      padding: 18px 48px;
-      border-radius: 100px;
-      box-shadow: 4px 4px 0 #C94040;
-      transition: transform .15s, box-shadow .15s;
-      cursor: pointer;
-      text-align: center;
-      letter-spacing: .04em;
-    }
-
-    .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #C94040; }
-    .btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #C94040; }
-
-    .btn--sky {
-      background: var(--sky-dark);
-      box-shadow: 4px 4px 0 #0D6A9C;
-    }
-    .btn--sky:hover { box-shadow: 6px 6px 0 #0D6A9C; }
-    .btn--sky:active { box-shadow: 2px 2px 0 #0D6A9C; }
-
-    .btn--yellow {
-      background: var(--yellow);
-      color: var(--navy) !important;
-      box-shadow: 4px 4px 0 #C9A000;
-    }
-    .btn--yellow:hover { box-shadow: 6px 6px 0 #C9A000; }
 
     .hero__chara {
       display: flex;
       align-items: flex-end;
       justify-content: center;
-    }
-
-    .hero__chara-wrap {
       position: relative;
     }
 
-    .hero__photo {
-      width: 360px;
-      border-radius: 24px 24px 0 0;
-      overflow: hidden;
-      box-shadow: 8px 8px 0 rgba(27,143,212,.2);
-    }
+    .hero__chara-wrap { position: relative; }
 
-    .hero__photo img {
-      width: 100%;
-      height: 480px;
-      object-fit: cover;
-      object-position: top center;
+    .hero__illust {
+      width: 340px;
+      display: block;
+      position: relative;
+      z-index: 1;
     }
 
     .hero__speech {
       position: absolute;
-      top: -20px;
-      right: -40px;
+      top: 32px;
+      right: -24px;
       background: var(--white);
-      border: 3px solid var(--navy);
-      border-radius: 16px 16px 16px 4px;
-      padding: 12px 16px;
+      border: 2.5px solid var(--blue);
+      border-radius: 16px 16px 4px 16px;
+      padding: 12px 18px;
       font-size: 13px;
       font-weight: 700;
-      color: var(--navy);
-      box-shadow: 3px 3px 0 rgba(0,0,0,.1);
-      white-space: nowrap;
+      color: var(--text);
+      box-shadow: 3px 3px 0 var(--blue-light);
+      max-width: 160px;
+      line-height: 1.7;
+      z-index: 2;
     }
 
+    /* small triangle */
     .hero__speech::after {
       content: '';
       position: absolute;
-      bottom: -14px; left: 16px;
-      border: 7px solid transparent;
-      border-top-color: var(--navy);
+      bottom: -12px;
+      left: 20px;
+      border: 6px solid transparent;
+      border-top-color: var(--blue);
     }
 
     /* ── INFO BAR ── */
     .info-bar {
-      background: var(--sky-dark);
+      background: var(--blue-pale);
+      border-top: 1px solid var(--blue-light);
       padding: 14px 24px;
       text-align: center;
     }
 
     .info-bar p {
-      color: var(--white);
-      font-weight: 700;
-      font-size: clamp(12px, 2vw, 14px);
-      letter-spacing: .04em;
+      color: var(--text-mid);
+      font-weight: 600;
+      font-size: clamp(11px, 1.8vw, 13px);
+      letter-spacing: .03em;
     }
 
-    /* ── SECTION BASE ── */
+    /* ══ SECTION BASE ══ */
     .section { padding: 80px 24px; }
     .inner { max-width: 760px; margin: 0 auto; }
     .inner--wide { max-width: 960px; margin: 0 auto; }
 
-    .section-tag {
-      display: inline-block;
-      background: var(--sky);
-      color: var(--white);
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue-dark);
       font-weight: 800;
       font-size: 12px;
       letter-spacing: .1em;
-      padding: 5px 16px;
-      border-radius: 100px;
-      margin-bottom: 14px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--blue-light);
+      padding-bottom: 4px;
     }
-
-    .section-tag--coral { background: var(--coral); }
-    .section-tag--yellow { background: var(--yellow); color: var(--navy); }
-    .section-tag--mint { background: var(--mint); }
 
     .section-title {
       font-weight: 900;
       font-size: clamp(24px, 4vw, 36px);
       line-height: 1.45;
-      color: var(--navy);
+      color: var(--text);
       margin-bottom: 12px;
     }
 
@@ -292,8 +236,8 @@
       margin-bottom: 48px;
     }
 
-    /* ── WORRIES ── */
-    .worries { background: var(--off); }
+    /* ══ WORRIES ══ */
+    .worries { background: var(--blue-ultra); }
 
     .worry-list { display: flex; flex-direction: column; gap: 16px; }
 
@@ -303,13 +247,10 @@
       padding: 20px 24px;
       display: flex;
       align-items: center;
-      gap: 18px;
-      box-shadow: 4px 4px 0 var(--sky-pale);
-      border: 2px solid var(--sky-pale);
-      transition: transform .15s, box-shadow .15s;
+      gap: 20px;
+      border: 1.5px solid var(--blue-light);
+      box-shadow: 3px 3px 0 var(--blue-pale);
     }
-
-    .worry-item:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--sky-pale); }
 
     .worry-icon {
       flex-shrink: 0;
@@ -317,15 +258,15 @@
       height: 56px;
       border-radius: 50%;
       overflow: hidden;
-      background: var(--sky-pale);
-      border: 2px solid var(--sky);
+      border: 2px solid var(--blue-light);
+      background-color: var(--blue-pale);
     }
 
-    .worry-text { font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.7; }
+    .worry-text { font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.7; }
     .worry-text span { font-size: 13px; font-weight: 400; color: var(--text-mid); display: block; margin-top: 4px; }
 
-    /* ── TARGETS ── */
-    .targets { background: var(--yellow-lt); }
+    /* ══ TARGETS ══ */
+    .targets { background: var(--white); }
 
     .target-grid {
       display: grid;
@@ -334,43 +275,46 @@
     }
 
     .target-card {
-      background: var(--white);
+      background: var(--blue-ultra);
       border-radius: 20px;
       padding: 28px 20px;
       text-align: center;
-      border: 3px solid var(--yellow);
-      box-shadow: 4px 4px 0 var(--yellow);
+      border: 1.5px solid var(--blue-light);
       transition: transform .15s, box-shadow .15s;
     }
 
-    .target-card:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--yellow); }
+    .target-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(75,122,150,.12); }
 
-    .target-card__icon { font-size: 36px; margin-bottom: 12px; }
-    .target-card__text { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.8; }
+    .target-card__num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--blue-light);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
 
-    /* ── BENEFITS ── */
-    .benefits { background: var(--white); }
+    .target-card__text { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.8; }
+
+    /* ══ BENEFITS ══ */
+    .benefits { background: var(--blue-ultra); }
 
     .benefit-list { display: flex; flex-direction: column; gap: 24px; }
 
     .benefit-item {
-      background: var(--off);
+      background: var(--white);
       border-radius: 20px;
       padding: 28px 32px;
       display: grid;
-      grid-template-columns: 64px 1fr;
+      grid-template-columns: 56px 1fr;
       gap: 24px;
       align-items: start;
-      border: 2px solid var(--sky-pale);
-      transition: transform .15s, box-shadow .15s;
+      border: 1.5px solid var(--blue-light);
     }
 
-    .benefit-item:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--sky-pale); }
-
     .benefit-num {
-      width: 56px;
-      height: 56px;
-      background: var(--sky);
+      width: 52px;
+      height: 52px;
+      background: var(--blue);
       color: var(--white);
       border-radius: 50%;
       display: flex;
@@ -378,56 +322,39 @@
       justify-content: center;
       font-weight: 900;
       font-size: 20px;
-      box-shadow: 3px 3px 0 var(--sky-dark);
       flex-shrink: 0;
+      box-shadow: 3px 3px 0 var(--blue-dark);
     }
 
-    .benefit-body h3 { font-weight: 800; font-size: 17px; color: var(--navy); margin-bottom: 8px; line-height: 1.6; }
+    .benefit-body h3 { font-weight: 800; font-size: 17px; color: var(--text); margin-bottom: 8px; line-height: 1.6; }
     .benefit-body p { font-size: 14px; color: var(--text-mid); line-height: 2; }
 
-    .benefit-result {
+    .benefit-tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       margin-top: 10px;
-      background: var(--yellow-lt);
-      border: 2px solid var(--yellow);
-      color: var(--navy);
+      background: var(--blue-pale);
+      border: 1.5px solid var(--blue-light);
+      color: var(--blue-dark);
       font-size: 13px;
       font-weight: 700;
       padding: 6px 14px;
       border-radius: 100px;
     }
 
-    /* ── PRICING ── */
-    .pricing {
-      background: linear-gradient(160deg, #C8ECFC 0%, #D6F0FF 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pricing::before {
-      content: '¥';
-      position: absolute;
-      right: -20px;
-      top: 20px;
-      font-size: 280px;
-      font-weight: 900;
-      color: rgba(75,184,240,.1);
-      line-height: 1;
-      pointer-events: none;
-    }
+    /* ══ PRICING ══ */
+    .pricing { background: var(--white); }
 
     .price-card {
       background: var(--white);
       border-radius: 24px;
-      padding: 48px 44px;
+      padding: 52px 44px;
       max-width: 520px;
       margin: 0 auto;
-      border: 3px solid var(--sky);
-      box-shadow: 8px 8px 0 var(--sky);
+      border: 2px solid var(--blue-light);
+      box-shadow: 8px 8px 0 var(--blue-pale);
       position: relative;
-      z-index: 1;
     }
 
     .price-card__ribbon {
@@ -435,21 +362,21 @@
       top: -16px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--coral);
+      background: var(--blue);
       color: var(--white);
       font-weight: 800;
       font-size: 13px;
       padding: 6px 24px;
       border-radius: 100px;
       white-space: nowrap;
-      box-shadow: 3px 3px 0 #C94040;
+      box-shadow: 3px 3px 0 var(--blue-dark);
     }
 
     .price-card__name {
-      font-weight: 800;
+      font-weight: 700;
       font-size: 14px;
-      color: var(--sky-dark);
-      margin-bottom: 8px;
+      color: var(--text-mid);
+      margin-bottom: 12px;
       text-align: center;
     }
 
@@ -461,22 +388,21 @@
     .price-card__price-num {
       font-weight: 900;
       font-size: 72px;
-      color: var(--navy);
+      color: var(--text);
       line-height: 1;
     }
 
     .price-card__price-yen { font-size: 28px; font-weight: 800; }
-
     .price-card__note { text-align: center; font-size: 12px; color: var(--text-mid); margin-bottom: 28px; }
 
     .price-details {
       list-style: none;
-      border-top: 2px dashed var(--sky-pale);
+      border-top: 2px dashed var(--blue-light);
       padding-top: 20px;
       margin-bottom: 32px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .price-details li {
@@ -484,7 +410,6 @@
       align-items: center;
       gap: 10px;
       font-size: 14px;
-      font-weight: 500;
       color: var(--text-mid);
     }
 
@@ -492,36 +417,34 @@
       content: '✓';
       width: 22px;
       height: 22px;
-      background: var(--sky);
+      min-width: 22px;
+      background: var(--blue);
       color: var(--white);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
-      flex-shrink: 0;
     }
 
-    /* ── PROFILE ── */
-    .profile { background: var(--off); }
+    /* ══ PROFILE ══ */
+    .profile { background: var(--blue-ultra); }
 
     .profile__grid {
       display: grid;
-      grid-template-columns: 260px 1fr;
+      grid-template-columns: 240px 1fr;
       gap: 52px;
       align-items: start;
     }
-
-    .profile__photo-wrap { position: relative; }
 
     .profile__photo {
       border-radius: 20px;
       overflow: hidden;
       aspect-ratio: 3/4;
-      background: var(--sky-pale);
-      border: 3px solid var(--sky);
-      box-shadow: 6px 6px 0 var(--sky);
+      background: var(--blue-pale);
+      border: 2px solid var(--blue-light);
+      box-shadow: 6px 6px 0 var(--blue-light);
     }
 
     .profile__photo img {
@@ -530,35 +453,14 @@
       object-position: top center;
     }
 
-    .profile__sticker {
-      position: absolute;
-      bottom: -16px;
-      right: -16px;
-      background: var(--yellow);
-      border: 3px solid var(--navy);
-      border-radius: 50%;
-      width: 80px;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--navy);
-      text-align: center;
-      line-height: 1.4;
-      box-shadow: 3px 3px 0 rgba(0,0,0,.15);
-      transform: rotate(12deg);
-    }
-
     .profile__name {
       font-weight: 900;
       font-size: clamp(24px, 3vw, 32px);
-      color: var(--navy);
+      color: var(--text);
       margin-bottom: 4px;
     }
 
-    .profile__title { font-size: 13px; color: var(--sky-dark); font-weight: 700; margin-bottom: 24px; }
+    .profile__title { font-size: 13px; color: var(--blue-dark); font-weight: 700; margin-bottom: 24px; }
 
     .profile__text { font-size: 15px; line-height: 2.2; color: var(--text-mid); margin-bottom: 28px; }
     .profile__text p + p { margin-top: 8px; }
@@ -569,19 +471,16 @@
       gap: 8px;
       font-size: 13px;
       font-weight: 700;
-      color: var(--sky-dark);
-      background: var(--sky-pale);
-      border: 2px solid var(--sky);
+      color: var(--blue-dark);
+      background: var(--white);
+      border: 2px solid var(--blue-light);
       padding: 8px 20px;
       border-radius: 100px;
-      transition: background .2s;
     }
 
-    .profile__social a:hover { background: #C0E6F8; }
-
-    /* ── FINAL CTA ── */
+    /* ══ FINAL CTA ══ */
     .final-cta {
-      background: linear-gradient(135deg, var(--coral) 0%, #FF8C6B 100%);
+      background: var(--blue);
       text-align: center;
       padding: 88px 24px;
       position: relative;
@@ -589,21 +488,11 @@
     }
 
     .final-cta::before {
-      content: '🎬';
+      content: '';
       position: absolute;
-      font-size: 180px;
-      opacity: .08;
-      top: -20px;
-      left: -20px;
-    }
-
-    .final-cta::after {
-      content: '✨';
-      position: absolute;
-      font-size: 140px;
-      opacity: .1;
-      bottom: -20px;
-      right: -10px;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E") center/60px 60px;
+      pointer-events: none;
     }
 
     .final-cta h2 {
@@ -617,15 +506,15 @@
 
     .final-cta p {
       font-size: 15px;
-      color: rgba(255,255,255,.9);
+      color: rgba(255,255,255,.85);
       margin-bottom: 40px;
       line-height: 2;
       position: relative;
     }
 
-    /* ── FOOTER ── */
+    /* ══ FOOTER ══ */
     footer {
-      background: var(--navy);
+      background: var(--text);
       text-align: center;
       padding: 40px 24px;
     }
@@ -639,20 +528,19 @@
 
     .footer-social a {
       width: 44px; height: 44px;
-      border: 2px solid rgba(255,255,255,.25);
+      border: 2px solid rgba(255,255,255,.2);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255,255,255,.7);
+      color: rgba(255,255,255,.6);
       transition: border-color .2s, color .2s;
     }
 
-    .footer-social a:hover { border-color: var(--yellow); color: var(--yellow); }
+    .footer-social a:hover { border-color: var(--blue-light); color: var(--white); }
+    footer p { font-size: 11px; color: rgba(255,255,255,.3); }
 
-    footer p { font-size: 11px; color: rgba(255,255,255,.35); }
-
-    /* ── FLOATING CTA ── */
+    /* ══ FLOATING CTA ══ */
     .floating-cta {
       position: fixed;
       bottom: 20px;
@@ -668,15 +556,14 @@
     .floating-cta.visible { opacity: 1; pointer-events: auto; }
     .floating-cta .btn { width: 100%; }
 
-    /* ── RESPONSIVE ── */
+    /* ══ RESPONSIVE ══ */
     @media (max-width: 768px) {
       .section { padding: 60px 20px; }
 
       .hero__inner { grid-template-columns: 1fr; }
       .hero__chara { order: -1; }
-      .hero__photo { width: 100%; max-width: 280px; margin: 0 auto; }
-      .hero__photo img { height: 320px; }
-      .hero__speech { right: 0; top: -14px; font-size: 11px; }
+      .hero__illust { width: 100%; max-width: 260px; margin: 0 auto; }
+      .hero__speech { right: 0; top: 16px; font-size: 12px; }
       .hero__text { padding-bottom: 40px; }
 
       .target-grid { grid-template-columns: 1fr; }
@@ -684,9 +571,9 @@
       .benefit-item { grid-template-columns: 48px 1fr; gap: 16px; }
 
       .profile__grid { grid-template-columns: 1fr; }
-      .profile__photo { max-width: 200px; margin: 0 auto 40px; }
+      .profile__photo { max-width: 200px; margin: 0 auto; }
 
-      .price-card { padding: 40px 24px; }
+      .price-card { padding: 40px 20px; }
       .price-card__price-num { font-size: 56px; }
     }
   </style>
@@ -695,41 +582,48 @@
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="top">
-  <div class="hero__inner inner--wide">
-    <div class="hero__text">
-      <div class="hero__sticker">🎬 子連れOK！　1Day 対面レッスン</div>
+  <div class="hero__top">
+    <div class="hero__inner inner--wide">
+      <div class="hero__text">
+        <div class="hero__badge">🎬 子連れOK！　1Day 対面レッスン</div>
 
-      <h1 class="hero__catch">
-        <span class="accent">Premiere</span>って<br/>
-        こんなに楽しいの！？<br/>
-        動画編集、<br/>はじめの一歩。
-      </h1>
+        <h1 class="hero__catch">
+          <span class="accent">Premiere</span>って<br/>
+          こんなに楽しいの！？<br/>
+          動画編集、<br/>はじめの一歩。
+        </h1>
 
-      <div class="hero__sub">
-        なぜ Premiere なのか？<br/>
-        多くの編集現場で選ばれてるから。<br/>
-        まず１日、楽しさだけ体感しに来てほしい！
+        <div class="hero__sub">
+          なぜ Premiere なのか？<br/>
+          多くの編集現場で選ばれてるから。<br/>
+          まず１日、楽しさだけ体感しに来てほしい！
+        </div>
+
+        <div class="hero__info">
+          <span class="hero__info-item">¥9,000（税込）</span>
+          <span class="hero__info-item">対面 1DAY × 2回</span>
+          <span class="hero__info-item">子連れOK 🍼</span>
+        </div>
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn">今すぐ申し込む →</a>
       </div>
 
-      <div class="hero__badges">
-        <span class="badge">¥9,000（税込）</span>
-        <span class="badge--coral badge">対面 1DAY × 2回</span>
-        <span class="badge--yellow badge">子連れOK 🍼</span>
-      </div>
-
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn">今すぐ申し込む →</a>
-    </div>
-
-    <div class="hero__chara">
-      <div class="hero__chara-wrap">
-        <div class="hero__speech">一緒に楽しく<br/>学ぼう！✨</div>
-        <div class="hero__photo">
-          <img src="images/ちびえび - 6.png" alt="海老原 愛"
-            onerror="this.parentElement.style.background='var(--sky-pale)'" />
+      <div class="hero__chara">
+        <div class="hero__chara-wrap">
+          <div class="hero__speech">
+            Premiere、<br/>楽しいよ！<br/>（本当に）
+          </div>
+          <img class="hero__illust" src="images/Gemini_Generated_Image_.png" alt="キャラクターイラスト" />
         </div>
       </div>
     </div>
   </div>
+
+  <!-- wave -->
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:48px;">
+    <path d="M0,32 C240,56 480,8 720,32 C960,56 1200,8 1440,32 L1440,48 L0,48 Z" fill="var(--blue-ultra)"/>
+    <path d="M0,32 C240,56 480,8 720,32 C960,56 1200,8 1440,32" fill="none" stroke="var(--blue-light)" stroke-width="1.5"/>
+  </svg>
 </section>
 
 <!-- INFO BAR -->
@@ -737,37 +631,30 @@
   <p>動画編集コミュニティ「おうちクリエイターラボ」主宰 ─ 海老原 愛 が贈る、在宅ワーク初めの一歩のための講座</p>
 </div>
 
-<!-- ZIGZAG -->
-<div class="zz" style="background:var(--off)">
-  <svg viewBox="0 0 1440 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polyline points="0,0 60,30 120,0 180,30 240,0 300,30 360,0 420,30 480,0 540,30 600,0 660,30 720,0 780,30 840,0 900,30 960,0 1020,30 1080,0 1140,30 1200,0 1260,30 1320,0 1380,30 1440,0 1440,0 0,0" fill="var(--sky-dark)"/>
-  </svg>
-</div>
-
 <!-- ══ WORRIES ══ -->
-<section class="section worries dots-bg" id="worries">
+<section class="section worries" id="worries">
   <div class="inner">
-    <div class="section-tag">😣 こんな気持ち、ない？</div>
+    <p class="section-label">こんな気持ち、ない？</p>
     <h2 class="section-title">こんな気持ち<br/>ありませんか？</h2>
     <p class="section-lead">多くの方が、最初の一歩を踏み出す前に同じ壁にぶつかっています。</p>
 
     <ul class="worry-list">
       <li class="worry-item">
-        <div class="worry-icon" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;"></div>
+        <div class="worry-icon" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;background-color:var(--blue-pale);"></div>
         <div class="worry-text">
           何から始めればいいかわからない…
           <span>動画編集をお仕事にしたいけれど、どこに手をつければいいのか迷ってしまう</span>
         </div>
       </li>
       <li class="worry-item">
-        <div class="worry-icon" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;"></div>
+        <div class="worry-icon" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;background-color:var(--blue-pale);"></div>
         <div class="worry-text">
           独学だと「これで合ってる？」が止まらない
           <span>触ってはみるものの、正しいやり方なのかわからなくて途中で止まってしまう</span>
         </div>
       </li>
       <li class="worry-item">
-        <div class="worry-icon" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;"></div>
+        <div class="worry-icon" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;background-color:var(--blue-pale);"></div>
         <div class="worry-text">
           「いつかはプレミア」とずっと思っていた
           <span>難しそうという先入観から、ずっと後回しにしてきた。でも、そろそろ始めたい！</span>
@@ -777,47 +664,43 @@
   </div>
 </section>
 
-<!-- ZIGZAG -->
-<div class="zz" style="background:var(--yellow-lt)">
-  <svg viewBox="0 0 1440 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polyline points="0,30 60,0 120,30 180,0 240,30 300,0 360,30 420,0 480,30 540,0 600,30 660,0 720,30 780,0 840,30 900,0 960,30 1020,0 1080,30 1140,0 1200,30 1260,0 1320,30 1380,0 1440,30 1440,30 0,30" fill="var(--off)"/>
-  </svg>
-</div>
+<!-- wave -->
+<svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:48px;background:var(--white);">
+  <path d="M0,16 C240,-8 480,40 720,16 C960,-8 1200,40 1440,16 L1440,0 L0,0 Z" fill="var(--blue-ultra)"/>
+</svg>
 
 <!-- ══ TARGETS ══ -->
 <section class="section targets" id="targets">
   <div class="inner">
-    <div class="section-tag section-tag--yellow">🙋 こんな人に来てほしい！</div>
+    <p class="section-label">こんな人に来てほしい！</p>
     <h2 class="section-title">こんな方に<br/>ぴったりです！</h2>
 
     <div class="target-grid">
       <div class="target-card">
-        <div class="target-card__icon">🎬</div>
+        <div class="target-card__num">01</div>
         <p class="target-card__text">Premiere を触ってみたいけど、一人では不安な人</p>
       </div>
       <div class="target-card">
-        <div class="target-card__icon">🌱</div>
+        <div class="target-card__num">02</div>
         <p class="target-card__text">難しそうで後回しにしてきたけど、そろそろ始めたい人</p>
       </div>
       <div class="target-card">
-        <div class="target-card__icon">✨</div>
+        <div class="target-card__num">03</div>
         <p class="target-card__text">まず１日、楽しさだけ体感しに来てほしい人</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ZIGZAG -->
-<div class="zz" style="background:var(--white)">
-  <svg viewBox="0 0 1440 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polyline points="0,0 60,30 120,0 180,30 240,0 300,30 360,0 420,30 480,0 540,30 600,0 660,30 720,0 780,30 840,0 900,30 960,0 1020,30 1080,0 1140,30 1200,0 1260,30 1320,0 1380,30 1440,0 1440,0 0,0" fill="var(--yellow-lt)"/>
-  </svg>
-</div>
+<!-- wave -->
+<svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:48px;background:var(--blue-ultra);">
+  <path d="M0,32 C240,8 480,48 720,32 C960,8 1200,48 1440,32 L1440,48 L0,48 Z" fill="var(--white)"/>
+</svg>
 
 <!-- ══ BENEFITS ══ -->
 <section class="section benefits" id="benefits">
   <div class="inner">
-    <div class="section-tag section-tag--mint">🎁 参加するとこうなる！</div>
+    <p class="section-label">参加するとこうなる！</p>
     <h2 class="section-title">参加後に<br/>得られること</h2>
     <p class="section-lead">「知識として知っている」ではなく、<strong>手が動く体験</strong>をお持ち帰りください！</p>
 
@@ -827,7 +710,7 @@
         <div class="benefit-body">
           <h3>画面を開いても迷わない、手が動くようになる 🙌</h3>
           <p>「何からすればいい？」でフリーズする時間がなくなります。セミナー後は迷わず編集スタート！</p>
-          <div class="benefit-result">✨ フリーズする時間 → ゼロに！</div>
+          <div class="benefit-tag">→ フリーズする時間、ゼロに</div>
         </div>
       </li>
       <li class="benefit-item">
@@ -835,7 +718,7 @@
         <div class="benefit-body">
           <h3>「これで合ってる？」がなくなり、一本を最後まで完成させられる 🎞️</h3>
           <p>迷いながらの数時間が、スムーズな編集へ。正しい手順を身体で覚えることで作業スピードがアップ！</p>
-          <div class="benefit-result">✨ 迷いの時間 → 迷いのない編集へ！</div>
+          <div class="benefit-tag">→ 迷いのない編集へ</div>
         </div>
       </li>
       <li class="benefit-item">
@@ -843,28 +726,26 @@
         <div class="benefit-body">
           <h3>「自分でできた！」という自信がつく 💪</h3>
           <p>Premiere で一通り編集できたという実感が残ります。この小さな成功体験が次のステップへの推進力に！</p>
-          <div class="benefit-result">✨ 体験 → 自信へ！</div>
+          <div class="benefit-tag">→ 体験が、自信になる</div>
         </div>
       </li>
     </ul>
   </div>
 </section>
 
-<!-- ZIGZAG -->
-<div class="zz" style="background:linear-gradient(160deg,#C8ECFC,#D6F0FF)">
-  <svg viewBox="0 0 1440 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polyline points="0,30 60,0 120,30 180,0 240,30 300,0 360,30 420,0 480,30 540,0 600,30 660,0 720,30 780,0 840,30 900,0 960,30 1020,0 1080,30 1140,0 1200,30 1260,0 1320,30 1380,0 1440,30 1440,30 0,30" fill="var(--white)"/>
-  </svg>
-</div>
+<!-- wave -->
+<svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:48px;background:var(--white);">
+  <path d="M0,16 C360,48 720,-8 1080,24 C1260,40 1380,16 1440,8 L1440,0 L0,0 Z" fill="var(--blue-ultra)"/>
+</svg>
 
 <!-- ══ PRICING ══ -->
 <section class="section pricing" id="contact">
   <div class="inner" style="text-align:center">
-    <div class="section-tag section-tag--coral" style="margin-bottom:12px">💰 料金・お申し込み</div>
-    <h2 class="section-title" style="margin-bottom:48px">セミナー詳細</h2>
+    <p class="section-label" style="justify-content:center">料金・お申し込み</p>
+    <h2 class="section-title" style="margin-bottom:52px">セミナー詳細</h2>
 
     <div class="price-card">
-      <div class="price-card__ribbon">🎉 先着順・残りわずか！</div>
+      <div class="price-card__ribbon">先着順・残りわずか！</div>
       <p class="price-card__name">Adobe Premiere 基礎編集 1DAY セミナー</p>
       <div class="price-card__price">
         <span class="price-card__price-yen">¥</span>
@@ -880,33 +761,30 @@
         <li>子連れでのご参加、大歓迎です 🍼</li>
       </ul>
 
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn btn--sky" style="width:100%;font-size:16px;padding:20px">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn" style="width:100%;font-size:16px;padding:20px">
         申し込みフォームへ進む →
       </a>
     </div>
   </div>
 </section>
 
-<!-- ZIGZAG -->
-<div class="zz" style="background:var(--off)">
-  <svg viewBox="0 0 1440 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polyline points="0,0 60,30 120,0 180,30 240,0 300,30 360,0 420,30 480,0 540,30 600,0 660,30 720,0 780,30 840,0 900,30 960,0 1020,30 1080,0 1140,30 1200,0 1260,30 1320,0 1380,30 1440,0 1440,0 0,0" fill="rgba(200,236,252,0.4)"/>
-  </svg>
-</div>
+<!-- wave -->
+<svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:48px;background:var(--blue-ultra);">
+  <path d="M0,32 C480,0 960,48 1440,16 L1440,48 L0,48 Z" fill="var(--white)"/>
+</svg>
 
 <!-- ══ PROFILE ══ -->
 <section class="section profile" id="about">
   <div class="inner--wide">
-    <div class="section-tag" style="margin-bottom:12px">👩 講師プロフィール</div>
+    <p class="section-label">講師プロフィール</p>
     <h2 class="section-title" style="margin-bottom:48px">講師紹介</h2>
 
     <div class="profile__grid">
-      <div class="profile__photo-wrap">
+      <div>
         <div class="profile__photo">
           <img src="images/ちびえび - 6.png" alt="海老原 愛"
-            onerror="this.parentElement.style.background='var(--sky-pale)'" />
+            onerror="this.parentElement.style.background='var(--blue-pale)'" />
         </div>
-        <div class="profile__sticker">子連れ<br/>OK！<br/>🍼</div>
       </div>
       <div>
         <h3 class="profile__name">海老原 愛</h3>
@@ -932,9 +810,9 @@
 
 <!-- ══ FINAL CTA ══ -->
 <section class="final-cta">
-  <h2>さあ、一緒に<br/>はじめよう！🎬</h2>
+  <h2>さあ、一緒に<br/>はじめよう！</h2>
   <p>難しく考えなくていい。<br/>まず１日、楽しさだけ体感しに来てください。</p>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn btn--yellow">申し込みフォームへ →</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn btn--outline">申し込みフォームへ →</a>
 </section>
 
 <!-- FOOTER -->

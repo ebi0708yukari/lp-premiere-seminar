@@ -6,306 +6,281 @@
   <title>Adobe Premiere 基礎編集 1DAY セミナー | 海老原 愛</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Oswald:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --blue-deep:    #4A6D84;
-      --blue-mid:     #6F93A8;
-      --blue-muted:   #8BAFC4;
-      --blue-light:   #BACFDB;
-      --blue-pale:    #D9E8F0;
-      --blue-ghost:   #EDF4F8;
-      --bg:           #F7FAFB;
-      --white:        #FFFFFF;
-      --text-dark:    #2E3D47;
-      --text-mid:     #4A5C67;
-      --text-light:   #7A9BAD;
-      --gold:         #C8A882;
-      --gold-light:   #E5D4BE;
+      --navy:      #0D2B45;
+      --blue:      #1B6FAB;
+      --blue-mid:  #2A8EC0;
+      --blue-light:#5BB0D5;
+      --blue-pale: #D6EDF8;
+      --blue-ghost:#EEF7FC;
+      --gold:      #D4933A;
+      --gold-light:#F2C97A;
+      --white:     #FFFFFF;
+      --off-white: #F5F9FC;
+      --text:      #1A2A36;
+      --text-mid:  #3D5566;
+      --text-light:#7A98AD;
     }
 
     html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--white); overflow-wrap: break-word; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
 
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      color: var(--text-dark);
-      background: var(--bg);
-      line-height: 1.8;
-      font-size: 15px;
-      overflow-wrap: break-word;
+    /* ── WAVE DIVIDER ── */
+    .wave { display: block; width: 100%; line-height: 0; }
+    .wave svg { display: block; width: 100%; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
     }
 
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
+    .hero__bg-accent {
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+      clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 0;
+    }
 
-    /* ─── UTILITIES ─────────────────────────────── */
-    .section { padding: 80px 24px; }
-    .section--tight { padding: 60px 24px; }
-    .inner { max-width: 720px; margin: 0 auto; }
-    .inner--wide { max-width: 960px; margin: 0 auto; }
+    .hero__photo {
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+      clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
 
-    .label {
-      display: inline-block;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 11px;
+    .hero__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      opacity: .85;
+      mix-blend-mode: luminosity;
+    }
+
+    .hero__photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--navy) 0%, transparent 40%),
+                  linear-gradient(to top, var(--navy) 0%, transparent 30%);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px 60px;
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero__eyebrow-line {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .hero__eyebrow-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
       letter-spacing: .25em;
       text-transform: uppercase;
-      color: var(--blue-mid);
-      border-bottom: 1px solid var(--blue-light);
-      padding-bottom: 4px;
-      margin-bottom: 18px;
+      color: var(--gold);
+    }
+
+    .hero__catch {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 700;
+      font-size: clamp(28px, 5vw, 52px);
+      line-height: 1.45;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .hero__catch em {
+      font-style: normal;
+      color: var(--gold-light);
+      display: block;
+    }
+
+    .hero__sub {
+      font-size: 14px;
+      color: rgba(255,255,255,.75);
+      line-height: 2;
+      margin-bottom: 40px;
+      max-width: 420px;
+      padding-left: 16px;
+      border-left: 2px solid var(--blue-light);
+    }
+
+    .hero__badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 44px;
+    }
+
+    .hero__badge {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.25);
+      backdrop-filter: blur(8px);
+      border-radius: 6px;
+      padding: 10px 20px;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .hero__badge strong { display: block; font-size: 20px; font-weight: 700; }
+    .hero__badge span { font-size: 11px; opacity: .75; }
+
+    .btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy) !important;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: .08em;
+      padding: 18px 48px;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(212,147,58,.4);
+      transition: transform .2s, box-shadow .2s, background .2s;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,147,58,.5); background: var(--gold-light); }
+
+    .btn--blue {
+      background: var(--blue);
+      color: var(--white) !important;
+      box-shadow: 0 4px 20px rgba(27,111,171,.35);
+    }
+    .btn--blue:hover { background: var(--blue-mid); box-shadow: 0 8px 28px rgba(27,111,171,.45); }
+
+    .btn--white {
+      background: var(--white);
+      color: var(--navy) !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,.15);
+    }
+    .btn--white:hover { background: var(--blue-ghost); }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      background: var(--gold);
+      padding: 16px 24px;
+      text-align: center;
+    }
+
+    .info-strip p {
+      font-weight: 700;
+      font-size: clamp(12px, 2vw, 14px);
+      letter-spacing: .08em;
+      color: var(--navy);
+    }
+
+    /* ── SECTION BASE ── */
+    .section { padding: 88px 24px; }
+    .section--sm { padding: 64px 24px; }
+    .inner { max-width: 760px; margin: 0 auto; }
+    .inner--wide { max-width: 1000px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::before {
+      content: '';
+      width: 28px;
+      height: 2px;
+      background: var(--blue);
     }
 
     .section-title {
       font-family: 'Noto Serif JP', serif;
-      font-weight: 600;
-      font-size: clamp(22px, 4vw, 30px);
-      line-height: 1.5;
-      color: var(--text-dark);
-      margin-bottom: 12px;
+      font-weight: 700;
+      font-size: clamp(24px, 4vw, 36px);
+      line-height: 1.45;
+      color: var(--navy);
+      margin-bottom: 16px;
     }
 
     .section-lead {
       font-size: 14px;
       color: var(--text-mid);
-      line-height: 2;
-      margin-bottom: 48px;
+      line-height: 2.2;
+      margin-bottom: 56px;
     }
 
-    /* ─── HERO ──────────────────────────────────── */
-    .hero {
-      background: linear-gradient(160deg, #E2EEF5 0%, #D0E3ED 40%, #C4D8E6 100%);
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      padding: 0 24px;
-      position: relative;
-      overflow: hidden;
-    }
+    /* ── WORRIES ── */
+    .worries { background: var(--off-white); }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 70% at 80% 30%, rgba(255,255,255,.45) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(74,109,132,.12) 0%, transparent 55%);
-      pointer-events: none;
-    }
-
-    .hero__inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-      padding: 80px 0;
-    }
-
-    .hero__tag {
-      display: inline-block;
-      background: rgba(255,255,255,.65);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,.8);
-      border-radius: 100px;
-      padding: 6px 18px;
-      font-size: 12px;
-      letter-spacing: .12em;
-      color: var(--blue-deep);
-      margin-bottom: 24px;
-    }
-
-    .hero__catch {
-      font-family: 'Noto Serif JP', serif;
-      font-weight: 600;
-      font-size: clamp(24px, 4.5vw, 38px);
-      line-height: 1.55;
-      color: var(--text-dark);
-      margin-bottom: 20px;
-    }
-
-    .hero__catch em {
-      font-style: normal;
-      color: var(--blue-deep);
-      position: relative;
-    }
-
-    .hero__sub {
-      font-size: 13px;
-      color: var(--text-mid);
-      line-height: 2;
-      margin-bottom: 36px;
-      padding-left: 16px;
-      border-left: 2px solid var(--blue-muted);
-    }
-
-    .hero__meta {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-
-    .hero__badge {
-      background: rgba(255,255,255,.7);
-      border: 1px solid var(--blue-pale);
-      border-radius: 8px;
-      padding: 10px 18px;
-      font-size: 12px;
-      color: var(--blue-deep);
-      text-align: center;
-      line-height: 1.5;
-    }
-
-    .hero__badge strong { display: block; font-size: 18px; font-weight: 700; }
-
-    .hero__photo-wrap {
-      position: relative;
-    }
-
-    .hero__photo-frame {
-      border-radius: 2px 40% 2px 40%;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(74,109,132,.2), 0 4px 12px rgba(74,109,132,.1);
-      aspect-ratio: 3/4;
-      background: var(--blue-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero__photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-    }
-
-    .hero__photo-placeholder {
-      width: 100%;
-      height: 100%;
-      min-height: 400px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: var(--blue-mid);
-    }
-
-    .hero__photo-placeholder svg { opacity: .4; }
-
-    .hero__deco {
-      position: absolute;
-      bottom: -20px;
-      right: -20px;
-      width: 140px;
-      height: 140px;
-      border: 1px solid var(--blue-light);
-      border-radius: 50%;
-      opacity: .5;
-      pointer-events: none;
-    }
-
-    .hero__deco2 {
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      width: 80px;
-      height: 80px;
-      background: rgba(255,255,255,.5);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .btn {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
-      color: var(--white) !important;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      padding: 18px 48px;
-      border-radius: 100px;
-      box-shadow: 0 6px 24px rgba(74,109,132,.35);
-      transition: transform .2s, box-shadow .2s;
-      text-align: center;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(74,109,132,.45);
-    }
-
-    .btn--outline {
-      background: transparent;
-      color: var(--blue-deep) !important;
-      border: 2px solid var(--blue-mid);
-      box-shadow: none;
-    }
-
-    .btn--outline:hover {
-      background: var(--blue-ghost);
-      box-shadow: none;
-    }
-
-    /* ─── INTRO STRIP ───────────────────────────── */
-    .intro-strip {
-      background: var(--blue-deep);
-      color: var(--white);
-      padding: 28px 24px;
-      text-align: center;
-    }
-
-    .intro-strip p {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(13px, 2.5vw, 16px);
-      letter-spacing: .1em;
-      line-height: 2;
-      opacity: .92;
-    }
-
-    /* ─── WORRIES ───────────────────────────────── */
-    .worries { background: var(--white); }
-
-    .worry-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+    .worry-list { display: flex; flex-direction: column; gap: 16px; }
 
     .worry-item {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 24px 28px;
       display: flex;
       align-items: flex-start;
       gap: 20px;
-      padding: 24px 28px;
-      background: var(--blue-ghost);
-      border-radius: 12px;
-      border-left: 3px solid var(--blue-muted);
+      box-shadow: 0 2px 12px rgba(13,43,69,.06);
+      border-left: 4px solid var(--blue);
+      transition: transform .2s, box-shadow .2s;
     }
+
+    .worry-item:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(13,43,69,.1); }
 
     .worry-icon {
       flex-shrink: 0;
-      width: 48px;
-      height: 48px;
-      background: var(--blue-pale);
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
       overflow: hidden;
+      background: var(--blue-pale);
     }
 
-    .worry-text { font-size: 15px; line-height: 1.8; color: var(--text-mid); }
-    .worry-text strong { display: block; font-size: 16px; color: var(--text-dark); margin-bottom: 4px; }
+    .worry-text strong { display: block; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .worry-text p { font-size: 14px; color: var(--text-mid); line-height: 1.9; }
 
-    /* ─── TARGETS ───────────────────────────────── */
-    .targets { background: var(--blue-ghost); }
+    /* ── TARGETS ── */
+    .targets { background: var(--navy); }
+    .targets .section-label { color: var(--gold); }
+    .targets .section-label::before { background: var(--gold); }
+    .targets .section-title { color: var(--white); }
 
     .target-grid {
       display: grid;
@@ -314,116 +289,163 @@
     }
 
     .target-card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 28px 24px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px;
+      padding: 32px 24px;
       text-align: center;
-      box-shadow: 0 2px 16px rgba(74,109,132,.08);
-      border-top: 3px solid var(--blue-muted);
+      transition: background .2s;
     }
 
-    .target-card__icon { font-size: 32px; margin-bottom: 14px; }
-    .target-card__text { font-size: 14px; line-height: 1.9; color: var(--text-mid); }
+    .target-card:hover { background: rgba(255,255,255,.12); }
 
-    /* ─── BENEFITS ──────────────────────────────── */
+    .target-card__num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .target-card__text { font-size: 14px; color: rgba(255,255,255,.85); line-height: 1.9; }
+
+    /* ── BENEFITS ── */
     .benefits { background: var(--white); }
 
-    .benefit-list { display: flex; flex-direction: column; gap: 32px; }
+    .benefit-list { display: flex; flex-direction: column; gap: 0; }
 
     .benefit-item {
       display: grid;
-      grid-template-columns: 56px 1fr;
-      gap: 24px;
+      grid-template-columns: 80px 1fr;
+      gap: 32px;
       align-items: start;
-      padding-bottom: 32px;
+      padding: 48px 0;
       border-bottom: 1px solid var(--blue-pale);
     }
 
-    .benefit-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .benefit-item:first-child { padding-top: 0; }
+    .benefit-item:last-child { border-bottom: none; }
 
     .benefit-num {
-      width: 56px;
-      height: 56px;
-      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
-      color: var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      flex-shrink: 0;
+      font-family: 'Oswald', sans-serif;
+      font-size: 64px;
+      font-weight: 600;
+      color: var(--blue-pale);
+      line-height: 1;
+      text-align: center;
     }
 
-    .benefit-body {}
+    .benefit-tag {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+
     .benefit-body h3 {
       font-family: 'Noto Serif JP', serif;
-      font-size: 17px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--text-dark);
-      line-height: 1.6;
+      font-weight: 700;
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--navy);
+      line-height: 1.55;
+      margin-bottom: 10px;
     }
 
     .benefit-body p { font-size: 14px; color: var(--text-mid); line-height: 2; }
 
     .benefit-arrow {
-      display: inline-block;
-      background: var(--blue-pale);
-      color: var(--blue-deep);
-      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: 13px;
       font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 100px;
-      margin-top: 8px;
+      color: var(--blue);
     }
 
-    /* ─── PRICING ───────────────────────────────── */
+    .benefit-arrow::before {
+      content: '▶';
+      font-size: 10px;
+    }
+
+    /* ── PRICING ── */
     .pricing {
-      background: linear-gradient(160deg, #D6E8F2 0%, #C4D8E6 100%);
-      text-align: center;
+      background: linear-gradient(160deg, var(--navy) 0%, #0F3A5C 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(27,111,171,.3) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .price-card {
       background: var(--white);
-      border-radius: 24px;
-      padding: 52px 48px;
-      box-shadow: 0 20px 60px rgba(74,109,132,.15);
-      max-width: 520px;
+      border-radius: 12px;
+      padding: 56px 52px;
+      max-width: 560px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 24px 80px rgba(0,0,0,.25);
     }
 
-    .price-card__name {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 13px;
-      letter-spacing: .2em;
-      color: var(--blue-mid);
+    .price-card__label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--blue);
       margin-bottom: 8px;
     }
 
-    .price-card__price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 72px;
-      font-weight: 300;
-      color: var(--blue-deep);
-      line-height: 1;
-      margin-bottom: 4px;
+    .price-card__title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--blue-pale);
     }
 
-    .price-card__price span { font-size: 28px; vertical-align: .4em; }
-    .price-card__price small { font-size: 20px; color: var(--text-mid); }
+    .price-card__amount {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .price-card__currency { font-size: 24px; font-weight: 700; color: var(--navy); }
+    .price-card__number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 72px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1;
+    }
 
     .price-card__note { font-size: 12px; color: var(--text-light); margin-bottom: 32px; }
 
     .price-details {
       list-style: none;
-      text-align: left;
-      border-top: 1px solid var(--blue-pale);
-      padding-top: 24px;
-      margin-bottom: 36px;
       display: flex;
       flex-direction: column;
       gap: 12px;
+      margin-bottom: 36px;
     }
 
     .price-details li {
@@ -432,43 +454,35 @@
       gap: 10px;
       font-size: 14px;
       color: var(--text-mid);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--blue-ghost);
     }
 
     .price-details li::before {
       content: '';
       width: 6px;
       height: 6px;
-      background: var(--blue-muted);
+      background: var(--blue);
       border-radius: 50%;
       flex-shrink: 0;
     }
 
-    .price-card__cta-note {
-      font-size: 11px;
-      color: var(--text-light);
-      margin-top: 14px;
-    }
+    /* ── PROFILE ── */
+    .profile { background: var(--off-white); }
 
-    /* ─── PROFILE ───────────────────────────────── */
-    .profile { background: var(--white); }
-
-    .profile__grid {
+    .profile__inner {
       display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: 52px;
+      grid-template-columns: 280px 1fr;
+      gap: 60px;
       align-items: start;
     }
 
-    .profile__photo-wrap { position: relative; }
-
     .profile__photo {
-      border-radius: 2px 30% 2px 30%;
+      border-radius: 8px;
       overflow: hidden;
       aspect-ratio: 3/4;
       background: var(--blue-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      box-shadow: 0 16px 48px rgba(13,43,69,.15);
     }
 
     .profile__photo img {
@@ -478,248 +492,225 @@
       object-position: top center;
     }
 
-    .profile__photo-placeholder {
-      width: 100%;
-      min-height: 300px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: var(--blue-mid);
-      font-size: 12px;
-    }
-
+    .profile__eyebrow { margin-bottom: 8px; }
     .profile__name {
       font-family: 'Noto Serif JP', serif;
-      font-size: clamp(20px, 3vw, 28px);
-      font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 4px;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
     }
 
-    .profile__title {
-      font-size: 13px;
-      color: var(--text-light);
-      letter-spacing: .1em;
-      margin-bottom: 28px;
-    }
+    .profile__title { font-size: 13px; color: var(--text-light); letter-spacing: .06em; margin-bottom: 32px; }
 
     .profile__text {
       font-size: 15px;
       line-height: 2.2;
       color: var(--text-mid);
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .profile__text p + p { margin-top: 12px; }
 
-    .profile__social {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
     .profile__social a {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
       font-size: 13px;
-      color: var(--blue-deep);
+      color: var(--blue);
       border: 1px solid var(--blue-light);
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 100px;
       transition: background .2s;
     }
 
     .profile__social a:hover { background: var(--blue-ghost); }
 
-    /* ─── FINAL CTA ─────────────────────────────── */
+    /* ── FINAL CTA ── */
     .final-cta {
-      background: var(--blue-deep);
+      background: var(--blue);
       text-align: center;
-      padding: 80px 24px;
+      padding: 88px 24px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .final-cta .label { color: var(--blue-pale); border-color: var(--blue-mid); }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,.08) 0%, transparent 65%);
+    }
+
+    .final-cta .section-label { color: var(--gold-light); justify-content: center; }
+    .final-cta .section-label::before { background: var(--gold-light); }
 
     .final-cta h2 {
       font-family: 'Noto Serif JP', serif;
-      font-size: clamp(22px, 4vw, 32px);
-      font-weight: 600;
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 700;
       color: var(--white);
       margin-bottom: 16px;
-      line-height: 1.6;
+      line-height: 1.55;
+      position: relative;
+      z-index: 1;
     }
 
     .final-cta p {
       font-size: 14px;
-      color: var(--blue-pale);
-      margin-bottom: 40px;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 44px;
       line-height: 2;
+      position: relative;
+      z-index: 1;
     }
 
-    .btn--white {
-      background: var(--white);
-      color: var(--blue-deep) !important;
-      box-shadow: 0 6px 24px rgba(0,0,0,.15);
-    }
-
-    .btn--white:hover { box-shadow: 0 10px 32px rgba(0,0,0,.22); }
-
-    /* ─── FOOTER ────────────────────────────────── */
+    /* ── FOOTER ── */
     footer {
-      background: #1E2D35;
-      color: rgba(255,255,255,.6);
+      background: var(--navy);
+      padding: 44px 24px;
       text-align: center;
-      padding: 40px 24px;
     }
 
-    footer .footer-social {
+    .footer-social {
       display: flex;
       justify-content: center;
       gap: 16px;
       margin-bottom: 20px;
     }
 
-    footer .footer-social a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .footer-social a {
       width: 44px;
       height: 44px;
       border: 1px solid rgba(255,255,255,.2);
       border-radius: 50%;
-      color: rgba(255,255,255,.7);
-      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.6);
       transition: border-color .2s, color .2s;
     }
 
-    footer .footer-social a:hover { border-color: rgba(255,255,255,.6); color: var(--white); }
+    .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
 
-    footer p { font-size: 11px; letter-spacing: .08em; }
+    footer p { font-size: 11px; color: rgba(255,255,255,.35); letter-spacing: .08em; }
 
-    /* ─── DIVIDER ORNAMENT ──────────────────────── */
-    .ornament {
-      text-align: center;
-      color: var(--blue-light);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      letter-spacing: .6em;
-      margin-bottom: 48px;
-    }
-
-    /* ─── FLOATING CTA ──────────────────────────── */
+    /* ── FLOATING CTA ── */
     .floating-cta {
       position: fixed;
-      bottom: 24px;
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 100;
       opacity: 0;
       pointer-events: none;
       transition: opacity .3s;
-      width: calc(100% - 48px);
+      width: calc(100% - 40px);
       max-width: 360px;
     }
 
     .floating-cta.visible { opacity: 1; pointer-events: auto; }
-    .floating-cta .btn { width: 100%; box-shadow: 0 8px 32px rgba(74,109,132,.5); }
+    .floating-cta .btn { width: 100%; box-shadow: 0 8px 32px rgba(212,147,58,.5); }
 
-    /* ─── RESPONSIVE ────────────────────────────── */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .section { padding: 60px 20px; }
-      .section--tight { padding: 48px 20px; }
+      .section { padding: 64px 20px; }
+      .section--sm { padding: 48px 20px; }
 
-      .worry-item { flex-direction: column; gap: 12px; }
-      .worry-icon { width: 36px; height: 36px; font-size: 16px; }
-      .worry-text strong { font-size: 15px; }
+      .hero__bg-accent,
+      .hero__photo { width: 100%; clip-path: none; }
 
-      .hero__inner {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 60px 0;
-        text-align: center;
+      .hero__photo {
+        position: relative;
+        height: 300px;
+        clip-path: none;
       }
 
-      .hero__photo-wrap { order: -1; max-width: 280px; margin: 0 auto; }
+      .hero__content { padding: 40px 24px 48px; }
 
-      .hero__sub { text-align: left; }
-
-      .hero__meta { justify-content: center; }
+      .hero__photo-overlay {
+        background: linear-gradient(to top, var(--navy) 0%, transparent 50%);
+      }
 
       .target-grid { grid-template-columns: 1fr; }
 
-      .profile__grid { grid-template-columns: 1fr; }
+      .benefit-item { grid-template-columns: 56px 1fr; gap: 20px; }
+      .benefit-num { font-size: 44px; }
 
-      .profile__photo { max-width: 200px; margin: 0 auto 32px; }
+      .profile__inner { grid-template-columns: 1fr; }
+      .profile__photo { max-width: 220px; margin: 0 auto 32px; }
 
       .price-card { padding: 36px 24px; }
+      .price-card__number { font-size: 56px; }
 
-      .price-card__price { font-size: 56px; }
-
-      .benefit-item { grid-template-columns: 44px 1fr; gap: 16px; }
+      .worry-item { flex-direction: column; gap: 12px; }
     }
 
     @media (max-width: 480px) {
-      .hero__catch { font-size: 22px; }
-      .section-title { font-size: 20px; }
+      .hero__catch { font-size: 26px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     HERO
-══════════════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero__inner inner--wide">
-    <div class="hero__text">
-      <div class="hero__tag">子連れOK！　1Day 対面レッスン</div>
-      <h1 class="hero__catch">
-        動画編集者としての<br/>
-        <em>第一歩</em>を<br/>
-        一緒に踏み出そう。
-      </h1>
-      <p class="hero__sub">
-        Adobe Premiere の基礎編集<br/>
-        1DAY セミナー<br/>
-        <br/>
-        なぜ Premiere なのか？<br/>
-        多くの編集現場で選ばれてるから。
-      </p>
-      <div class="hero__meta">
-        <div class="hero__badge"><strong>¥9,000</strong>税込</div>
-        <div class="hero__badge"><strong>対面</strong>1DAY × 2回</div>
-        <div class="hero__badge"><strong>子連れ</strong>OK</div>
-      </div>
-      <a href="#contact" class="btn">申し込む →</a>
+  <div class="hero__bg-accent"></div>
+  <div class="hero__photo">
+    <img src="images/ちびえび - 6.png" alt="海老原 愛"
+      onerror="this.style.display='none'" />
+    <div class="hero__photo-overlay"></div>
+  </div>
+
+  <div class="hero__content">
+    <div class="hero__eyebrow">
+      <div class="hero__eyebrow-line"></div>
+      <span class="hero__eyebrow-text">1DAY Seminar · 子連れOK</span>
     </div>
-    <div class="hero__photo-wrap">
-      <div class="hero__photo-frame">
-        <img src="images/ちびえび - 6.png" alt="海老原 愛" onerror="this.parentElement.innerHTML='<div class=\'hero__photo-placeholder\'><svg width=\'64\' height=\'64\' viewBox=\'0 0 64 64\' fill=\'none\'><circle cx=\'32\' cy=\'22\' r=\'12\' fill=\'#8BAFC4\'/><path d=\'M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24\' fill=\'#8BAFC4\'/></svg><span style=\'font-size:12px;color:#8BAFC4\'>海老原 愛</span></div>'" />
-      </div>
-      <div class="hero__deco"></div>
-      <div class="hero__deco2"></div>
+
+    <h1 class="hero__catch">
+      動画編集者としての<br/>
+      <em>第一歩を</em>
+      一緒に踏み出そう。
+    </h1>
+
+    <p class="hero__sub">
+      Adobe Premiere 基礎編集 1DAY セミナー<br/>
+      なぜ Premiere なのか？<br/>
+      多くの編集現場で選ばれてるから。
+    </p>
+
+    <div class="hero__badges">
+      <div class="hero__badge"><strong>¥9,000</strong><span>税込</span></div>
+      <div class="hero__badge"><strong>対面</strong><span>1DAY × 2回</span></div>
+      <div class="hero__badge"><strong>子連れ</strong><span>OK</span></div>
     </div>
+
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn">申し込む →</a>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     INTRO STRIP
-══════════════════════════════════════════ -->
-<div class="intro-strip">
+<!-- INFO STRIP -->
+<div class="info-strip">
   <p>動画編集コミュニティ「おうちクリエイターラボ」主宰 ─ 海老原 愛 が贈る、在宅ワーク初めの一歩のための講座</p>
 </div>
 
-<!-- ══════════════════════════════════════════
-     WORRIES
-══════════════════════════════════════════ -->
+<!-- WAVE -->
+<div class="wave" style="background:var(--off-white)">
+  <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C360,40 1080,40 1440,0 L1440,0 L0,0 Z" fill="white"/>
+  </svg>
+</div>
+
+<!-- WORRIES -->
 <section class="section worries" id="worries">
   <div class="inner">
-    <div class="ornament">─ ✦ ─</div>
-    <div class="label">For You</div>
-    <h2 class="section-title">こんな気持ち ありませんか？</h2>
+    <div class="section-label">For You</div>
+    <h2 class="section-title">こんな気持ち<br/>ありませんか？</h2>
     <p class="section-lead">多くの方が、最初の一歩を踏み出す前に同じ壁にぶつかっています。</p>
 
     <ul class="worry-list">
@@ -727,59 +718,68 @@
         <div class="worry-icon" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;"></div>
         <div class="worry-text">
           <strong>何から始めればいいかわからない</strong>
-          動画編集をお仕事にしたいけれど、ソフトも種類が多すぎて、どこに手をつければいいのか迷ってしまう…
+          <p>動画編集をお仕事にしたいけれど、ソフトも種類が多すぎて、どこに手をつければいいのか迷ってしまう…</p>
         </div>
       </li>
       <li class="worry-item">
         <div class="worry-icon" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;"></div>
         <div class="worry-text">
           <strong>独学だと「これで合ってる？」が止まらない</strong>
-          触ってはみるものの、正しいやり方なのかわからなくて、途中で手が止まってしまう。
+          <p>触ってはみるものの、正しいやり方なのかわからなくて、途中で手が止まってしまう。</p>
         </div>
       </li>
       <li class="worry-item">
         <div class="worry-icon" style="background:url('images/icon.png') no-repeat;background-size:500%;background-position:10% 28%;"></div>
         <div class="worry-text">
           <strong>「いつかはプレミア」とずっと思っていた</strong>
-          難しそう、という先入観から、ずっと後回しにしてきた。でも、そろそろ始めたい。
+          <p>難しそう、という先入観から、ずっと後回しにしてきた。でも、そろそろ始めたい。</p>
         </div>
       </li>
     </ul>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     TARGETS
-══════════════════════════════════════════ -->
-<section class="section--tight targets">
+<!-- WAVE -->
+<div class="wave" style="background:var(--navy)">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,50 C360,0 1080,0 1440,50 L1440,50 L0,50 Z" fill="var(--off-white)"/>
+  </svg>
+</div>
+
+<!-- TARGETS -->
+<section class="section targets" id="targets">
   <div class="inner">
-    <div class="label">This Seminar is for ...</div>
-    <h2 class="section-title">こんな方へ向けたセミナーです</h2>
+    <div class="section-label">This Seminar is for</div>
+    <h2 class="section-title">こんな方へ向けた<br/>セミナーです</h2>
 
     <div class="target-grid">
       <div class="target-card">
-        <div class="target-card__icon">🎬</div>
+        <div class="target-card__num">01</div>
         <p class="target-card__text">Premiere を触ってみたいけど、一人では不安な人</p>
       </div>
       <div class="target-card">
-        <div class="target-card__icon">🌱</div>
+        <div class="target-card__num">02</div>
         <p class="target-card__text">難しそうで後回しにしてきたけど、そろそろ始めたい人</p>
       </div>
       <div class="target-card">
-        <div class="target-card__icon">✨</div>
+        <div class="target-card__num">03</div>
         <p class="target-card__text">まず１日、楽しさだけ体感しに来てほしい人</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     BENEFITS
-══════════════════════════════════════════ -->
+<!-- WAVE -->
+<div class="wave" style="background:var(--white)">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C360,50 1080,50 1440,0 L1440,0 L0,0 Z" fill="var(--navy)"/>
+  </svg>
+</div>
+
+<!-- BENEFITS -->
 <section class="section benefits" id="benefits">
   <div class="inner">
-    <div class="ornament">─ ✦ ─</div>
-    <div class="label">What You Get</div>
+    <div class="section-label">What You Get</div>
     <h2 class="section-title">参加後に得られること</h2>
     <p class="section-lead">「知識として知っている」ではなく、<strong>手が動く体験</strong>をお持ち帰りいただけます。</p>
 
@@ -787,78 +787,95 @@
       <li class="benefit-item">
         <div class="benefit-num">01</div>
         <div class="benefit-body">
+          <span class="benefit-tag">SKILL</span>
           <h3>画面を開いても迷わない、手が動くようになる</h3>
           <p>「何からすればいい？」でフリーズする時間がなくなります。セミナー後は、迷わず編集をスタートできる状態に。</p>
-          <span class="benefit-arrow">フリーズする時間 → ゼロに</span>
+          <div class="benefit-arrow">フリーズする時間 → ゼロに</div>
         </div>
       </li>
       <li class="benefit-item">
         <div class="benefit-num">02</div>
         <div class="benefit-body">
+          <span class="benefit-tag">CONFIDENCE</span>
           <h3>独学の「これで合ってる？」がなくなり、一本を最後まで完成させられる</h3>
           <p>迷いながらの数時間が、迷いのない編集へ。正しい手順を身体で覚えることで、作業スピードが格段に上がります。</p>
-          <span class="benefit-arrow">迷いの時間 → 迷いのない編集へ</span>
+          <div class="benefit-arrow">迷いの時間 → 迷いのない編集へ</div>
         </div>
       </li>
       <li class="benefit-item">
         <div class="benefit-num">03</div>
         <div class="benefit-body">
+          <span class="benefit-tag">EXPERIENCE</span>
           <h3>Premiere で一通り編集できたという実感が残る</h3>
           <p>「自分でできた」という体験が自信になります。この小さな成功体験が、次のステップへの大きな推進力になるのです。</p>
-          <span class="benefit-arrow">体験 → 自信へ</span>
+          <div class="benefit-arrow">体験 → 自信へ</div>
         </div>
       </li>
     </ul>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     PRICING / CTA
-══════════════════════════════════════════ -->
+<!-- WAVE -->
+<div class="wave" style="background:var(--navy)">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,50 C360,0 1080,0 1440,50 L1440,50 L0,50 Z" fill="var(--white)"/>
+  </svg>
+</div>
+
+<!-- PRICING -->
 <section class="section pricing" id="contact">
   <div class="inner">
-    <div class="ornament" style="color: var(--blue-mid)">─ ✦ ─</div>
-    <div class="label">Seminar Details</div>
-    <h2 class="section-title" style="margin-bottom:48px">セミナー詳細・お申し込み</h2>
+    <div class="section-label" style="color:var(--gold);justify-content:center;margin-bottom:12px">
+      <span style="width:28px;height:2px;background:var(--gold);display:inline-block;margin-right:10px"></span>
+      Seminar Details
+    </div>
+    <h2 class="section-title" style="color:var(--white);text-align:center;margin-bottom:48px">セミナー詳細・お申し込み</h2>
 
     <div class="price-card">
-      <p class="price-card__name">Adobe Premiere 基礎編集 1DAY セミナー</p>
-      <div class="price-card__price"><span>¥</span>9,000<small></small></div>
-      <p class="price-card__note">（税込 · 子連れOK）</p>
+      <div class="price-card__label">Adobe Premiere 基礎編集</div>
+      <div class="price-card__title">1DAY セミナー（対面・子連れOK）</div>
+      <div class="price-card__amount">
+        <span class="price-card__currency">¥</span>
+        <span class="price-card__number">9,000</span>
+      </div>
+      <p class="price-card__note">税込</p>
 
       <ul class="price-details">
         <li>形式：対面レッスン</li>
         <li>回数：1DAY × 2回</li>
         <li>対象：Adobe Premiere 初心者の方</li>
-        <li>持ち物：PC（Premiereインストール済み推奨）</li>
+        <li>持ち物：PC（Premiere インストール済み推奨）</li>
         <li>子連れでのご参加、大歓迎です</li>
       </ul>
 
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn" style="width:100%; font-size:16px; padding:20px 24px;">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn" style="width:100%;font-size:16px;padding:20px 24px">
         申し込みフォームへ進む →
       </a>
-      <p class="price-card__cta-note">※ 申し込みフォームに遷移します</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     PROFILE
-══════════════════════════════════════════ -->
-<section class="section profile" id="about">
-  <div class="inner">
-    <div class="ornament">─ ✦ ─</div>
-    <div class="label">About</div>
-    <h2 class="section-title" style="margin-bottom:48px">講師プロフィール</h2>
+<!-- WAVE -->
+<div class="wave" style="background:var(--off-white)">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C360,50 1080,50 1440,0 L1440,0 L0,0 Z" fill="var(--navy)"/>
+  </svg>
+</div>
 
-    <div class="profile__grid">
-      <div class="profile__photo-wrap">
+<!-- PROFILE -->
+<section class="section profile" id="about">
+  <div class="inner--wide">
+    <div class="profile__inner">
+      <div>
         <div class="profile__photo">
-          <img src="images/ちびえび - 6.png" alt="海老原 愛" onerror="this.parentElement.innerHTML='<div class=\'profile__photo-placeholder\'><svg width=\'48\' height=\'48\' viewBox=\'0 0 64 64\' fill=\'none\'><circle cx=\'32\' cy=\'22\' r=\'12\' fill=\'#8BAFC4\'/><path d=\'M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24\' fill=\'#8BAFC4\'/></svg></div>'" />
+          <img src="images/ちびえび - 6.png" alt="海老原 愛"
+            onerror="this.parentElement.style.background='var(--blue-pale)'" />
         </div>
       </div>
-
       <div>
+        <div class="profile__eyebrow">
+          <div class="section-label">About</div>
+        </div>
         <h3 class="profile__name">海老原 愛</h3>
         <p class="profile__title">動画編集コミュニティ「おうちクリエイターラボ」主宰</p>
 
@@ -880,24 +897,17 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     FINAL CTA
-══════════════════════════════════════════ -->
+<!-- FINAL CTA -->
 <section class="final-cta">
-  <div class="inner" style="text-align:center">
-    <div class="label">First Step</div>
+  <div class="inner">
+    <div class="section-label" style="justify-content:center">First Step</div>
     <h2>さあ、最初の一歩を<br/>踏み出しましょう。</h2>
-    <p>
-      難しく考えなくていい。<br/>
-      まず１日、楽しさだけ体感しに来てください。
-    </p>
-    <a href="#contact" class="btn btn--white">申し込みフォームへ →</a>
+    <p>難しく考えなくていい。<br/>まず１日、楽しさだけ体感しに来てください。</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn btn--white">申し込みフォームへ →</a>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-social">
     <a href="https://www.instagram.com/ebi.styling?igsh=MWdqY3dieTF0MnFmeg%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
@@ -907,19 +917,16 @@
   <p>© 2026 海老原 愛 / おうちクリエイターラボ. All Rights Reserved.</p>
 </footer>
 
-<!-- ══════════════════════════════════════════
-     FLOATING CTA
-══════════════════════════════════════════ -->
+<!-- FLOATING CTA -->
 <div class="floating-cta" id="floatingCta">
-  <a href="#contact" class="btn">申し込みはこちら →</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn">申し込みはこちら →</a>
 </div>
 
 <script>
   const hero = document.querySelector('.hero');
   const floatingCta = document.getElementById('floatingCta');
-
   const observer = new IntersectionObserver(
-    ([entry]) => { floatingCta.classList.toggle('visible', !entry.isIntersecting); },
+    ([e]) => floatingCta.classList.toggle('visible', !e.isIntersecting),
     { threshold: 0.1 }
   );
   observer.observe(hero);

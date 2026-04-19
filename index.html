@@ -370,14 +370,17 @@
     .chair-slide-img {
       width: 180px;
       display: block;
-      animation: chairSlide 9s linear infinite;
+      animation: chairSlide 6s linear infinite;
     }
     @keyframes chairSlide {
-      0%   { transform: translateX(-180px); }
-      15%  { transform: translateX(25vw); }
-      50%  { transform: translateX(50vw); }
-      85%  { transform: translateX(75vw); }
-      100% { transform: translateX(100vw); }
+      0%   { transform: translate(-200px, 0) rotate(0deg); }
+      10%  { transform: translate(20vw, -6px) rotate(-2deg); }
+      25%  { transform: translate(35vw, 2px) rotate(2deg); }
+      40%  { transform: translate(48vw, -6px) rotate(-2deg); }
+      55%  { transform: translate(58vw, 2px) rotate(2deg); }
+      70%  { transform: translate(70vw, -6px) rotate(-2deg); }
+      85%  { transform: translate(82vw, 0) rotate(1deg); }
+      100% { transform: translate(110vw, 0) rotate(0deg); }
     }
 
     .target-list {

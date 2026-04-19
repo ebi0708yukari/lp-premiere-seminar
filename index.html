@@ -354,10 +354,28 @@
     /* ══════════════════════
        TARGETS
     ══════════════════════ */
-    .targets { background: var(--ink); }
+    .targets { background: var(--ink); padding-bottom: 180px; }
     .targets .sec-label { color: var(--blue); }
     .targets .sec-title { color: var(--white); }
     .targets .sec-no { color: rgba(255,255,255,.06); }
+
+    .chair-slide-wrap {
+      margin-top: 80px;
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+    }
+    .chair-slide-img {
+      width: 180px;
+      display: block;
+      animation: chairSlide 8s ease-in-out infinite;
+      filter: invert(1);
+    }
+    @keyframes chairSlide {
+      0%   { transform: translateX(0); }
+      50%  { transform: translateX(calc(100vw - 280px)); }
+      100% { transform: translateX(0); }
+    }
 
     .target-list {
       display: flex; flex-direction: column;
@@ -783,6 +801,10 @@
         <p class="target-text">まず１日、楽しさだけ体感しに来てほしい人</p>
       </li>
     </ul>
+
+    <div class="chair-slide-wrap">
+      <img class="chair-slide-img" src="images/chair-slide.png" alt="" />
+    </div>
   </div>
 </section>
 

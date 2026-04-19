@@ -370,12 +370,14 @@
     .chair-slide-img {
       width: 180px;
       display: block;
-      animation: chairSlide 14s ease-in-out infinite;
+      animation: chairSlide 9s linear infinite;
     }
     @keyframes chairSlide {
       0%   { transform: translateX(-180px); }
-      50%  { transform: translateX(100vw); }
-      100% { transform: translateX(-180px); }
+      15%  { transform: translateX(25vw); }
+      50%  { transform: translateX(50vw); }
+      85%  { transform: translateX(75vw); }
+      100% { transform: translateX(100vw); }
     }
 
     .target-list {

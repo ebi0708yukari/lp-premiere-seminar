@@ -362,18 +362,20 @@
     .chair-slide-wrap {
       margin-top: 80px;
       overflow: hidden;
-      width: 100%;
+      width: 100vw;
       position: relative;
+      left: 50%;
+      transform: translateX(-50%);
     }
     .chair-slide-img {
       width: 180px;
       display: block;
-      animation: chairSlide 8s ease-in-out infinite;
+      animation: chairSlide 14s ease-in-out infinite;
     }
     @keyframes chairSlide {
-      0%   { transform: translateX(0); }
-      50%  { transform: translateX(calc(100vw - 280px)); }
-      100% { transform: translateX(0); }
+      0%   { transform: translateX(-180px); }
+      50%  { transform: translateX(100vw); }
+      100% { transform: translateX(-180px); }
     }
 
     .target-list {

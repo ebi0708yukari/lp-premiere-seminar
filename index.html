@@ -47,14 +47,14 @@
       background: var(--blue);
     }
 
-    /* 白ドットのパルス（fixed-ctaと同じ雰囲気） */
+    /* 白ドットのパルス（fixed-ctaと同じ雰囲気／左右2個） */
     .btn--glow {
       position: relative;
     }
-    .btn--glow::before {
+    .btn--glow::before,
+    .btn--glow::after {
       content: '';
       position: absolute;
-      left: 22px;
       top: 50%;
       width: 9px;
       height: 9px;
@@ -64,6 +64,8 @@
       box-shadow: 0 0 0 0 rgba(255,255,255,.7);
       animation: ctaPulse 1.8s ease-out infinite;
     }
+    .btn--glow::before { left: 22px; }
+    .btn--glow::after  { right: 22px; }
 
     .btn--outline {
       background: transparent;

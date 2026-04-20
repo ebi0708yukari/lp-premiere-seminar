@@ -754,7 +754,11 @@
 
     .final-cta__chara-img {
       width: 260px;
-      opacity: .85;
+      aspect-ratio: 720 / 800;
+      object-fit: cover;
+      object-position: center;
+      opacity: .9;
+      display: block;
     }
 
     .final-cta__chara-bubble {
@@ -1065,7 +1069,7 @@
     </div>
     <div class="final-cta__chara">
       <div class="final-cta__chara-bubble">待ってます！</div>
-      <img class="final-cta__chara-img" src="images/chara.png" alt="" />
+      <video class="final-cta__chara-img" src="images/final-chara.mp4" autoplay muted loop playsinline preload="auto"></video>
     </div>
   </div>
 </section>

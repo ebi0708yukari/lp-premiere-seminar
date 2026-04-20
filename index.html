@@ -551,23 +551,21 @@
       max-width: 520px; margin: 0 auto;
       border: 2px solid var(--ink);
       position: relative;
-      perspective: 800px;
     }
 
-    /* 椅子に座ったままバレリーナみたいに回転 */
+    /* 椅子でゆらゆら揺れる */
     .spin-chara {
       position: absolute;
       width: 200px;
       right: -240px;
       top: 40px;
       pointer-events: none;
-      transform-origin: 50% 85%;
-      animation: chairSpin 6s linear infinite;
-      backface-visibility: visible;
+      transform-origin: 50% 90%;
+      animation: chairSway 4s ease-in-out infinite;
     }
-    @keyframes chairSpin {
-      0%   { transform: rotateY(0deg); }
-      100% { transform: rotateY(360deg); }
+    @keyframes chairSway {
+      0%, 100% { transform: rotate(-6deg); }
+      50%      { transform: rotate(6deg); }
     }
     @media (max-width: 1100px) {
       .spin-chara { display: none; }

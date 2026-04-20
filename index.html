@@ -553,7 +553,7 @@
       position: relative;
     }
 
-    /* 椅子に座ってゆったり揺れる */
+    /* 奥から手前に迫ってくる万歳キャラ */
     .spin-chara {
       position: absolute;
       width: 200px;
@@ -561,11 +561,13 @@
       bottom: 0;
       pointer-events: none;
       transform-origin: 50% 95%;
-      animation: chairSway 5s ease-in-out infinite;
+      animation: charaApproach 4s ease-out infinite;
     }
-    @keyframes chairSway {
-      0%, 100% { transform: rotate(-3deg) translateY(0); }
-      50%      { transform: rotate(3deg)  translateY(-2px); }
+    @keyframes charaApproach {
+      0%   { transform: scale(.2); opacity: 0; }
+      30%  { opacity: 1; }
+      80%  { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.05); opacity: 0; }
     }
     @media (max-width: 1100px) {
       .spin-chara { display: none; }

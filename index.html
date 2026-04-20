@@ -63,6 +63,35 @@
       position: relative;
     }
 
+    /* ── FIXED CTA (top right, always visible) ── */
+    .fixed-cta {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: var(--blue);
+      color: var(--white);
+      padding: 14px 22px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      text-decoration: none;
+      border-radius: 4px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.15);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .fixed-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,.2);
+    }
+    @media (max-width: 640px) {
+      .fixed-cta {
+        top: 12px; right: 12px;
+        padding: 10px 14px;
+        font-size: 12px;
+      }
+    }
+
     /* 背景に大きい文字 */
     .hero__bg-text {
       position: absolute;
@@ -705,6 +734,9 @@
 </head>
 <body>
 
+<!-- ══ FIXED CTA ══ -->
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="fixed-cta" target="_blank" rel="noopener">お申し込みはこちら →</a>
+
 <!-- ══ HERO ══ -->
 <section class="hero" id="top">
   <div class="hero__bg-text">PREMIERE</div>
@@ -723,7 +755,7 @@
       </p>
       <div class="hero__meta">
         <span>1DAY 対面レッスン</span>
-        <span>子連れOK 🍼</span>
+        <span>子連れOK</span>
       </div>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn btn--blue">申し込む →</a>
     </div>
@@ -874,7 +906,7 @@
           <li>形式：対面レッスン</li>
           <li>対象：Adobe Premiere 初心者の方</li>
           <li>持ち物：PC（Premiere インストール済み推奨）</li>
-          <li>子連れでのご参加、大歓迎です 🍼</li>
+          <li>子連れでのご参加、大歓迎です</li>
         </ul>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn" style="width:100%;padding:20px;font-size:16px">
           申し込みフォームへ進む →

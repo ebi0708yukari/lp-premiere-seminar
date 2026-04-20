@@ -50,11 +50,20 @@
     /* ふんわり白く光るパルス */
     .btn--glow {
       position: relative;
-      animation: btnGlow 2.4s ease-in-out infinite;
+      z-index: 1;
+      animation: btnGlow 2.2s ease-in-out infinite;
     }
     @keyframes btnGlow {
-      0%, 100% { box-shadow: 0 0 0 rgba(255,255,255,0), 0 6px 20px rgba(0,0,0,.15); }
-      50%      { box-shadow: 0 0 28px 6px rgba(255,255,255,.65), 0 6px 20px rgba(0,0,0,.15); }
+      0%, 100% {
+        box-shadow:
+          0 0 0 0 rgba(255,255,255,0),
+          0 0 0 0 rgba(122,155,184,0);
+      }
+      50% {
+        box-shadow:
+          0 0 40px 10px rgba(255,255,255,.95),
+          0 0 70px 24px rgba(122,155,184,.55);
+      }
     }
 
     .btn--outline {

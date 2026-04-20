@@ -380,6 +380,16 @@
 
     .worry-reply::before { content: '→ '; }
 
+    .worry-reply {
+      opacity: 0;
+      transform: translateX(-24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .worry-reply.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
     /* ══════════════════════
        TARGETS
     ══════════════════════ */
@@ -790,7 +800,7 @@
 <section class="section worries" id="worries">
   <div class="inner">
     <div class="sec-no">01</div>
-    <p class="sec-label">こんなお悩み、ないですか？</p>
+    <p class="sec-label">こんなお悩みないですか？</p>
     <h2 class="sec-title">こんなお悩み<br/>ありませんか？</h2>
 
     <ul class="worry-list">
@@ -976,7 +986,20 @@
 <script>
   const hero = document.querySelector('.hero');
   const floatingCta = document.getElementById('floatingCta');
-  new IntersectionObserver(([e]) => floatingCta.classList.toggle('visible', !e.isIntersecting), {threshold:0.1}).observe(hero);
+  if (hero && floatingCta) {
+    new IntersectionObserver(([e]) => floatingCta.classList.toggle('visible', !e.isIntersecting), {threshold:0.1}).observe(hero);
+  }
+
+  const replies = document.querySelectorAll('.worry-reply');
+  const replyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        replyObserver.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.3});
+  replies.forEach(r => replyObserver.observe(r));
 </script>
 </body>
 </html>

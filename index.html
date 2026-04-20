@@ -47,6 +47,16 @@
       background: var(--blue);
     }
 
+    /* ふんわり白く光るパルス */
+    .btn--glow {
+      position: relative;
+      animation: btnGlow 2.4s ease-in-out infinite;
+    }
+    @keyframes btnGlow {
+      0%, 100% { box-shadow: 0 0 0 rgba(255,255,255,0), 0 6px 20px rgba(0,0,0,.15); }
+      50%      { box-shadow: 0 0 28px 6px rgba(255,255,255,.65), 0 6px 20px rgba(0,0,0,.15); }
+    }
+
     .btn--outline {
       background: transparent;
       color: var(--white) !important;
@@ -944,7 +954,7 @@
           <li>持ち物：PC（Premiere インストール済み推奨）</li>
           <li>子連れでのご参加 大歓迎です</li>
         </ul>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn" style="width:100%;padding:20px;font-size:16px">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=publish-editor" class="btn btn--glow" style="width:100%;padding:20px;font-size:16px">
           申し込みフォームへ進む →
         </a>
       </div>

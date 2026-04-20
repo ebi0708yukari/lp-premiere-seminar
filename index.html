@@ -553,19 +553,19 @@
       position: relative;
     }
 
-    /* 椅子でゆらゆら揺れる */
+    /* 椅子に座ってゆったり揺れる */
     .spin-chara {
       position: absolute;
       width: 200px;
       right: -240px;
-      top: 40px;
+      bottom: 0;
       pointer-events: none;
-      transform-origin: 50% 90%;
-      animation: chairSway 4s ease-in-out infinite;
+      transform-origin: 50% 95%;
+      animation: chairSway 5s ease-in-out infinite;
     }
     @keyframes chairSway {
-      0%, 100% { transform: rotate(-6deg); }
-      50%      { transform: rotate(6deg); }
+      0%, 100% { transform: rotate(-3deg) translateY(0); }
+      50%      { transform: rotate(3deg)  translateY(-2px); }
     }
     @media (max-width: 1100px) {
       .spin-chara { display: none; }

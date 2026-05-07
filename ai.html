@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>リールの表現が広がる 動画生成AI講座 | えびちゃん</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:  #5B8BA8;
+      --ink:   #1C1C1C;
+      --off:   #F5F3F0;
+      --mid:   #6A6A6A;
+      --white: #FFFFFF;
+      --pale:  #E8F0F5;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--ink);
+      background: var(--off);
+      overflow-wrap: break-word;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── BTN ── */
+    .btn {
+      display: inline-block;
+      background: var(--ink);
+      color: var(--white) !important;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 16px 44px;
+      letter-spacing: .08em;
+      text-align: center;
+      transition: opacity .2s;
+    }
+    .btn:hover { opacity: .75; }
+
+    .btn--blue {
+      background: var(--blue);
+    }
+
+    .btn--glow {
+      position: relative;
+    }
+    .btn--glow::before,
+    .btn--glow::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #fff;
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 0 rgba(255,255,255,.7);
+      animation: ctaPulse 1.8s ease-out infinite;
+    }
+    .btn--glow::before { left: 22px; }
+    .btn--glow::after  { right: 22px; }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--white) !important;
+      border: 2px solid rgba(255,255,255,.7);
+    }
+    .btn--outline:hover { background: rgba(255,255,255,.1); opacity: 1; }
+
+    /* ══════════════════════
+       HERO
+    ══════════════════════ */
+    .hero {
+      background: var(--off);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── FIXED CTA (top right, always visible) ── */
+    .fixed-cta {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: var(--blue);
+      color: var(--white);
+      padding: 14px 22px 14px 36px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      text-decoration: none;
+      border-radius: 4px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.15);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .fixed-cta::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 0 rgba(255,255,255,.7);
+      animation: ctaPulse 1.8s ease-out infinite;
+    }
+    @keyframes ctaPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(255,255,255,.7); }
+      70%  { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+    .fixed-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,.2);
+    }
+    @media (max-width: 640px) {
+      .fixed-cta {
+        top: 12px; right: 12px;
+        padding: 10px 14px 10px 28px;
+        font-size: 12px;
+      }
+      .fixed-cta::before {
+        left: 12px;
+        width: 6px;
+        height: 6px;
+      }
+    }
+
+    .hero__bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(80px, 18vw, 240px);
+      font-weight: 900;
+      color: rgba(91,139,168,.08);
+      white-space: nowrap;
+      letter-spacing: .02em;
+      pointer-events: none;
+      z-index: 0;
+      line-height: 1;
+    }
+
+    .hero__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      align-items: center;
+      min-height: 760px;
+      position: relative;
+      z-index: 1;
+      padding: 0 48px;
+    }
+
+    .hero__left { padding: 80px 0; }
+
+    .hero__kicker {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      color: var(--blue);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero__kicker::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--blue);
+    }
+
+    .hero__h1 {
+      font-weight: 900;
+      font-size: clamp(40px, 5vw, 68px);
+      line-height: 1.18;
+      color: var(--ink);
+      margin-bottom: 32px;
+      letter-spacing: -.01em;
+    }
+
+    .hero__h1 .blue { color: var(--blue); }
+
+    .hero__desc {
+      font-size: 15px;
+      line-height: 2;
+      color: var(--mid);
+      margin-bottom: 40px;
+      max-width: 460px;
+    }
+
+    .hero__meta {
+      font-size: 13px;
+      color: var(--mid);
+      margin-bottom: 36px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero__meta span::before { content: '— '; }
+
+    .hero__right {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      align-self: stretch;
+    }
+
+    .hero__illust {
+      width: 100%;
+      max-width: 460px;
+      position: relative;
+      z-index: 2;
+      aspect-ratio: 720 / 800;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero__bubble {
+      position: absolute;
+      top: 200px;
+      right: -12px;
+      background: var(--blue);
+      color: var(--white);
+      padding: 16px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.7;
+      z-index: 3;
+    }
+
+    .hero__bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -9px; left: 20px;
+      border: 5px solid transparent;
+      border-top-color: var(--blue);
+    }
+
+    /* ── BAND ── */
+    .band {
+      background: var(--ink);
+      padding: 14px 48px;
+      overflow: hidden;
+    }
+    .band p {
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════
+       MANIFESTO
+    ══════════════════════ */
+    .manifesto {
+      background: var(--blue);
+      padding: 80px 48px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .manifesto::before {
+      content: '"';
+      position: absolute;
+      top: -40px; left: 32px;
+      font-size: 280px;
+      font-weight: 900;
+      color: rgba(255,255,255,.08);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .manifesto__inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .manifesto__img {
+      width: 240px;
+      aspect-ratio: 720 / 800;
+      object-fit: cover;
+      object-position: center;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .manifesto__text {
+      color: var(--white);
+    }
+
+    .manifesto__text p {
+      font-size: clamp(18px, 2.4vw, 26px);
+      font-weight: 700;
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+
+    .manifesto__text p strong {
+      border-bottom: 2px solid rgba(255,255,255,.6);
+      padding-bottom: 1px;
+    }
+
+    .manifesto__sign {
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(255,255,255,.6);
+      letter-spacing: .1em;
+      margin-top: 24px;
+    }
+
+    /* ══════════════════════
+       SECTIONS
+    ══════════════════════ */
+    .section { padding: 96px 48px; }
+    .inner { max-width: 800px; margin: 0 auto; }
+    .inner--wide { max-width: 1040px; margin: 0 auto; }
+
+    .sec-no {
+      font-size: 96px;
+      font-weight: 900;
+      color: rgba(91,139,168,.12);
+      line-height: 1;
+      margin-bottom: -24px;
+      letter-spacing: -.02em;
+    }
+
+    .sec-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      color: var(--blue);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .sec-title {
+      font-weight: 900;
+      font-size: clamp(32px, 4.5vw, 54px);
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 16px;
+      letter-spacing: -.01em;
+    }
+
+    .sec-lead {
+      font-size: 15px;
+      color: var(--mid);
+      line-height: 2;
+      margin-bottom: 56px;
+    }
+
+    /* ══════════════════════
+       WORRIES
+    ══════════════════════ */
+    .worries { background: var(--white); }
+
+    .worry-list { display: flex; flex-direction: column; }
+
+    .worry-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 28px;
+      align-items: start;
+      padding: 32px 0;
+      border-bottom: 1px solid #E0DDD9;
+    }
+
+    .worry-item:first-child { border-top: 1px solid #E0DDD9; }
+
+    .worry-face {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: var(--pale);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .worry-face img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .worry-q {
+      font-size: 17px; font-weight: 800;
+      color: var(--ink); line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .worry-a {
+      font-size: 13px; color: var(--mid);
+      line-height: 1.8; margin-bottom: 12px;
+    }
+
+    .worry-reply {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--pale);
+      padding: 8px 16px;
+      font-size: 13px; font-weight: 700;
+      color: var(--blue);
+    }
+
+    .worry-reply::before { content: '→ '; }
+
+    .worry-reply {
+      opacity: 0;
+      transform: translateX(-24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .worry-reply.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ══════════════════════
+       TARGETS
+    ══════════════════════ */
+    .targets { background: var(--ink); }
+    .targets .sec-label { color: var(--blue); }
+    .targets .sec-title { color: var(--white); }
+    .targets .sec-no { color: rgba(255,255,255,.06); }
+
+    .chair-slide-wrap {
+      margin-top: 80px;
+      overflow: hidden;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .chair-slide-img {
+      width: 180px;
+      display: block;
+      animation: chairSlide 7s linear infinite;
+    }
+    @keyframes chairSlide {
+      0%   { transform: translate(-200px, 0) rotate(0deg); }
+      18%  { transform: translate(22vw, -6px) rotate(-2deg); }
+      32%  { transform: translate(36vw, 2px) rotate(2deg); }
+      46%  { transform: translate(48vw, -6px) rotate(-2deg); }
+      60%  { transform: translate(60vw, 2px) rotate(2deg); }
+      74%  { transform: translate(72vw, -6px) rotate(-2deg); }
+      88%  { transform: translate(84vw, 0) rotate(1deg); }
+      100% { transform: translate(110vw, 0) rotate(0deg); }
+    }
+
+    @media (max-width: 860px) {
+      .chair-slide-img { width: 130px; animation-duration: 8s; }
+    }
+
+    .target-list {
+      display: flex; flex-direction: column;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+
+    .target-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 24px;
+      align-items: center;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .target-n {
+      font-size: 28px; font-weight: 900;
+      color: var(--blue); line-height: 1;
+    }
+
+    .target-text {
+      font-size: 16px; font-weight: 700;
+      color: rgba(255,255,255,.85);
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════
+       BENEFITS
+    ══════════════════════ */
+    .benefits { background: var(--off); }
+
+    .benefit-list { display: flex; flex-direction: column; gap: 4px; }
+
+    .benefit-item {
+      background: var(--white);
+      padding: 36px 40px;
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .benefit-n {
+      font-size: 52px; font-weight: 900;
+      color: var(--blue);
+      line-height: 1;
+      text-align: right;
+    }
+
+    .benefit-h {
+      font-weight: 800; font-size: 18px;
+      color: var(--ink); margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .benefit-p {
+      font-size: 14px; color: var(--mid);
+      line-height: 2;
+    }
+
+    .benefit-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 12px; font-weight: 800;
+      color: var(--blue);
+      letter-spacing: .06em;
+      border-left: 3px solid var(--blue);
+      padding-left: 10px;
+    }
+
+    /* ══════════════════════
+       BREAK BANNER
+    ══════════════════════ */
+    .break-cta {
+      background: var(--ink);
+      padding: 56px 48px;
+      overflow: hidden;
+      position: relative;
+    }
+    .break-cta__inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .break-cta__chara {
+      width: 220px;
+      display: block;
+      filter: brightness(0) invert(1);
+      opacity: .92;
+    }
+    .break-cta__copy {
+      font-size: clamp(26px, 3.6vw, 42px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 14px;
+      letter-spacing: -.01em;
+    }
+    .break-cta__copy .blue { color: #9CC0D6; }
+    .break-cta__sub {
+      font-size: 14px;
+      color: rgba(255,255,255,.55);
+      line-height: 1.9;
+    }
+    @media (max-width: 720px) {
+      .break-cta { padding: 44px 24px; }
+      .break-cta__inner { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+      .break-cta__chara { width: 140px; margin: 0 auto; }
+    }
+
+    /* ══════════════════════
+       CONTENT (カリキュラム)
+    ══════════════════════ */
+    .content { background: var(--white); }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 24px;
+    }
+
+    .content-card {
+      background: var(--off);
+      padding: 32px 28px;
+      border-left: 4px solid var(--blue);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-card__img {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      object-position: center;
+      margin: 0 auto 20px;
+      display: block;
+    }
+
+    .content-card__no {
+      font-size: 12px; font-weight: 800;
+      letter-spacing: .2em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    .content-card__h {
+      font-size: 19px; font-weight: 900;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .content-card__p {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 2;
+    }
+
+    .content-list {
+      list-style: none;
+      margin-top: 48px;
+      border-top: 1px solid #E0DDD9;
+    }
+
+    .content-list li {
+      display: flex; gap: 16px;
+      padding: 18px 4px;
+      border-bottom: 1px solid #E0DDD9;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.7;
+      align-items: flex-start;
+    }
+
+    .content-list li::before {
+      content: '✓';
+      color: var(--blue);
+      font-weight: 900;
+      flex-shrink: 0;
+      width: 18px;
+    }
+
+    @media (max-width: 720px) {
+      .content-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ══════════════════════
+       SCHEDULE (タイムテーブル)
+    ══════════════════════ */
+    .schedule { background: var(--off); }
+
+    .timeline {
+      list-style: none;
+      position: relative;
+      padding-left: 32px;
+      border-left: 2px solid var(--blue);
+      margin-top: 24px;
+    }
+
+    .timeline li {
+      position: relative;
+      padding: 0 0 36px 16px;
+    }
+
+    .timeline li:last-child { padding-bottom: 0; }
+
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: -41px;
+      top: 6px;
+      width: 16px; height: 16px;
+      background: var(--blue);
+      border: 4px solid var(--off);
+      border-radius: 50%;
+    }
+
+    .timeline__time {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+
+    .timeline__h {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .timeline__p {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.9;
+    }
+
+    /* ══════════════════════
+       PRICING
+    ══════════════════════ */
+    .pricing { background: var(--white); }
+
+    .price-wrap {
+      max-width: 520px; margin: 0 auto;
+      border: 2px solid var(--ink);
+      position: relative;
+    }
+
+    .spin-chara {
+      position: absolute;
+      width: 200px;
+      right: -240px;
+      bottom: 0;
+      pointer-events: none;
+      transform-origin: 50% 95%;
+      animation: chairScoot 4.5s ease-in-out infinite;
+    }
+    @keyframes chairScoot {
+      0%   { transform: translateX(0)    rotate(0deg); }
+      15%  { transform: translateX(-22px) rotate(-4deg); }
+      30%  { transform: translateX(-22px) rotate(0deg); }
+      50%  { transform: translateX(18px)  rotate(3deg); }
+      65%  { transform: translateX(18px)  rotate(0deg); }
+      80%  { transform: translateX(-8px) rotate(-2deg); }
+      100% { transform: translateX(0)    rotate(0deg); }
+    }
+    @media (max-width: 1100px) {
+      .spin-chara { display: none; }
+    }
+
+    .price-head {
+      background: var(--ink);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .price-head p {
+      color: rgba(255,255,255,.6);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .price-body { padding: 40px 36px 44px; }
+
+    .price-name {
+      font-size: 13px; font-weight: 700;
+      color: var(--mid); margin-bottom: 20px;
+    }
+
+    .price-amount {
+      font-weight: 900;
+      font-size: 88px;
+      color: var(--ink);
+      line-height: 1;
+      letter-spacing: -.02em;
+      margin-bottom: 4px;
+    }
+
+    .price-amount span { font-size: 36px; }
+    .price-note { font-size: 12px; color: var(--mid); margin-bottom: 32px; }
+
+    .price-details {
+      list-style: none;
+      border-top: 1px solid #E0DDD9;
+      padding-top: 20px;
+      margin-bottom: 32px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+
+    .price-details li {
+      display: flex; gap: 12px;
+      font-size: 14px; color: var(--mid);
+      align-items: flex-start; line-height: 1.6;
+    }
+
+    .price-details li::before {
+      content: '—';
+      color: var(--blue); font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════
+       FAQ
+    ══════════════════════ */
+    .faq { background: var(--off); }
+
+    .faq-list { display: flex; flex-direction: column; gap: 4px; }
+
+    .faq-item {
+      background: var(--white);
+      padding: 28px 32px;
+      border-left: 3px solid var(--blue);
+    }
+
+    .faq-q {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .faq-q::before {
+      content: 'Q.';
+      color: var(--blue);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .faq-a {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 2;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .faq-a::before {
+      content: 'A.';
+      color: var(--ink);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════
+       PROFILE
+    ══════════════════════ */
+    .profile { background: var(--white); }
+
+    .profile__grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 64px; align-items: start;
+    }
+
+    .profile__photo {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: #DCDAD7;
+    }
+
+    .profile__photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+    }
+
+    .profile__name {
+      font-weight: 900;
+      font-size: clamp(28px, 3vw, 40px);
+      color: var(--ink); margin-bottom: 4px;
+      letter-spacing: -.01em;
+    }
+
+    .profile__role {
+      font-size: 12px; font-weight: 700;
+      color: var(--blue); margin-bottom: 28px;
+      letter-spacing: .06em;
+    }
+
+    .profile__text {
+      font-size: 15px; line-height: 2.2;
+      color: var(--mid); margin-bottom: 28px;
+    }
+
+    .profile__text p + p { margin-top: 8px; }
+
+    .profile__career {
+      color: var(--ink) !important;
+      font-weight: 700;
+      margin-bottom: 12px !important;
+    }
+    .profile__years {
+      font-size: 1.6em;
+      font-weight: 900;
+      letter-spacing: .02em;
+      margin-left: 4px;
+    }
+
+    .profile__sns {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 700;
+      color: var(--white);
+      background: var(--ink);
+      padding: 10px 18px 10px 14px;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      transition: all .25s;
+    }
+    .profile__sns svg {
+      width: 18px; height: 18px;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .profile__sns:hover {
+      background: var(--white);
+      color: var(--ink);
+    }
+
+
+    /* ══════════════════════
+       FINAL CTA
+    ══════════════════════ */
+    .final-cta {
+      background: var(--ink);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .final-cta__inner {
+      max-width: 1040px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      align-items: flex-end;
+      padding: 0 48px;
+    }
+
+    .final-cta__left { padding: 88px 0 80px; }
+
+    .final-cta__left h2 {
+      font-weight: 900;
+      font-size: clamp(36px, 5vw, 64px);
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -.01em;
+    }
+
+    .final-cta__left p {
+      font-size: 15px;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 40px;
+      line-height: 2;
+    }
+
+    .final-cta__chara {
+      position: relative;
+      align-self: flex-end;
+    }
+
+    .final-cta__chara-img {
+      width: 260px;
+      aspect-ratio: 720 / 800;
+      object-fit: cover;
+      object-position: center;
+      opacity: .9;
+      display: block;
+    }
+
+    .final-cta__chara-bubble {
+      position: absolute;
+      top: -56px; right: -24px;
+      background: var(--blue);
+      color: var(--white);
+      padding: 12px 16px;
+      font-size: 13px; font-weight: 700;
+      line-height: 1.6;
+      z-index: 10;
+      border-radius: 4px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer small { font-size: 11px; color: rgba(255,255,255,.2); }
+
+    .footer-sns a {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 700;
+      color: rgba(255,255,255,.4);
+      transition: color .2s;
+    }
+
+    .footer-sns a:hover { color: rgba(255,255,255,.8); }
+
+    /* ── FLOATING CTA ── */
+    .floating-cta {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 100; opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+      width: calc(100% - 40px); max-width: 340px;
+    }
+    .floating-cta.visible { opacity: 1; pointer-events: auto; }
+    .floating-cta .btn { width: 100%; padding: 18px; font-size: 15px; }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 860px) {
+      .hero__inner { grid-template-columns: 1fr; padding: 0 24px; min-height: auto; }
+      .hero__right { order: -1; padding-top: 48px; }
+      .hero__illust { max-width: 200px; margin: 0 auto; }
+      .hero__bubble { right: 0; top: 48px; font-size: 12px; padding: 10px 14px; }
+      .hero__left { padding: 40px 0 56px; }
+      .hero__bg-text { display: none; }
+
+      .band { padding: 14px 24px; }
+
+      .manifesto { padding: 56px 24px; }
+      .manifesto__inner { grid-template-columns: 1fr; gap: 32px; }
+      .manifesto__img { width: 160px; max-width: 160px; margin: 0 auto; }
+
+      .section { padding: 64px 24px; }
+      .sec-no { font-size: 64px; }
+
+      .benefit-item { padding: 28px 24px; }
+      .benefit-item { grid-template-columns: 44px 1fr; }
+      .benefit-n { font-size: 36px; }
+
+      .content-card { padding: 24px 22px; }
+
+      .timeline { padding-left: 24px; }
+      .timeline li::before { left: -33px; }
+
+      .faq-item { padding: 22px 22px; }
+
+      .profile__grid { grid-template-columns: 1fr; }
+      .profile__photo { max-width: 160px; margin: 0 auto; }
+
+      .price-body { padding: 28px 24px 32px; }
+      .price-amount { font-size: 64px; }
+
+      .final-cta__inner { grid-template-columns: 1fr; padding: 0 24px; }
+      .final-cta__chara { display: none; }
+      .final-cta__left { padding: 64px 0; }
+
+      footer { flex-direction: column; gap: 12px; padding: 28px 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ FIXED CTA ══ -->
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=dialog" class="fixed-cta" target="_blank" rel="noopener">お申し込みはこちら</a>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="hero__bg-text">GENERATIVE AI</div>
+  <div class="hero__inner">
+    <div class="hero__left">
+      <p class="hero__kicker">Zoom 2時間 ワンデイ講座 · 参加型</p>
+      <h1 class="hero__h1">
+        リールの<br/>
+        表現が広がる<br/>
+        <span class="blue">動画生成AI</span><br/>
+        講座。
+      </h1>
+      <p class="hero__desc">
+        「気になるけど、何から始めればいいかわからない」<br/>
+        そんなあなたに。<br/>
+        AI動画を、自分のリールに取り入れる<br/>
+        最初の一歩を、一緒に。
+      </p>
+      <div class="hero__meta">
+        <span>Zoom ワンデイ</span>
+        <span>2時間 参加型</span>
+        <span>無課金中心</span>
+      </div>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=dialog" class="btn btn--blue">申し込む →</a>
+    </div>
+
+    <div class="hero__right">
+      <div class="hero__bubble">リール、<br/>変わるよ。</div>
+      <video class="hero__illust" src="images/hero-chara.mp4" autoplay muted loop playsinline preload="auto"></video>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <p>動画編集コミュニティ「おうちクリエイターLabo」主宰 ─ えびちゃん が贈る、AI動画はじめの一歩のための1Dayオンライン講座</p>
+</div>
+
+<!-- ══ MANIFESTO ══ -->
+<section class="manifesto">
+  <div class="manifesto__inner">
+    <video class="manifesto__img" src="images/manifesto-chara-v2.mp4" autoplay muted loop playsinline preload="auto"></video>
+    <div class="manifesto__text">
+      <p>「動画生成AIって難しいんでしょ？」</p>
+      <p>そう思っていませんか？</p>
+      <p>難しいのは<strong>最初の一歩だけ</strong>。</p>
+      <p>NanoBananaを、一緒に触ってみましょう。</p>
+      <p>「あ、意外とできた！」<br/>そう思ってもらえると思います</p>
+      <div class="manifesto__sign">— えびちゃん</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WORRIES ══ -->
+<section class="section worries" id="worries">
+  <div class="inner">
+    <div class="sec-no">01</div>
+    <p class="sec-label">こんなお悩みないですか？</p>
+    <h2 class="sec-title">こんなお悩み<br/>ありませんか？</h2>
+
+    <ul class="worry-list">
+      <li class="worry-item">
+        <div class="worry-face"><img src="images/chara-face.png" alt="キャラクター" /></div>
+        <div class="worry-body">
+          <p class="worry-q">AI動画、気になるけど何から始めればいいかわからない</p>
+          <p class="worry-a">最近よく見かけるあの動画、どうやって作ってるの？まずどこを触ればいいの？</p>
+          <span class="worry-reply">大丈夫！触るところから一緒に決めていきましょう。</span>
+        </div>
+      </li>
+      <li class="worry-item">
+        <div class="worry-face"><img src="images/chara-face.png" alt="キャラクター" /></div>
+        <div class="worry-body">
+          <p class="worry-q">課金しないとできないイメージで、踏み出せない</p>
+          <p class="worry-a">いきなりお金がかかるのはちょっと…。試してから決めたい。</p>
+          <span class="worry-reply">無課金でできる範囲を中心に進めていきます。</span>
+        </div>
+      </li>
+      <li class="worry-item">
+        <div class="worry-face"><img src="images/chara-face.png" alt="キャラクター" /></div>
+        <div class="worry-body">
+          <p class="worry-q">他の発信者と少し差別化できるリールを作りたい</p>
+          <p class="worry-a">毎回似たようなリールになってしまう。冒頭で目を引く工夫が欲しい。</p>
+          <span class="worry-reply">冒頭フックに使えるAI動画、一緒に作りましょう。</span>
+        </div>
+      </li>
+      <li class="worry-item">
+        <div class="worry-face"><img src="images/chara-face.png" alt="キャラクター" /></div>
+        <div class="worry-body">
+          <p class="worry-q">動画編集や発信をもっとレベルアップしたい</p>
+          <p class="worry-a">いつもの投稿を少しレベルアップさせて、もっと見てもらえる発信にしたい。</p>
+          <span class="worry-reply">アイデアの引き出しが、ぐっと広がります。</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══ TARGETS ══ -->
+<section class="section targets" id="targets">
+  <div class="inner">
+    <div class="sec-no">02</div>
+    <p class="sec-label">こんな人に来てほしい！</p>
+    <h2 class="sec-title">こんな方に<br/>ぴったりです！</h2>
+
+    <ul class="target-list">
+      <li class="target-item">
+        <div class="target-n">01</div>
+        <p class="target-text">AI動画を触ってみたいけど、一人では不安な人</p>
+      </li>
+      <li class="target-item">
+        <div class="target-n">02</div>
+        <p class="target-text">リール発信をしていて、もっと見てもらえる発信にしたい人</p>
+      </li>
+      <li class="target-item">
+        <div class="target-n">03</div>
+        <p class="target-text">『最近、投稿がマンネリ化してる』と感じている人</p>
+      </li>
+      <li class="target-item">
+        <div class="target-n">04</div>
+        <p class="target-text">まず2時間、AI動画の楽しさを体感しに来てほしい人</p>
+      </li>
+    </ul>
+
+    <div class="chair-slide-wrap">
+      <img class="chair-slide-img" src="images/chair-slide.png" alt="" />
+    </div>
+  </div>
+</section>
+
+<!-- ══ BENEFITS ══ -->
+<section class="section benefits" id="benefits">
+  <div class="inner">
+    <div class="sec-no">03</div>
+    <p class="sec-label">参加するとこうなる！</p>
+    <h2 class="sec-title">参加後に<br/>得られること</h2>
+    <p class="sec-lead">画像生成から動画化まで、自分の手で「一本作れた」体験ができます。</p>
+
+    <ul class="benefit-list">
+      <li class="benefit-item">
+        <div class="benefit-n">1</div>
+        <div>
+          <h3 class="benefit-h">AI動画を、自分のリールに取り入れられるようになる</h3>
+          <p class="benefit-p">「いつかやりたい」が「もう作れる」に変わります。</p>
+          <div class="benefit-tag">最初の一歩、ここで踏める</div>
+        </div>
+      </li>
+      <li class="benefit-item">
+        <div class="benefit-n">2</div>
+        <div>
+          <h3 class="benefit-h">自分だけのメインキャラクターで、世界観を統一できる</h3>
+          <p class="benefit-p">アイコン・リール・投稿。発信全体に「自分らしさ」がのります。</p>
+          <div class="benefit-tag">差別化は、世界観から</div>
+        </div>
+      </li>
+      <li class="benefit-item">
+        <div class="benefit-n">3</div>
+        <div>
+          <h3 class="benefit-h">リールの最初で「おっ」と目を止めてもらえる</h3>
+          <p class="benefit-p">冒頭フックに使えるAI動画を、自分の手で作れるようになります。</p>
+          <div class="benefit-tag">滑り出し、変わる</div>
+        </div>
+      </li>
+      <li class="benefit-item">
+        <div class="benefit-n">4</div>
+        <div>
+          <h3 class="benefit-h">「AIって難しそう」が「意外とできた！」に変わる</h3>
+          <p class="benefit-p">体験してしまえば、苦手意識はびっくりするほど消えます。</p>
+          <div class="benefit-tag">体験が、自信に変わる</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══ BREAK BANNER ══ -->
+<section class="break-cta">
+  <div class="break-cta__inner">
+    <img class="break-cta__chara" src="images/Gemini_Generated_Image_4jtn2l4jtn2l4jtnのコピー.png" alt="" />
+    <div>
+      <p class="break-cta__copy">じゃあ、<br/><span class="blue">何やるの？</span></p>
+      <p class="break-cta__sub">2時間でやることを、具体的に紹介していきますね。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTENT ══ -->
+<section class="section content" id="content">
+  <div class="inner">
+    <div class="sec-no">04</div>
+    <p class="sec-label">講座内容</p>
+    <h2 class="sec-title">2時間で<br/>体験すること</h2>
+    <p class="sec-lead">2時間のZoomワンデイ講座。実際にワークをしながら、一緒に進めていく参加型です。</p>
+
+    <div class="content-grid">
+      <div class="content-card">
+        <img class="content-card__img" src="images/chara.png" alt="" />
+        <p class="content-card__no">PART 01</p>
+        <h3 class="content-card__h">AI画像で<br/>“自分だけのメインキャラ”を作成</h3>
+        <p class="content-card__p">アイコンにしたい写真やイラストをもとに、NanoBananaを使ってリールや発信で使えるキャラクターを作成していきます。</p>
+      </div>
+      <div class="content-card">
+        <img class="content-card__img" src="images/Gemini_Generated_Image_nnw0lcnnw0lcnnw0のコピー.png" alt="" />
+        <p class="content-card__no">PART 02</p>
+        <h3 class="content-card__h">作ったキャラクターを<br/>動画化</h3>
+        <p class="content-card__p">完成したメインキャラクターを実際に“動く動画”に。リールの冒頭フックや、いつもの投稿に取り入れていきます。</p>
+      </div>
+    </div>
+
+    <ul class="content-list">
+      <li>自分の写真やイラストを使って、オリジナルのメインキャラクターを作成</li>
+      <li>「NanoBanana」を使った画像生成のやり方</li>
+      <li>想像したイメージを形にする"プロンプトの作り方"</li>
+      <li>「なんか違う…」を減らす、伝わる指示のコツ</li>
+      <li>作成した画像を動画化する方法</li>
+      <li>リールの冒頭フックに使えるAI動画の作り方</li>
+      <li>無課金でできる範囲を中心に解説</li>
+      <li>発信やリールに取り入れる活用アイデアも紹介</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══ SCHEDULE ══ -->
+<section class="section schedule" id="schedule">
+  <div class="inner">
+    <div class="sec-no">05</div>
+    <p class="sec-label">タイムテーブル</p>
+    <h2 class="sec-title">当日の流れ</h2>
+    <p class="sec-lead">20:30〜22:30 / Zoomで開催。事前準備は、写真かイラストを1枚ご用意いただくだけです。</p>
+
+    <ol class="timeline">
+      <li>
+        <p class="timeline__time">20:30〜</p>
+        <h3 class="timeline__h">Zoomスタート・講座説明</h3>
+        <p class="timeline__p">当日の流れと、ゴールイメージを共有します。</p>
+      </li>
+      <li>
+        <p class="timeline__time">20:40〜</p>
+        <h3 class="timeline__h">メインキャラクター作成</h3>
+        <p class="timeline__p">持ってきていただいた写真やイラストをもとに、画像生成をしながら自分だけのキャラクターを作っていきます。</p>
+      </li>
+      <li>
+        <p class="timeline__time">21:30〜</p>
+        <h3 class="timeline__h">休憩</h3>
+        <p class="timeline__p">画面から少し離れて、ひと息つきましょう。</p>
+      </li>
+      <li>
+        <p class="timeline__time">21:40〜</p>
+        <h3 class="timeline__h">動画化スタート</h3>
+        <p class="timeline__p">作成したキャラクターを、実際に“動く動画”に。リールの冒頭フックなどに使えるAI動画を、一緒に作成していきます。</p>
+      </li>
+      <li>
+        <p class="timeline__time">22:30</p>
+        <h3 class="timeline__h">終了予定</h3>
+        <p class="timeline__p">「自分だけのキャラ動画」を持ち帰っていただきます。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══ PRICING ══ -->
+<section class="section pricing" id="contact">
+  <div class="inner" style="text-align:center">
+    <div class="sec-no" style="text-align:left">06</div>
+    <p class="sec-label" style="text-align:left">料金・お申し込み</p>
+    <h2 class="sec-title" style="margin-bottom:48px;text-align:left">講座詳細</h2>
+
+    <div class="price-wrap">
+      <img class="spin-chara" src="images/chair-spin.png" alt="" />
+      <div class="price-head">
+        <p>リールの表現が広がる 動画生成AI 講座</p>
+      </div>
+      <div class="price-body">
+        <p class="price-name">受講料</p>
+        <div class="price-amount"><span>¥</span>1,900</div>
+        <p class="price-note">税込</p>
+        <ul class="price-details">
+          <li>時間：20:30〜22:30（2時間）</li>
+          <li>形式：Zoom オンライン講座（参加型）</li>
+          <li>対象：動画生成AIに興味のある初心者の方</li>
+          <li>持ち物：PC、自分の写真かイラスト1枚</li>
+          <li>NanoBanana 使用（無課金中心）</li>
+          <li>動画編集ソフトは使いません</li>
+        </ul>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=dialog" class="btn btn--glow" style="width:100%;padding:20px;font-size:16px">
+          申し込みフォームへ進む
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="section faq" id="faq">
+  <div class="inner">
+    <div class="sec-no">07</div>
+    <p class="sec-label">よくある質問</p>
+    <h2 class="sec-title" style="margin-bottom:48px">FAQ</h2>
+
+    <ul class="faq-list">
+      <li class="faq-item">
+        <p class="faq-q">動画編集をやったことがなくても大丈夫ですか？</p>
+        <p class="faq-a">大丈夫です。今回の講座では、動画編集ソフトは一切使いません。画像生成から動画化まで、一緒に進めていきます。</p>
+      </li>
+      <li class="faq-item">
+        <p class="faq-q">有料プランに入らないと参加できませんか？</p>
+        <p class="faq-a">今回は、無課金でできる範囲を中心に進めていきます。</p>
+      </li>
+      <li class="faq-item">
+        <p class="faq-q">顔出ししていなくても使えますか？</p>
+        <p class="faq-a">はい、使えます。写真だけでなく、イラストや世界観づくりにも活用できます。</p>
+      </li>
+      <li class="faq-item">
+        <p class="faq-q">講座内で実際に作れますか？</p>
+        <p class="faq-a">はい。ワークをしながら進めるので、その場で一緒に作っていきます。</p>
+      </li>
+      <li class="faq-item">
+        <p class="faq-q">どんな人向けの講座ですか？</p>
+        <p class="faq-a">リール発信をしていて、動画生成AIを取り入れながら、もっと見てもらえる発信にしたい方向けです。「AI動画気になるけど、何から始めればいいかわからない…」そんな初心者さんでも参加しやすい内容になっています。</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══ PROFILE ══ -->
+<section class="section profile" id="about">
+  <div class="inner--wide">
+    <div class="sec-no">08</div>
+    <p class="sec-label">講師プロフィール</p>
+    <h2 class="sec-title" style="margin-bottom:48px">講師紹介</h2>
+
+    <div class="profile__grid">
+      <div class="profile__photo">
+        <img src="images/ちびえび - 6.png" alt="えびちゃん"
+          onerror="this.parentElement.style.background='#DCDAD7'" />
+      </div>
+      <div>
+        <h3 class="profile__name">えびちゃん</h3>
+        <p class="profile__role">動画編集コミュニティ「おうちクリエイターLabo」主宰</p>
+        <div class="profile__text">
+          <p class="profile__career">動画編集歴 <span class="profile__years">5年</span></p>
+          <p>最初の半年は独学。その後、自分のスキル不足を痛感し、スクールに通いながら約1年3ヶ月動画編集を学びました。</p>
+          <p>現在は制作チームを運営し、企業様や個人起業家さんの動画編集サポートを担当しています。また今もなお、大人数規模コミュニティの編集チームにも現役編集者として所属。</p>
+          <p>"教える側"だけではなく、今も現場に立ち続けながら、日々スキルを磨いています。</p>
+        </div>
+        <a href="https://www.instagram.com/ebi.styling?igsh=MWdqY3dieTF0MnFmeg%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="profile__sns">
+<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          @ebi.styling
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ══ -->
+<section class="final-cta">
+  <div class="final-cta__inner">
+    <div class="final-cta__left">
+      <h2>さあ 一緒に<br/>はじめよう。</h2>
+      <p>動画生成AIを取り入れることで、編集アイデアが広がり、表現の幅が増え、自分だけの世界観が作りやすくなります。<br/>『最近、投稿がマンネリ化してる』『もっと差別化したい』そんな方にも、きっと新しいヒントになります。</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=dialog" class="btn btn--blue" style="padding:18px 52px;font-size:16px">申し込みフォームへ →</a>
+    </div>
+    <div class="final-cta__chara">
+      <div class="final-cta__chara-bubble">待ってます！</div>
+      <video class="final-cta__chara-img" src="images/final-chara.mp4" autoplay muted loop playsinline preload="auto"></video>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <small>© 2026 えびちゃん / おうちクリエイターラボ</small>
+  <div class="footer-sns">
+    <a href="https://www.instagram.com/ebi.styling?igsh=MWdqY3dieTF0MnFmeg%3D%3D&utm_source=qr" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+  </div>
+</footer>
+
+
+<script>
+  const hero = document.querySelector('.hero');
+  const floatingCta = document.getElementById('floatingCta');
+  if (hero && floatingCta) {
+    new IntersectionObserver(([e]) => floatingCta.classList.toggle('visible', !e.isIntersecting), {threshold:0.1}).observe(hero);
+  }
+
+  const replies = document.querySelectorAll('.worry-reply');
+  const replyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        replyObserver.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.3});
+  replies.forEach(r => replyObserver.observe(r));
+</script>
+</body>
+</html>

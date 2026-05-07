@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>リールの表現が広がる 動画生成AI講座 | えびちゃん</title>
+  <title>リールの表現が広がる 動画生成AI講座 | 海老原 あい</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -82,7 +82,7 @@
       position: relative;
     }
 
-    /* ── FIXED CTA (top right, always visible) ── */
+    /* ── FIXED CTA (top right, appears after hero) ── */
     .fixed-cta {
       position: fixed;
       top: 20px;
@@ -97,7 +97,15 @@
       text-decoration: none;
       border-radius: 4px;
       box-shadow: 0 6px 20px rgba(0,0,0,.15);
-      transition: transform .2s, box-shadow .2s;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .3s ease, transform .3s ease, box-shadow .2s;
+    }
+    .fixed-cta.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
     .fixed-cta::before {
       content: '';
@@ -1099,7 +1107,7 @@
 </section>
 
 <div class="band">
-  <p>動画編集コミュニティ「おうちクリエイターLabo」主宰 ─ えびちゃん が贈る、AI動画はじめの一歩のための1Dayオンライン講座</p>
+  <p>動画編集コミュニティ「おうちクリエイターLabo」主宰 ─ 海老原 あい が贈る、AI動画はじめの一歩のための1Dayオンライン講座</p>
 </div>
 
 <!-- ══ MANIFESTO ══ -->
@@ -1112,7 +1120,7 @@
       <p>難しいのは<strong>最初の一歩だけ</strong>。</p>
       <p>NanoBananaを、一緒に触ってみましょう。</p>
       <p>「あ、意外とできた！」<br/>そう思ってもらえると思います</p>
-      <div class="manifesto__sign">— えびちゃん</div>
+      <div class="manifesto__sign">— 海老原 あい</div>
     </div>
   </div>
 </section>
@@ -1396,11 +1404,11 @@
 
     <div class="profile__grid">
       <div class="profile__photo">
-        <img src="images/ちびえび - 6.png" alt="えびちゃん"
+        <img src="images/ちびえび - 6.png" alt="海老原 あい"
           onerror="this.parentElement.style.background='#DCDAD7'" />
       </div>
       <div>
-        <h3 class="profile__name">えびちゃん</h3>
+        <h3 class="profile__name">海老原 あい</h3>
         <p class="profile__role">動画編集コミュニティ「おうちクリエイターLabo」主宰</p>
         <div class="profile__text">
           <p class="profile__career">動画編集歴 <span class="profile__years">5年</span></p>
@@ -1434,7 +1442,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <small>© 2026 えびちゃん / おうちクリエイターラボ</small>
+  <small>© 2026 海老原 あい / おうちクリエイターラボ</small>
   <div class="footer-sns">
     <a href="https://www.instagram.com/ebi.styling?igsh=MWdqY3dieTF0MnFmeg%3D%3D&utm_source=qr" target="_blank" rel="noopener">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -1446,9 +1454,9 @@
 
 <script>
   const hero = document.querySelector('.hero');
-  const floatingCta = document.getElementById('floatingCta');
-  if (hero && floatingCta) {
-    new IntersectionObserver(([e]) => floatingCta.classList.toggle('visible', !e.isIntersecting), {threshold:0.1}).observe(hero);
+  const fixedCta = document.querySelector('.fixed-cta');
+  if (hero && fixedCta) {
+    new IntersectionObserver(([e]) => fixedCta.classList.toggle('visible', !e.isIntersecting), {threshold:0.1}).observe(hero);
   }
 
   const replies = document.querySelectorAll('.worry-reply');

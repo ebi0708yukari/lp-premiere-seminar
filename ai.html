@@ -145,8 +145,7 @@
     .hero__bg-text {
       position: absolute;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      left: 0;
       font-size: clamp(80px, 18vw, 240px);
       font-weight: 900;
       color: rgba(91,139,168,.08);
@@ -155,6 +154,16 @@
       pointer-events: none;
       z-index: 0;
       line-height: 1;
+      display: flex;
+      width: max-content;
+      animation: bgScroll 40s linear infinite;
+    }
+    .hero__bg-text span {
+      padding-right: .6em;
+    }
+    @keyframes bgScroll {
+      from { transform: translate(0, -50%); }
+      to   { transform: translate(-50%, -50%); }
     }
 
     .hero__inner {
@@ -1076,7 +1085,10 @@
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="top">
-  <div class="hero__bg-text">GENERATIVE AI</div>
+  <div class="hero__bg-text">
+    <span>GENERATIVE AI</span>
+    <span>GENERATIVE AI</span>
+  </div>
   <div class="hero__inner">
     <div class="hero__left">
       <p class="hero__kicker">Zoom 2時間 1Day講座 · 参加型</p>

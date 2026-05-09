@@ -471,18 +471,27 @@
     }
     .targets__head-text { flex: 1; }
     .targets__head-text .sec-title { margin-bottom: 0; }
-    .targets__head-video {
+    .targets__head-video-wrap {
       width: 200px;
       height: 200px;
       border-radius: 50%;
-      object-fit: cover;
-      object-position: center 30%;
+      overflow: hidden;
       flex-shrink: 0;
       background: #fff;
+      position: relative;
+    }
+    .targets__head-video {
+      width: 140%;
+      height: 140%;
+      object-fit: cover;
+      object-position: center 45%;
+      position: absolute;
+      top: -20%;
+      left: -20%;
     }
     @media (max-width: 720px) {
       .targets__head { gap: 24px; }
-      .targets__head-video { width: 130px; height: 130px; }
+      .targets__head-video-wrap { width: 130px; height: 130px; }
     }
 
     .chair-slide-wrap {
@@ -1282,9 +1291,11 @@
         <p class="sec-label">こんな人に来てほしい！</p>
         <h2 class="sec-title">こんな方に<br/>ぴったりです！</h2>
       </div>
-      <video class="targets__head-video" autoplay muted loop playsinline preload="metadata">
-        <source src="images/targets-face.mp4" type="video/mp4">
-      </video>
+      <div class="targets__head-video-wrap">
+        <video class="targets__head-video" autoplay muted loop playsinline preload="metadata">
+          <source src="images/targets-face.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
 
     <ul class="target-list">

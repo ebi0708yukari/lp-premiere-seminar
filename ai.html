@@ -604,6 +604,51 @@
     }
 
     /* ══════════════════════
+       EXAMPLES (作れる発信例)
+    ══════════════════════ */
+    .examples { background: var(--white); }
+
+    .examples-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .examples-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .examples-video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #000;
+      display: block;
+    }
+
+    .examples-caption {
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .examples-caption span {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--mid);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 720px) {
+      .examples-grid { grid-template-columns: 1fr; gap: 28px; }
+    }
+
+    /* ══════════════════════
        CONTENT (カリキュラム)
     ══════════════════════ */
     .content { background: var(--white); }
@@ -1256,10 +1301,34 @@
   </div>
 </section>
 
+<!-- ══ EXAMPLES ══ -->
+<section class="section examples" id="examples">
+  <div class="inner">
+    <div class="sec-no">04</div>
+    <p class="sec-label">作れる発信の例</p>
+    <h2 class="sec-title">こんな発信が<br/>作れます</h2>
+
+    <div class="examples-grid">
+      <div class="examples-item">
+        <video class="examples-video" autoplay muted loop playsinline preload="metadata">
+          <source src="images/example-shooting.mp4" type="video/mp4">
+        </video>
+        <p class="examples-caption">撮影現場のVlog風リール<span>BTS・舞台裏系の発信に</span></p>
+      </div>
+      <div class="examples-item">
+        <video class="examples-video" autoplay muted loop playsinline preload="metadata">
+          <source src="images/example-cooking.mp4" type="video/mp4">
+        </video>
+        <p class="examples-caption">レシピ手元動画<span>料理・暮らし系の発信に</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ CONTENT ══ -->
 <section class="section content" id="content">
   <div class="inner">
-    <div class="sec-no">04</div>
+    <div class="sec-no">05</div>
     <p class="sec-label">講座内容</p>
     <h2 class="sec-title">2時間で<br/>体験すること</h2>
 
@@ -1290,7 +1359,7 @@
 <!-- ══ SCHEDULE ══ -->
 <section class="section schedule" id="schedule">
   <div class="inner">
-    <div class="sec-no">05</div>
+    <div class="sec-no">06</div>
     <p class="sec-label">タイムテーブル</p>
     <h2 class="sec-title">当日の流れ</h2>
     <p class="sec-lead">20:30〜22:30 / Zoomで開催。事前準備は、写真かイラストを1枚ご用意いただくだけです。</p>
@@ -1328,7 +1397,7 @@
 <!-- ══ PRICING ══ -->
 <section class="section pricing" id="contact">
   <div class="inner" style="text-align:center">
-    <div class="sec-no" style="text-align:left">06</div>
+    <div class="sec-no" style="text-align:left">07</div>
     <p class="sec-label" style="text-align:left">料金・お申し込み</p>
     <h2 class="sec-title" style="margin-bottom:48px;text-align:left">講座詳細</h2>
 
@@ -1359,7 +1428,7 @@
 <!-- ══ FAQ ══ -->
 <section class="section faq" id="faq">
   <div class="inner">
-    <div class="sec-no">07</div>
+    <div class="sec-no">08</div>
     <p class="sec-label">よくある質問</p>
     <h2 class="sec-title" style="margin-bottom:48px">FAQ</h2>
 
@@ -1391,7 +1460,7 @@
 <!-- ══ PROFILE ══ -->
 <section class="section profile" id="about">
   <div class="inner--wide">
-    <div class="sec-no">08</div>
+    <div class="sec-no">09</div>
     <p class="sec-label">講師プロフィール</p>
     <h2 class="sec-title" style="margin-bottom:48px">講師紹介</h2>
 

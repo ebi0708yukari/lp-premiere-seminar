@@ -231,6 +231,29 @@
 
     .hero__meta span::before { content: '— '; }
 
+    .hero__date {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 16px;
+      background: var(--ink);
+      color: var(--white);
+      padding: 14px 22px;
+      margin-bottom: 32px;
+      letter-spacing: .02em;
+    }
+    .hero__date strong {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+    .hero__date span {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
     .hero__right {
       position: relative;
       display: flex;
@@ -982,6 +1005,41 @@
       flex-shrink: 0;
     }
 
+    .price-timeline {
+      border-top: 1px solid #E0DDD9;
+      padding-top: 20px;
+      margin-bottom: 32px;
+    }
+    .price-timeline__title {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      color: var(--blue);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .price-timeline__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .price-timeline__list li {
+      display: flex;
+      gap: 14px;
+      font-size: 13px;
+      color: var(--ink);
+      align-items: baseline;
+      line-height: 1.5;
+    }
+    .price-timeline__list li span {
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: .04em;
+      flex-shrink: 0;
+      width: 50px;
+    }
+
     /* ══════════════════════
        FAQ
     ══════════════════════ */
@@ -1267,6 +1325,10 @@
         AI動画を、自分のリールに取り入れる<br/>
         最初の一歩を、一緒に
       </p>
+      <div class="hero__date">
+        <span>2026.05.17 SUN</span>
+        <strong>5月17日（日）20:30〜</strong>
+      </div>
       <div class="hero__meta">
         <span>Zoom 1Day</span>
         <span>2時間 参加型</span>
@@ -1546,6 +1608,7 @@
         <div class="price-amount"><span>¥</span>1,900</div>
         <p class="price-note">税込</p>
         <ul class="price-details">
+          <li>日にち：<strong style="color:var(--ink)">2026年5月17日（日）</strong></li>
           <li>時間：20:30〜22:30（2時間）</li>
           <li>形式：Zoom オンライン講座（参加型）</li>
           <li>対象：動画生成AIに興味のある初心者の方</li>
@@ -1553,6 +1616,18 @@
           <li>使用ツールは当日ご案内（無課金中心）</li>
           <li>動画編集ソフトは使いません</li>
         </ul>
+
+        <div class="price-timeline">
+          <p class="price-timeline__title">当日の流れ</p>
+          <ol class="price-timeline__list">
+            <li><span>20:30</span>Zoomスタート・講座説明</li>
+            <li><span>20:40</span>メインキャラクター作成</li>
+            <li><span>21:30</span>休憩</li>
+            <li><span>21:40</span>動画化スタート</li>
+            <li><span>22:30</span>終了予定</li>
+          </ol>
+        </div>
+
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUQztjkDT8NnC38lRIxdBYJIWMCZIOCxKQ-V2N_QJVzVh2aA/viewform?usp=dialog" class="btn btn--glow" style="width:100%;padding:20px;font-size:16px">
           申し込みフォームへ進む
         </a>

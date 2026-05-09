@@ -1065,6 +1065,31 @@
       line-height: 1.7;
     }
 
+    .pricing-glide {
+      margin-top: 56px;
+      overflow: hidden;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .pricing-glide__img {
+      width: 180px;
+      display: block;
+      animation: chairGlide 8s linear infinite;
+    }
+    @keyframes chairGlide {
+      0%   { transform: translate(-200px, 0) rotate(0deg); }
+      20%  { transform: translate(22vw, -4px) rotate(-1.5deg); }
+      40%  { transform: translate(40vw, 3px) rotate(1.5deg); }
+      60%  { transform: translate(58vw, -4px) rotate(-1.5deg); }
+      80%  { transform: translate(78vw, 2px) rotate(1deg); }
+      100% { transform: translate(110vw, 0) rotate(0deg); }
+    }
+    @media (max-width: 860px) {
+      .pricing-glide__img { width: 130px; animation-duration: 9s; }
+    }
+
     /* ══════════════════════
        FAQ
     ══════════════════════ */
@@ -1646,6 +1671,10 @@
           申し込みフォームへ進む
         </a>
       </div>
+    </div>
+
+    <div class="pricing-glide">
+      <img class="pricing-glide__img" src="images/chair-glide.png" alt="" />
     </div>
   </div>
 </section>

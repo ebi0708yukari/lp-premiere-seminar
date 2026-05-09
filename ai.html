@@ -463,6 +463,28 @@
     .targets .sec-title { color: var(--white); }
     .targets .sec-no { color: rgba(255,255,255,.06); }
 
+    .targets__head {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .targets__head-text { flex: 1; }
+    .targets__head-text .sec-title { margin-bottom: 0; }
+    .targets__head-video {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 30%;
+      flex-shrink: 0;
+      background: #fff;
+    }
+    @media (max-width: 720px) {
+      .targets__head { gap: 24px; }
+      .targets__head-video { width: 130px; height: 130px; }
+    }
+
     .chair-slide-wrap {
       margin-top: 80px;
       overflow: hidden;
@@ -1254,9 +1276,16 @@
 <!-- ══ TARGETS ══ -->
 <section class="section targets" id="targets">
   <div class="inner">
-    <div class="sec-no">03</div>
-    <p class="sec-label">こんな人に来てほしい！</p>
-    <h2 class="sec-title">こんな方に<br/>ぴったりです！</h2>
+    <div class="targets__head">
+      <div class="targets__head-text">
+        <div class="sec-no">03</div>
+        <p class="sec-label">こんな人に来てほしい！</p>
+        <h2 class="sec-title">こんな方に<br/>ぴったりです！</h2>
+      </div>
+      <video class="targets__head-video" autoplay muted loop playsinline preload="metadata">
+        <source src="images/targets-face.mp4" type="video/mp4">
+      </video>
+    </div>
 
     <ul class="target-list">
       <li class="target-item">

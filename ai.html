@@ -651,13 +651,78 @@
       flex-direction: column;
     }
 
+    .examples-video-wrap {
+      position: relative;
+      cursor: pointer;
+    }
+
     .examples-video {
       width: 100%;
       aspect-ratio: 16 / 9;
       object-fit: cover;
       background: #000;
       display: block;
+      transition: opacity .2s;
     }
+    .examples-video-wrap:hover .examples-video { opacity: .85; }
+
+    .examples-video-wrap::after {
+      content: '▶';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: rgba(0,0,0,.55);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      pointer-events: none;
+      transition: transform .2s, background .2s;
+    }
+    .examples-video-wrap:hover::after {
+      background: rgba(0,0,0,.75);
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    /* ── VIDEO MODAL ── */
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 24px;
+    }
+    .video-modal.open { display: flex; }
+    .video-modal__video {
+      max-width: 100%;
+      max-height: 90vh;
+      width: auto;
+      display: block;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+    .video-modal__close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .video-modal__close:hover { background: rgba(255,255,255,.25); }
 
     .examples-caption {
       margin-top: 14px;
@@ -1223,15 +1288,19 @@
 
     <div class="examples-grid">
       <div class="examples-item">
-        <video class="examples-video" autoplay muted loop playsinline preload="metadata">
-          <source src="images/example-shooting.mp4" type="video/mp4">
-        </video>
+        <div class="examples-video-wrap" data-video="images/example-shooting.mp4">
+          <video class="examples-video" autoplay muted loop playsinline preload="metadata">
+            <source src="images/example-shooting.mp4" type="video/mp4">
+          </video>
+        </div>
         <p class="examples-caption">撮影現場のVlog風リール<span>BTS・舞台裏系の発信に</span></p>
       </div>
       <div class="examples-item">
-        <video class="examples-video" autoplay muted loop playsinline preload="metadata">
-          <source src="images/example-cooking.mp4" type="video/mp4">
-        </video>
+        <div class="examples-video-wrap" data-video="images/example-cooking.mp4">
+          <video class="examples-video" autoplay muted loop playsinline preload="metadata">
+            <source src="images/example-cooking.mp4" type="video/mp4">
+          </video>
+        </div>
         <p class="examples-caption">レシピ手元動画<span>料理・暮らし系の発信に</span></p>
       </div>
     </div>
@@ -1554,7 +1623,35 @@
 </footer>
 
 
+<!-- ══ VIDEO MODAL ══ -->
+<div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="動画プレビュー">
+  <button class="video-modal__close" id="videoModalClose" aria-label="閉じる">×</button>
+  <video class="video-modal__video" id="videoModalVideo" controls playsinline></video>
+</div>
+
 <script>
+  // Video modal
+  const modal = document.getElementById('videoModal');
+  const modalVideo = document.getElementById('videoModalVideo');
+  document.querySelectorAll('.examples-video-wrap').forEach(w => {
+    w.addEventListener('click', () => {
+      modalVideo.src = w.dataset.video;
+      modalVideo.currentTime = 0;
+      modalVideo.muted = false;
+      modal.classList.add('open');
+      modalVideo.play();
+    });
+  });
+  function closeVideoModal() {
+    modalVideo.pause();
+    modalVideo.removeAttribute('src');
+    modalVideo.load();
+    modal.classList.remove('open');
+  }
+  document.getElementById('videoModalClose').addEventListener('click', closeVideoModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeVideoModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeVideoModal(); });
+
   const hero = document.querySelector('.hero');
   const fixedCta = document.querySelector('.fixed-cta');
   if (hero && fixedCta) {

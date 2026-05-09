@@ -237,8 +237,6 @@
       aspect-ratio: 720 / 800;
       object-fit: cover;
       object-position: center;
-      mix-blend-mode: multiply;
-      filter: contrast(1.15) brightness(1.05);
     }
 
     .hero__bubble {
@@ -1103,7 +1101,10 @@
 
     <div class="hero__right">
       <div class="hero__bubble">リール、<br/>変わるよ。</div>
-      <video class="hero__illust" src="images/hero-chara.mp4" autoplay muted loop playsinline preload="auto"></video>
+      <video class="hero__illust" autoplay muted loop playsinline preload="auto">
+        <source src="images/hero-chara.webm" type="video/webm">
+        <source src="images/hero-chara.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>

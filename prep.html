@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LP事前準備シート | ワンデーLP講座</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:  #5B8BA8;
+      --blue-deep: #3F6B85;
+      --ink:   #1C1C1C;
+      --off:   #F5F3F0;
+      --mid:   #6A6A6A;
+      --line:  #2A2A2A;
+      --white: #FFFFFF;
+      --pale:  #E8F0F5;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--off);
+      background: var(--ink);
+      overflow-wrap: break-word;
+      line-height: 1.7;
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      background: #141414;
+      border-right: 1px solid var(--line);
+      padding: 48px 32px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar__brand {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .25em;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .sidebar__brand::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 2px;
+      background: var(--blue);
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    .sidebar__title {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: .02em;
+      margin-bottom: 40px;
+    }
+    .sidebar__group {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      color: var(--mid);
+      margin: 32px 0 12px;
+      text-transform: uppercase;
+    }
+    .sidebar__nav {
+      list-style: none;
+    }
+    .sidebar__nav li {
+      margin-bottom: 4px;
+    }
+    .sidebar__nav a {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 12px;
+      color: #B8B8B8;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: background .2s, color .2s;
+    }
+    .sidebar__nav a:hover {
+      background: rgba(91,139,168,.12);
+      color: var(--white);
+    }
+    .sidebar__nav a.active {
+      background: rgba(91,139,168,.2);
+      color: var(--white);
+      font-weight: 700;
+    }
+    .sidebar__nav .num {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: .1em;
+      min-width: 22px;
+    }
+
+    /* ── Main ── */
+    .main {
+      padding: 64px 56px 120px;
+      max-width: 920px;
+    }
+    .page-head {
+      margin-bottom: 56px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--line);
+    }
+    .page-head__kicker {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .25em;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .page-head__kicker::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 2px;
+      background: var(--blue);
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    .page-head__title {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -.01em;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .page-head__lead {
+      font-size: 14px;
+      color: #B8B8B8;
+      line-height: 1.8;
+    }
+
+    /* ── Section card ── */
+    .section {
+      background: #1F1F1F;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 40px 44px;
+      margin-bottom: 32px;
+    }
+    .section__head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .section__num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .section__title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: .01em;
+    }
+    .section__lead {
+      font-size: 13px;
+      color: #B0B0B0;
+      margin: 0 0 28px 52px;
+      line-height: 1.8;
+    }
+
+    /* ── Subhead ── */
+    .subhead {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: .05em;
+      padding-bottom: 8px;
+      margin: 28px 0 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .subhead:first-of-type { margin-top: 0; }
+
+    /* ── Field ── */
+    .field {
+      margin-bottom: 18px;
+    }
+    .field__label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 8px;
+      letter-spacing: .03em;
+    }
+    .field__hint {
+      font-size: 11px;
+      color: var(--mid);
+      font-weight: 400;
+      margin-left: 8px;
+    }
+    .field input[type="text"],
+    .field input[type="url"],
+    .field input[type="email"],
+    .field textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: #141414;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color .2s, background .2s;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #5A5A5A;
+    }
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      background: #181818;
+    }
+    .field textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.7;
+    }
+    .field--row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    /* ── CTA section ── */
+    .cta-section {
+      background: linear-gradient(135deg, #1F1F1F 0%, #232B33 100%);
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      padding: 40px 44px;
+      margin-bottom: 32px;
+    }
+    .cta-section .section__num {
+      background: var(--blue);
+    }
+    .cta-section--report {
+      background: linear-gradient(135deg, #1F1F1F 0%, #1A2730 100%);
+    }
+
+    /* ── Big button ── */
+    .bigbtn {
+      width: 100%;
+      padding: 22px;
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+      margin-top: 8px;
+    }
+    .bigbtn:hover {
+      background: var(--blue-deep);
+    }
+    .bigbtn:active {
+      transform: translateY(1px);
+    }
+    .bigbtn--ink {
+      background: var(--ink);
+      border: 1px solid var(--blue);
+    }
+    .bigbtn--ink:hover {
+      background: #2A2A2A;
+    }
+
+    /* ── Mail target ── */
+    .mail-target {
+      margin-top: 20px;
+      padding: 24px;
+      background: #141414;
+      border: 1px dashed var(--blue);
+      border-radius: 6px;
+    }
+    .mail-target__label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: .1em;
+      margin-bottom: 10px;
+    }
+    .mail-target__addr {
+      font-family: 'SF Mono', Menlo, monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      padding: 14px 18px;
+      background: #0E0E0E;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background .2s;
+      word-break: break-all;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .mail-target__addr:hover {
+      background: #1A1A1A;
+    }
+    .mail-target__hint {
+      font-size: 12px;
+      color: #B0B0B0;
+      line-height: 2;
+    }
+    .mail-target__hint strong {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--white);
+      color: var(--ink);
+      padding: 16px 32px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 12px 32px rgba(0,0,0,.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s, transform .3s;
+      z-index: 9999;
+    }
+    .toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── Save indicator ── */
+    .save-status {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      font-size: 11px;
+      color: var(--mid);
+      letter-spacing: .05em;
+      opacity: 0;
+      transition: opacity .3s;
+      z-index: 100;
+    }
+    .save-status.visible { opacity: 1; }
+    .save-status::before {
+      content: '●';
+      color: var(--blue);
+      margin-right: 6px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+        height: auto;
+        padding: 32px 24px;
+      }
+      .main {
+        padding: 40px 24px 80px;
+      }
+      .section, .cta-section {
+        padding: 32px 24px;
+      }
+      .field--row {
+        grid-template-columns: 1fr;
+      }
+      .page-head__title {
+        font-size: 24px;
+      }
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #fff; color: #000; }
+      .sidebar, .bigbtn, .cta-section { display: none; }
+      .layout { grid-template-columns: 1fr; }
+      .section { background: #fff; border: 1px solid #ddd; break-inside: avoid; }
+      .section__title, .page-head__title { color: #000; }
+      .field input, .field textarea { background: #fff; color: #000; border: 1px solid #aaa; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="save-status" id="saveStatus">入力内容を自動保存しました</div>
+
+<div class="layout">
+  <!-- ═══════════ SIDEBAR ═══════════ -->
+  <aside class="sidebar">
+    <div class="sidebar__brand">PREPARATION</div>
+    <div class="sidebar__title">LP事前準備シート</div>
+
+    <div class="sidebar__group">SHEET</div>
+    <ul class="sidebar__nav">
+      <li><a href="#step1"><span class="num">01</span>参考リンク</a></li>
+      <li><a href="#step2"><span class="num">02</span>LP情報シート</a></li>
+      <li><a href="#step3"><span class="num">03</span>使いたい素材</a></li>
+    </ul>
+
+    <div class="sidebar__group">FINAL</div>
+    <ul class="sidebar__nav">
+      <li><a href="#step4"><span class="num">04</span>Claudeへのプロンプト</a></li>
+    </ul>
+  </aside>
+
+  <!-- ═══════════ MAIN ═══════════ -->
+  <main class="main">
+    <div class="page-head">
+      <div class="page-head__kicker">FOR ATTENDEES</div>
+      <h1 class="page-head__title">ワンデーLP講座<br>事前準備シート</h1>
+      <p class="page-head__lead">当日スムーズに進めるための事前準備シートです。<br>埋められるところから埋めて、最後にClaudeへのプロンプトを生成しておきましょう。<br><br><span style="color:var(--blue); font-size:12px; font-weight:700;">💡 入力内容は自動で保存されます。<br>途中でブラウザを閉じても、同じブラウザで開き直せば続きから始められます。</span></p>
+    </div>
+
+    <!-- ═══════════ STEP 1 ═══════════ -->
+    <section class="section" id="step1">
+      <div class="section__head">
+        <div class="section__num">1</div>
+        <h2 class="section__title">参考リンクを貼っておこう</h2>
+      </div>
+      <p class="section__lead">既存LP・構成参考・デザイン参考を貼っておきましょう。当日すぐ引き出せます。</p>
+
+      <div class="subhead">既存LPのURL</div>
+      <div class="field">
+        <label class="field__label">既存LPのURL <span class="field__hint">持っている方はこちら</span></label>
+        <input type="url" id="existingLp" placeholder="https://...（なければ空欄でOK）">
+      </div>
+
+      <div class="subhead">構成参考（こんな流れのLPにしたい）</div>
+      <div class="field">
+        <label class="field__label">構成参考 ①</label>
+        <input type="url" id="ref1" placeholder="https://...">
+      </div>
+      <div class="field">
+        <label class="field__label">構成参考 ②</label>
+        <input type="url" id="ref2" placeholder="https://...">
+      </div>
+      <div class="field">
+        <label class="field__label">構成参考 ③</label>
+        <input type="url" id="ref3" placeholder="https://...">
+      </div>
+
+      <div class="subhead">デザイン参考（こんなビジュアルにしたい）</div>
+      <div class="field">
+        <label class="field__label">デザイン参考 ①</label>
+        <input type="url" id="des1" placeholder="https://...">
+      </div>
+      <div class="field">
+        <label class="field__label">デザイン参考 ②</label>
+        <input type="url" id="des2" placeholder="https://...">
+      </div>
+      <div class="field">
+        <label class="field__label">デザイン参考 ③</label>
+        <input type="url" id="des3" placeholder="https://...">
+      </div>
+    </section>
+
+    <!-- ═══════════ STEP 2 ═══════════ -->
+    <section class="section" id="step2">
+      <div class="section__head">
+        <div class="section__num">2</div>
+        <h2 class="section__title">LP情報シート</h2>
+      </div>
+      <p class="section__lead">この情報をもとにClaudeがLPを自動作成します。できるだけ全部埋めてください。</p>
+
+      <div class="subhead">サービスの基本情報</div>
+      <div class="field">
+        <label class="field__label">サービス名・講座名</label>
+        <input type="text" id="serviceName" placeholder="例：3ヶ月で-5kg・我慢ゼロダイエットプログラム">
+      </div>
+      <div class="field">
+        <label class="field__label">あなたの肩書き</label>
+        <input type="text" id="title" placeholder="例：ダイエットコーチ / 食事管理アドバイザー">
+      </div>
+      <div class="field field--row">
+        <div>
+          <label class="field__label">料金</label>
+          <input type="text" id="price" placeholder="例：¥98,000">
+        </div>
+        <div>
+          <label class="field__label">形式・回数</label>
+          <input type="text" id="format" placeholder="例：オンライン / 全6回">
+        </div>
+      </div>
+      <div class="field">
+        <label class="field__label">対象者 <span class="field__hint">どんな人に来てほしいか</span></label>
+        <input type="text" id="target" placeholder="例：30〜40代・子育て中のママ・時間がない・自分に自信がない">
+      </div>
+      <div class="field">
+        <label class="field__label">LPのゴール <span class="field__hint">何をしてほしいか</span></label>
+        <input type="text" id="goal" placeholder="例：申し込みフォームから申し込んでほしい">
+      </div>
+
+      <div class="subhead">キャッチコピー</div>
+      <div class="field">
+        <label class="field__label">メインキャッチコピー <span class="field__hint">一言</span></label>
+        <input type="text" id="catchMain" placeholder="例：食べながら痩せた。我慢ゼロで-5kgの3ヶ月。">
+      </div>
+      <div class="field">
+        <label class="field__label">サブコピー <span class="field__hint">補足一言</span></label>
+        <input type="text" id="catchSub" placeholder="例：続けられなかった方こそ、このプログラムが向いています">
+      </div>
+
+      <div class="subhead">参加者の悩み（3つ）</div>
+      <div class="field">
+        <input type="text" id="pain1" placeholder="悩み1：例）食事制限が辛くて続かない">
+      </div>
+      <div class="field">
+        <input type="text" id="pain2" placeholder="悩み2：例）リバウンドを繰り返している">
+      </div>
+      <div class="field">
+        <input type="text" id="pain3" placeholder="悩み3：例）何をすればいいかわからない">
+      </div>
+
+      <div class="subhead">参加後に得られること（3つ）</div>
+      <div class="field">
+        <input type="text" id="gain1" placeholder="得られること1：例）我慢ゼロで-5kgを実現できる">
+      </div>
+      <div class="field">
+        <input type="text" id="gain2" placeholder="得られること2：例）リバウンドしない食習慣が身につく">
+      </div>
+      <div class="field">
+        <input type="text" id="gain3" placeholder="得られること3：例）食事を楽しみながら理想のカラダへ">
+      </div>
+
+      <div class="subhead">自己紹介</div>
+      <div class="field">
+        <label class="field__label">自己紹介文 <span class="field__hint">3〜5行</span></label>
+        <textarea id="bio" placeholder="例：元会社員・3人の子育て中・自分も-20kgの経験あり。食べることが大好きで食事制限なしのダイエットを研究し続けて10年…"></textarea>
+      </div>
+
+      <div class="subhead">デザイン指定</div>
+      <div class="field field--row">
+        <div>
+          <label class="field__label">カラーテイスト</label>
+          <input type="text" id="colorTaste" placeholder="例：ナチュラル / ラグジュアリー">
+        </div>
+        <div>
+          <label class="field__label">フォント</label>
+          <input type="text" id="font" placeholder="例：Zen Maru Gothic">
+        </div>
+      </div>
+
+      <div class="subhead">リンク情報</div>
+      <div class="field">
+        <label class="field__label">申し込み先URL <span class="field__hint">LINE・予約サイト・メール等</span></label>
+        <input type="url" id="applyUrl" placeholder="https://lin.ee/...">
+      </div>
+      <div class="field">
+        <label class="field__label">Instagram / SNS URL</label>
+        <input type="url" id="snsUrl" placeholder="https://www.instagram.com/...">
+      </div>
+    </section>
+
+    <!-- ═══════════ STEP 3 ═══════════ -->
+    <section class="section" id="step3">
+      <div class="section__head">
+        <div class="section__num">3</div>
+        <h2 class="section__title">使いたい素材</h2>
+      </div>
+      <p class="section__lead">当日使う画像のファイル名をメモしておきましょう。事前にフォルダにまとめておくとスムーズです。</p>
+
+      <div class="field">
+        <label class="field__label">顔写真ファイル名</label>
+        <input type="text" id="facePhoto" placeholder="例：profile.jpg">
+      </div>
+      <div class="field">
+        <label class="field__label">使いたい写真のファイル名メモ</label>
+        <textarea id="photoNotes" placeholder="例：profile.jpg / before.png / logo.svg"></textarea>
+      </div>
+    </section>
+
+    <!-- ═══════════ STEP 4 ═══════════ -->
+    <section class="cta-section" id="step4">
+      <div class="section__head">
+        <div class="section__num">4</div>
+        <h2 class="section__title">Claudeへのプロンプトをコピー</h2>
+      </div>
+      <p class="section__lead">すべての項目を埋めたら、このボタンを押してプロンプトをコピー → Claude に貼り付けるだけでLPが生成されます。</p>
+      <button class="bigbtn" id="copyPromptBtn">📋 プロンプトを生成してコピー</button>
+    </section>
+
+  </main>
+</div>
+
+<div class="toast" id="toast">コピーしました</div>
+
+<script>
+  // ═══════════ Field IDs ═══════════
+  const FIELDS = [
+    'existingLp', 'ref1', 'ref2', 'ref3', 'des1', 'des2', 'des3',
+    'serviceName', 'title', 'price', 'format', 'target', 'goal',
+    'catchMain', 'catchSub',
+    'pain1', 'pain2', 'pain3',
+    'gain1', 'gain2', 'gain3',
+    'bio', 'colorTaste', 'font',
+    'applyUrl', 'snsUrl',
+    'facePhoto', 'photoNotes'
+  ];
+
+  // ═══════════ Auto-save (localStorage) ═══════════
+  const STORAGE_KEY = 'lpPrepSheet_v1';
+  const saveStatus = document.getElementById('saveStatus');
+  let saveTimer;
+
+  function saveAll() {
+    const data = {};
+    FIELDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) data[id] = el.value;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    saveStatus.classList.add('visible');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => saveStatus.classList.remove('visible'), 1500);
+  }
+
+  function loadAll() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    try {
+      const data = JSON.parse(raw);
+      FIELDS.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && data[id]) el.value = data[id];
+      });
+    } catch(e) {}
+  }
+
+  FIELDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', saveAll);
+  });
+
+  loadAll();
+
+  // ═══════════ Toast ═══════════
+  const toast = document.getElementById('toast');
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('visible');
+    setTimeout(() => toast.classList.remove('visible'), 2200);
+  }
+
+  // ═══════════ Helpers ═══════════
+  function v(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  function joinNonEmpty(arr, sep) {
+    return arr.filter(x => x && x.trim()).join(sep);
+  }
+
+  // ═══════════ Step 4: Generate Claude prompt ═══════════
+  document.getElementById('copyPromptBtn').addEventListener('click', async () => {
+    const prompt = buildPrompt();
+    try {
+      await navigator.clipboard.writeText(prompt);
+      showToast('✅ プロンプトをコピーしました！Claudeに貼り付けてください');
+    } catch(e) {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = prompt;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('✅ プロンプトをコピーしました！');
+    }
+  });
+
+  function buildPrompt() {
+    const refs = joinNonEmpty([v('ref1'), v('ref2'), v('ref3')], '\n  - ');
+    const designs = joinNonEmpty([v('des1'), v('des2'), v('des3')], '\n  - ');
+    const pains = joinNonEmpty([v('pain1'), v('pain2'), v('pain3')], '\n  - ');
+    const gains = joinNonEmpty([v('gain1'), v('gain2'), v('gain3')], '\n  - ');
+
+    return `あなたはプロのLP制作デザイナーです。
+以下の情報をもとに、集客力の高い1枚もののランディングページ（LP）を
+HTML+CSSで作成してください。
+
+━━━━━━━━━━━━━━━━━
+【受講者の入力情報】
+━━━━━━━━━━━━━━━━━
+
+■ サービスの基本情報
+- サービス名・講座名：${v('serviceName')}
+- 肩書き：${v('title')}
+- 料金：${v('price')}
+- 形式・回数：${v('format')}
+- 対象者：${v('target')}
+- LPのゴール：${v('goal')}
+
+■ キャッチコピー
+- メインキャッチコピー：${v('catchMain')}
+- サブコピー：${v('catchSub')}
+
+■ 参加者の悩み（3つ）
+  - ${pains || '（未入力）'}
+
+■ 参加後に得られること（3つ）
+  - ${gains || '（未入力）'}
+
+■ 自己紹介
+${v('bio') || '（未入力）'}
+
+■ デザイン指定
+- カラーテイスト：${v('colorTaste')}
+- フォント：${v('font')}
+
+■ 参考リンク
+- 既存LP：${v('existingLp') || '（なし）'}
+- 構成参考：
+  - ${refs || '（なし）'}
+- デザイン参考：
+  - ${designs || '（なし）'}
+
+■ 使いたい素材
+- 顔写真ファイル名：${v('facePhoto') || '（未指定）'}
+- その他の素材：${v('photoNotes') || '（なし）'}
+
+■ 申し込み先
+- 申し込み先URL：${v('applyUrl')}
+- Instagram / SNS：${v('snsUrl')}
+
+━━━━━━━━━━━━━━━━━
+【LP構成】
+━━━━━━━━━━━━━━━━━
+1. ファーストビュー（メインキャッチコピー＋サブコピー＋プロフィール写真）
+2. ターゲットへの共感（悩み3つを並べる）
+3. 得られる未来（得られること3つ）
+4. サービス内容・料金
+5. 申し込みCTA（指定された申し込み先URLにリンク）
+6. プロフィール（自己紹介文）
+7. フッター（Instagram・SNSリンク）
+
+━━━━━━━━━━━━━━━━━
+【デザイン要件】
+━━━━━━━━━━━━━━━━━
+・指定されたカラーテイスト・フォントを必ず反映する
+・女性向け、洗練された印象
+・スマホでも崩れないレスポンシブ対応
+・CSSはHTMLファイル内に記述（1ファイル完結）
+・写真は images/ フォルダから読み込む（指定ファイル名を使用）
+・申し込みCTAボタンは最低2回配置（ファーストビュー下＋料金セクション）
+
+━━━━━━━━━━━━━━━━━
+【出力形式】
+━━━━━━━━━━━━━━━━━
+完成したHTMLコード全文を1つのコードブロックで出力してください。
+（受講者がコピーして lp.html として保存します）`;
+  }
+
+  // ═══════════ Sidebar active link ═══════════
+  const sections = ['step1', 'step2', 'step3', 'step4'];
+  const links = document.querySelectorAll('.sidebar__nav a');
+  function updateActive() {
+    let active = sections[0];
+    const scrollY = window.scrollY + 120;
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) active = id;
+    });
+    links.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + active);
+    });
+  }
+  window.addEventListener('scroll', updateActive);
+  updateActive();
+</script>
+
+</body>
+</html>

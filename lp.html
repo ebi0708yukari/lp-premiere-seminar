@@ -441,25 +441,6 @@
     ══════════════════════ */
     .about-place { background: var(--off); position: relative; overflow: hidden; }
 
-    .about-place__chara {
-      position: absolute;
-      right: 4%;
-      top: 80px;
-      width: 180px;
-      pointer-events: none;
-      opacity: .9;
-      animation: charaBob 3.2s ease-in-out infinite;
-    }
-
-    @keyframes charaBob {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50%      { transform: translateY(-12px) rotate(2deg); }
-    }
-
-    @media (max-width: 1100px) {
-      .about-place__chara { display: none; }
-    }
-
     .place-headline {
       font-weight: 900;
       font-size: clamp(28px, 4vw, 44px);
@@ -929,7 +910,6 @@
 
 <!-- ══ ABOUT (02) ══ -->
 <section class="section about-place">
-  <img class="about-place__chara" src="images/hand-up.png" alt="" />
   <div class="inner">
     <div class="sec-no">02</div>
     <p class="sec-label">何をする場所？</p>
@@ -947,6 +927,10 @@
     </div>
 
     <p class="place-note">活動場所：<strong>Instagram DMグループ</strong></p>
+
+    <div class="chair-slide-wrap">
+      <img class="chair-slide-img" src="images/chair-slide.png" alt="" />
+    </div>
   </div>
 </section>
 
@@ -980,10 +964,6 @@
         <p class="benefit-text">「まず1本作る」きっかけになる</p>
       </li>
     </ul>
-
-    <div class="chair-slide-wrap">
-      <img class="chair-slide-img" src="images/chair-slide.png" alt="" />
-    </div>
   </div>
 </section>
 

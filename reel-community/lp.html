@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>おとな女子のためのリールコミュ</title>
+  <meta name="description" content="女性起業家・サービス提供者のための、Instagramリールと発信を3ヶ月で整えるコミュニティ講座。" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap");
+
+    :root {
+      --blue: #86a5b7;
+      --blue-dark: #35566d;
+      --blue-soft: #e8f0f4;
+      --blue-pale: #f3f8fb;
+      --ink: #34414a;
+      --muted: #6e7b83;
+      --white: #ffffff;
+      --line: #cbdde7;
+      --accent: #9fb7c5;
+      --accent-dark: #6f8fa3;
+      --shadow: 0 18px 45px rgba(70, 100, 118, 0.16);
+      --serif: "Noto Serif JP", serif;
+      --sans: "Noto Sans JP", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.9;
+      background: var(--white);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page { overflow: hidden; }
+
+    .section {
+      padding: 88px 24px;
+    }
+
+    .section--soft {
+      background: var(--blue-pale);
+    }
+
+    .inner {
+      width: min(1080px, 100%);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue-dark);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--blue);
+    }
+
+    .section-title {
+      margin: 14px 0 38px;
+      font-family: var(--sans);
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.45;
+      color: var(--blue-dark);
+      font-weight: 700;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 30px;
+      border-radius: 8px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+      box-shadow: 0 12px 26px rgba(63, 95, 117, 0.22);
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--blue-dark);
+      box-shadow: 0 18px 34px rgba(63, 95, 117, 0.3);
+    }
+
+    .hero-copy .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      padding: 0;
+      display: block;
+      background: var(--blue-pale);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(75, 55, 42, 0.24) 0%, rgba(75, 55, 42, 0.08) 48%, rgba(75, 55, 42, 0) 100%),
+        linear-gradient(180deg, rgba(248, 243, 237, 0.1) 0%, rgba(75, 55, 42, 0.18) 100%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: none;
+      position: absolute;
+      inset: 0 auto 0 0;
+      z-index: 1;
+      width: min(50%, 720px);
+      background: linear-gradient(105deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 62%, rgba(255, 255, 255, 0) 100%);
+      clip-path: none;
+      pointer-events: none;
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 42%;
+      filter: saturate(0.9) brightness(0.96);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      min-height: 100svh;
+      padding: 0 32px;
+    }
+
+    .service-name {
+      display: inline-block;
+      width: fit-content;
+      padding: 6px 14px 7px;
+      border: 0;
+      border-radius: 3px;
+      color: var(--white);
+      background: rgba(132, 148, 124, 0.74);
+      clip-path: none;
+      font-size: clamp(15px, 1.25vw, 18px);
+      font-weight: 700;
+      box-shadow: none;
+      backdrop-filter: none;
+      text-shadow: 0 2px 10px rgba(63, 55, 50, 0.16);
+    }
+
+    .tag-stack {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 26px;
+      color: var(--white);
+      text-shadow: 0 2px 10px rgba(63, 55, 50, 0.16);
+    }
+
+    .hero-badge {
+      width: clamp(88px, 7.4vw, 108px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      padding: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(245, 239, 232, 0.58);
+      color: #735e52;
+      box-shadow: 0 12px 28px rgba(63, 55, 50, 0.1);
+      backdrop-filter: blur(5px);
+      text-align: center;
+      text-shadow: none;
+    }
+
+    .hero-badge::before {
+      content: "";
+      position: absolute;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+      border-radius: 50%;
+      border: 1px solid rgba(115, 94, 82, 0.24);
+      pointer-events: none;
+    }
+
+    .badge-content {
+      position: relative;
+      display: grid;
+      gap: 4px;
+      justify-items: center;
+    }
+
+    .badge-kicker {
+      font-size: clamp(9px, 0.8vw, 11px);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: rgba(115, 94, 82, 0.48);
+    }
+
+    .badge-main {
+      font-size: clamp(12px, 1vw, 15px);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .nowrap {
+      white-space: nowrap;
+    }
+
+    .badge-sub {
+      padding-top: 0;
+      border-top: 0;
+      font-size: clamp(12px, 1vw, 15px);
+      font-weight: 700;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .hero-badge:first-child .badge-main {
+      font-size: clamp(10px, 0.84vw, 12px);
+    }
+
+    .monitor-label {
+      display: inline-block;
+      width: fit-content;
+      padding: 6px 14px 7px;
+      border-radius: 3px;
+      color: var(--white);
+      background: rgba(132, 148, 124, 0.74);
+      font-size: clamp(15px, 1.25vw, 18px);
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding-left: 18px;
+      border-left: 4px solid rgba(245, 239, 232, 0.78);
+      font-family: var(--sans);
+      font-size: clamp(46px, 5vw, 68px);
+      line-height: 1.45;
+      color: var(--white);
+      font-weight: 700;
+      text-shadow: 0 4px 20px rgba(63, 55, 50, 0.48);
+    }
+
+    .hero h1::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: -0.18em;
+      right: -0.24em;
+      top: 0.12em;
+      bottom: 0.04em;
+      background:
+        radial-gradient(ellipse at 42% 48%, rgba(53, 86, 109, 0.24) 0%, rgba(53, 86, 109, 0.1) 38%, rgba(53, 86, 109, 0) 72%);
+      filter: blur(2px);
+      transform: rotate(-1deg);
+      pointer-events: none;
+    }
+
+    .hero h1 .line {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .hero h1 .line-2,
+    .hero h1 .line-3 {
+      font-size: 1em;
+    }
+
+    .hero-sub {
+      margin: 24px 0 0;
+      font-size: clamp(17px, 1.55vw, 21px);
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 700;
+      text-shadow: 0 3px 12px rgba(63, 55, 50, 0.28);
+    }
+
+    .hero h1 .emphasis {
+      color: inherit;
+      text-shadow: inherit;
+    }
+
+    .hero h1 .question-mark {
+      color: inherit;
+    }
+
+    .hero-copy {
+      position: absolute;
+      top: clamp(78px, 11vh, 120px);
+      left: clamp(82px, 8vw, 110px);
+      width: max-content;
+      max-width: min(760px, calc(100vw - 140px));
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      align-items: start;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .hero-text {
+      min-width: 0;
+    }
+
+    .hero-copy .btn {
+      width: fit-content;
+      margin-top: 28px;
+      align-self: center;
+      justify-self: center;
+      min-width: 238px;
+      min-height: 50px;
+      border-radius: 999px;
+      background: rgba(108, 139, 161, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      color: var(--white);
+      box-shadow: 0 16px 34px rgba(48, 77, 96, 0.24);
+      backdrop-filter: blur(7px);
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .photo-frame {
+      width: min(430px, 100%);
+      aspect-ratio: 4 / 5;
+      padding: 14px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      transform: rotate(1.2deg);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.96);
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      text-align: center;
+      color: var(--blue-dark);
+      background: repeating-linear-gradient(135deg, #edf4f7, #edf4f7 12px, #f8fbfc 12px, #f8fbfc 24px);
+      font-weight: 700;
+    }
+
+    .visual-card {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 34px;
+      text-align: center;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.58)),
+        repeating-linear-gradient(135deg, #edf4f7, #edf4f7 12px, #f8fbfc 12px, #f8fbfc 24px);
+      color: var(--blue-dark);
+      font-family: var(--serif);
+      font-size: clamp(24px, 4vw, 38px);
+      line-height: 1.7;
+      font-weight: 700;
+    }
+
+    .hero-label {
+      position: absolute;
+      right: 0;
+      bottom: 34px;
+      width: min(260px, 68%);
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.94);
+      border-left: 4px solid var(--blue);
+      box-shadow: 0 12px 28px rgba(63, 95, 117, 0.12);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .for-you {
+      display: grid;
+      grid-template-columns: 0.88fr 1.12fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .for-you-title {
+      position: relative;
+      padding-top: 20px;
+    }
+
+    .for-you-title .section-title {
+      margin-bottom: 16px;
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.38;
+      font-weight: 700;
+    }
+
+    .for-you-title .title-line {
+      display: block;
+    }
+
+    .for-you-title .title-line:last-child {
+      white-space: nowrap;
+    }
+
+    .for-you-note {
+      margin: 0;
+      color: rgba(53, 86, 109, 0.68);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    .for-you-visual {
+      margin-top: 28px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .for-you-visual img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0.92) brightness(1.03);
+    }
+
+    .for-you-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .for-you-row {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      align-items: center;
+      min-height: 76px;
+      padding: 18px 18px;
+      border-bottom: 1px solid rgba(53, 86, 109, 0.18);
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.28));
+      color: var(--blue-dark);
+      font-size: clamp(16px, 1.6vw, 19px);
+      font-weight: 700;
+      line-height: 1.75;
+    }
+
+    .for-you-no {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      color: var(--white);
+      background: rgba(53, 86, 109, 0.86);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .box {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 34px;
+      box-shadow: 0 12px 32px rgba(63, 95, 117, 0.08);
+    }
+
+    .box h3 {
+      margin: 0 0 22px;
+      font-family: var(--sans);
+      font-size: 24px;
+      color: var(--blue-dark);
+      line-height: 1.5;
+    }
+
+    .list {
+      display: grid;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 34px;
+      font-weight: 500;
+    }
+
+    .list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--blue-soft);
+      border: 4px solid var(--blue);
+    }
+
+    .list--no li::before {
+      background: #f4e8e1;
+      border-color: var(--accent);
+    }
+
+    .future-grid {
+      display: grid;
+      gap: 18px;
+      max-width: 680px;
+    }
+
+    .future-card {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 18px;
+      align-items: center;
+      min-height: 112px;
+      padding: 22px 24px;
+      border-radius: 0;
+      background: rgba(255, 250, 244, 0.7);
+      border: 1px solid rgba(255, 250, 244, 0.68);
+      box-shadow: 0 18px 36px rgba(63, 55, 50, 0.13);
+      backdrop-filter: blur(5px);
+    }
+
+    .future-number {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      margin: 0;
+      border-radius: 50%;
+      color: var(--white);
+      background: rgba(53, 86, 109, 0.86);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .future-card h3 {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--blue-dark);
+      font-size: clamp(20px, 2.4vw, 28px);
+      line-height: 1.6;
+      font-weight: 700;
+    }
+
+    .future-section {
+      position: relative;
+      min-height: 760px;
+      display: grid;
+      align-items: center;
+      padding: 104px 24px;
+      color: var(--white);
+      background: #c9bdb3;
+      overflow: hidden;
+    }
+
+    .future-bg {
+      position: absolute;
+      inset: -18px;
+      z-index: 0;
+      width: calc(100% + 36px);
+      height: calc(100% + 36px);
+      object-fit: cover;
+      object-position: center;
+      filter: blur(7px) saturate(0.58) sepia(0.16) brightness(1.06);
+      transform: scale(1.03);
+      will-change: transform;
+    }
+
+    .future-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(248, 243, 237, 0.42) 0%, rgba(248, 243, 237, 0.28) 50%, rgba(248, 243, 237, 0.18) 100%),
+        linear-gradient(180deg, rgba(53, 86, 109, 0.04) 0%, rgba(53, 86, 109, 0.18) 100%);
+      pointer-events: none;
+    }
+
+    .future-section .inner {
+      position: relative;
+      z-index: 3;
+      will-change: transform;
+    }
+
+    .future-section .eyebrow,
+    .future-section .section-title {
+      color: var(--white);
+      text-shadow: 0 4px 18px rgba(63, 55, 50, 0.34);
+    }
+
+    .future-section .eyebrow::before {
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .future-section .section-title {
+      margin-bottom: 32px;
+    }
+
+    .future-photo-card {
+      width: min(420px, 100%);
+      margin: 0 0 26px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.66);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 18px 36px rgba(50, 78, 96, 0.18);
+      backdrop-filter: blur(6px);
+    }
+
+    .future-photo-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0.92);
+    }
+
+    .future-photo-card span {
+      display: block;
+      padding: 12px 16px 14px;
+      color: var(--blue-dark);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .program {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 46px;
+      align-items: start;
+    }
+
+    .program-summary {
+      position: sticky;
+      top: 28px;
+      padding: 38px;
+      background: var(--blue-dark);
+      color: var(--white);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .program-summary h3 {
+      margin: 0 0 18px;
+      font-family: var(--sans);
+      font-size: 30px;
+      line-height: 1.45;
+    }
+
+    .program-summary p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .price {
+      margin-top: 30px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    .price span {
+      display: block;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .price strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 24px;
+      color: var(--white);
+    }
+
+    .steps {
+      display: grid;
+      gap: 20px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 118px 70px 1fr;
+      gap: 22px;
+      align-items: center;
+      padding: 28px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .step-media {
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--blue-soft);
+      box-shadow: 0 12px 26px rgba(70, 100, 118, 0.12);
+    }
+
+    .step-media img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0.92) brightness(1.04);
+    }
+
+    .step-num {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--blue-soft);
+      color: var(--blue-dark);
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .step h3 {
+      margin: 0 0 8px;
+      color: var(--blue-dark);
+      font-size: 21px;
+      line-height: 1.5;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cta-band {
+      padding: 72px 24px;
+      background: var(--blue);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      margin: 0 0 18px;
+      font-family: var(--sans);
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.5;
+    }
+
+    .cta-band p {
+      margin: 0 auto 30px;
+      max-width: 720px;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .cta-band .btn {
+      background: var(--blue-dark);
+      color: var(--white);
+      box-shadow: 0 16px 32px rgba(47, 59, 66, 0.18);
+    }
+
+    .profile {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 52px;
+      align-items: center;
+    }
+
+    .profile-photo {
+      padding: 12px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .profile-photo img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+
+    .profile-text p {
+      margin: 0 0 18px;
+    }
+
+    .quote {
+      margin: 28px 0;
+      padding: 26px 28px;
+      background: var(--blue-pale);
+      border-left: 4px solid var(--blue);
+      color: var(--blue-dark);
+      font-weight: 700;
+    }
+
+    .footer {
+      padding: 42px 24px;
+      background: #35566d;
+      color: rgba(255, 255, 255, 0.78);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: var(--white);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .footer-name {
+      margin: 0 0 10px;
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .section { padding: 68px 20px; }
+
+      .hero {
+        min-height: 100svh;
+      }
+
+      .hero-photo {
+        object-position: center 44%;
+      }
+
+      .program,
+      .profile,
+      .two-column,
+      .for-you {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-inner {
+        padding: 0 24px;
+      }
+
+      .hero-copy {
+        top: clamp(74px, 12vh, 110px);
+        left: 24px;
+        grid-template-columns: 1fr;
+        gap: 0;
+        width: max-content;
+        height: calc(100svh - clamp(74px, 12vh, 110px) - 24px);
+        max-width: calc(100vw - 48px);
+      }
+
+      .hero-copy .btn {
+        position: absolute;
+        left: calc(50vw - 24px);
+        bottom: 34px;
+        transform: translateX(-50%);
+      }
+
+      .photo-frame { width: min(360px, 92%); }
+
+      .hero-label {
+        right: 18px;
+        bottom: 22px;
+      }
+
+      .program-summary { position: static; }
+
+      .profile { gap: 32px; }
+
+      .profile-photo {
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      .for-you-title {
+        padding-top: 0;
+      }
+
+      .for-you-visual {
+        margin-top: 22px;
+      }
+
+    }
+
+    @media (max-width: 540px) {
+      body { line-height: 1.85; }
+
+      .service-name {
+        font-size: 13px;
+        padding: 5px 10px 6px;
+      }
+
+      .monitor-label {
+        font-size: 13px;
+        padding: 5px 10px 6px;
+      }
+
+      .tag-stack {
+        align-items: flex-start;
+        flex-direction: row;
+      }
+
+      .tag-stack {
+        gap: 6px;
+        margin-top: 22px;
+      }
+
+      .hero-badge {
+        width: 86px;
+        padding: 9px;
+      }
+
+      .badge-main,
+      .badge-sub {
+        font-size: 10.5px;
+      }
+
+      .hero-badge:first-child .badge-main {
+        font-size: 8.5px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+        line-height: 1.42;
+        padding-left: 12px;
+        border-left-width: 3px;
+      }
+
+      .hero-sub {
+        margin-top: 18px;
+        font-size: 15px;
+      }
+
+      .btn {
+        width: 100%;
+        min-height: 56px;
+        padding: 0 20px;
+      }
+
+      .hero-copy .btn {
+        width: fit-content;
+        min-width: 210px;
+        margin-top: 0;
+      }
+
+      .box,
+      .future-card,
+      .program-summary,
+      .step {
+        padding: 24px;
+      }
+
+      .for-you-title .section-title {
+        font-size: 34px;
+      }
+
+      .for-you-note {
+        font-size: 14px;
+      }
+
+      .for-you-row {
+        grid-template-columns: 44px 1fr;
+        padding: 18px 0;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.24));
+        font-size: 17px;
+      }
+
+      .for-you-no {
+        width: 34px;
+        height: 34px;
+        font-size: 12px;
+      }
+
+      .future-section {
+        min-height: 760px;
+        padding: 82px 20px;
+      }
+
+      .future-section::before {
+        background:
+          linear-gradient(180deg, rgba(243, 248, 251, 0.46) 0%, rgba(243, 248, 251, 0.26) 38%, rgba(53, 86, 109, 0.18) 100%);
+      }
+
+      .future-card {
+        grid-template-columns: 42px 1fr;
+        gap: 14px;
+        min-height: 100px;
+        padding: 18px 16px;
+      }
+
+      .future-number {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+      }
+
+      .step {
+        grid-template-columns: 76px 1fr;
+        gap: 16px;
+      }
+
+      .step-media {
+        grid-row: span 2;
+      }
+
+      .step-num {
+        width: 54px;
+        height: 54px;
+        font-size: 19px;
+      }
+
+      .hero-label {
+        position: static;
+        width: 100%;
+        margin: -18px auto 0;
+      }
+
+      .photo-frame { transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="hero">
+      <img class="hero-photo" src="future-parallax.jpg" alt="青空と池の前に立つ女性" />
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-text">
+            <h1>
+              <span class="line line-1">どう発信すればいいか</span>
+              <span class="line line-2">分からなくて</span>
+              <span class="line line-3">止まってない<span class="question-mark">？</span></span>
+            </h1>
+            <div class="tag-stack">
+              <div class="hero-badge">
+                <div class="badge-content">
+                  <span class="badge-main">現役動画<br /><span class="nowrap">クリエイターが</span><br />教える</span>
+                </div>
+              </div>
+              <div class="hero-badge">
+                <div class="badge-content">
+                  <span class="badge-main">大人女子<br />リールコミュ</span>
+                </div>
+              </div>
+              <div class="hero-badge">
+                <div class="badge-content">
+                  <span class="badge-sub">モニター生<br />募集中</span>
+                </div>
+              </div>
+            </div>
+            <p class="hero-sub">大丈夫！ 足りなかったのは<br />センスじゃなくて"やり方"だけ。</p>
+          </div>
+          <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdErcuIgs2p-pwecBVAxjZi43xFY5PSxSzHW3szUtgBT0Z9dw/viewform?usp=publish-editor" target="_blank" rel="noopener">申し込みはこちら</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="inner">
+        <div class="for-you">
+          <div class="for-you-title">
+            <span class="eyebrow">For You</span>
+            <h2 class="section-title">
+              <span class="title-line">このコミュは</span>
+              <span class="title-line">こんな方のための場所です</span>
+            </h2>
+            <div class="for-you-visual">
+              <img src="lp-visual-desk.jpg" alt="ノートパソコンとテーブルの写真" />
+            </div>
+          </div>
+
+          <div class="for-you-list">
+            <div class="for-you-row">
+              <span class="for-you-no">01</span>
+              <span>リールを作りたいけれど<br />どう作ればいいか分からない</span>
+            </div>
+            <div class="for-you-row">
+              <span class="for-you-no">02</span>
+              <span>ひとりで悩んで<br />発信迷子になっている</span>
+            </div>
+            <div class="for-you-row">
+              <span class="for-you-no">03</span>
+              <span>コンセプトはあるのに<br />何を発信したらいいか分からない</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section future-section">
+      <img class="future-bg" src="future-parallax.jpg" alt="" aria-hidden="true" />
+      <div class="inner">
+        <span class="eyebrow">Future</span>
+        <h2 class="section-title">参加後に得られる未来</h2>
+
+        <div class="future-photo-card">
+          <img src="lp-visual-sky-walk.jpg" alt="空と池の前に立つ女性の写真" />
+          <span>自分の言葉で、発信を続けられるように。</span>
+        </div>
+
+        <div class="future-grid">
+          <article class="future-card">
+            <span class="future-number">01</span>
+            <h3>何を投稿すればいいか<br />考えられる</h3>
+          </article>
+          <article class="future-card">
+            <span class="future-number">02</span>
+            <h3>自分で撮って<br />作って<br />投稿できる</h3>
+          </article>
+          <article class="future-card">
+            <span class="future-number">03</span>
+            <h3>ひとりで抱え込まず<br />発信を続けられる</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="inner">
+        <span class="eyebrow">Program</span>
+        <h2 class="section-title">サービス内容・料金</h2>
+
+        <div class="program">
+          <aside class="program-summary">
+            <h3>3ヶ月で、あなたに合う発信とリールを一緒に形にします。</h3>
+            <p>個別の方向性整理と、みんなで学ぶリール実践を組み合わせたコミュニティ講座です。</p>
+
+            <div class="price">
+              <span>期間</span>
+              <strong>3ヶ月</strong>
+            </div>
+
+            <div class="price">
+              <span>料金</span>
+              <strong>詳細はフォームよりご確認ください</strong>
+            </div>
+          </aside>
+
+          <div class="steps">
+            <article class="step">
+              <div class="step-media">
+                <img src="lp-visual-curtain-desk.jpg" alt="個別面談のイメージ" />
+              </div>
+              <div class="step-num">1</div>
+              <div>
+                <h3>個別面談で、今の発信や方向性を確認</h3>
+                <p>何を発信していきたいのか、どんな見せ方が合うのかを一緒に整理します。</p>
+              </div>
+            </article>
+
+            <article class="step">
+              <div class="step-media">
+                <img src="lp-visual-laptop.jpg" alt="投稿内容を一緒に作るイメージ" />
+              </div>
+              <div class="step-num">2</div>
+              <div>
+                <h3>その人に合った発信を、一緒に作っていく</h3>
+                <p>投稿内容やリールのネタを考えながら、自分のアカウントに合う発信を形にしていきます。</p>
+              </div>
+            </article>
+
+            <article class="step">
+              <div class="step-media">
+                <img src="lp-visual-phone-back.jpg" alt="リールを学ぶ時間のイメージ" />
+              </div>
+              <div class="step-num">3</div>
+              <div>
+                <h3>みんなでリールを学ぶ時間</h3>
+                <p>撮影の仕方やリールの作り方も、みんなで楽しく学んでいきます。</p>
+              </div>
+            </article>
+
+            <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdErcuIgs2p-pwecBVAxjZi43xFY5PSxSzHW3szUtgBT0Z9dw/viewform?usp=publish-editor" target="_blank" rel="noopener">申し込みフォームへ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="inner">
+        <h2>止まっていた発信を、もう一度あなたのペースで。</h2>
+        <p>センスや経験が足りないのではなく、届け方を知らなかっただけ。あなたのサービスに合うリール発信を、3ヶ月かけて一緒に整えていきましょう。</p>
+        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdErcuIgs2p-pwecBVAxjZi43xFY5PSxSzHW3szUtgBT0Z9dw/viewform?usp=publish-editor" target="_blank" rel="noopener">今すぐ申し込む</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="inner">
+        <div class="profile">
+          <div class="profile-photo">
+            <img src="profile.png" alt="海老原のプロフィール写真" />
+          </div>
+
+          <div class="profile-text">
+            <span class="eyebrow">Profile</span>
+            <h2 class="section-title">はじめまして。<br />現役動画編集者の海老原です。</h2>
+
+            <p>動画編集を仕事にして3年。企業や個人で発信されている方のリール制作をしています。</p>
+            <p>ただ動画をきれいに作るだけじゃなくて、</p>
+
+            <div class="quote">
+              「誰に届けるのか」<br />
+              「何を伝えるのか」<br />
+              「見た人にどう動いてほしいのか」
+            </div>
+
+            <p>そこから考えて、リールを作るのが得意です。</p>
+            <p>発信したい気持ちはあるのに、何を投稿したらいいか分からない。リールにしたいけれど、どう作ればいいか分からなくて止まってしまう。</p>
+            <p>そんな人が、ひとりで悩まず、自分の言葉で発信できるようになる場所を作りたくて、おとな女子のためのリールコミュを始めます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-name">おとな女子のためのリールコミュ</p>
+    <p>SNS：<a href="#" aria-label="Instagram">Instagram</a></p>
+    <p>&copy; おとな女子のためのリールコミュ All Rights Reserved.</p>
+  </footer>
+  <script>
+    (() => {
+      const section = document.querySelector(".future-section");
+      const bg = document.querySelector(".future-bg");
+      const content = document.querySelector(".future-section .inner");
+      if (!section || !bg || !content) return;
+
+      const move = () => {
+        const rect = section.getBoundingClientRect();
+        const windowH = window.innerHeight || document.documentElement.clientHeight;
+        const progress = (windowH - rect.top) / (windowH + rect.height);
+        const clamped = Math.min(1, Math.max(0, progress));
+        const bgY = (clamped - 0.5) * 46;
+        const textY = (0.5 - clamped) * 14;
+        bg.style.transform = `scale(1.06) translate3d(0, ${bgY}px, 0)`;
+        content.style.transform = `translate3d(0, ${textY}px, 0)`;
+      };
+
+      move();
+      window.addEventListener("scroll", move, { passive: true });
+      window.addEventListener("resize", move);
+    })();
+  </script>
+</body>
+</html>

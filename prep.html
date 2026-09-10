@@ -21,6 +21,44 @@
       --pale:  #E8F0F5;
     }
 
+    /* ── 配布期限を過ぎたときの画面 ── */
+    .expired {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--ink); padding: 24px;
+    }
+    .expired[hidden] { display: none !important; }
+    .expired__box { max-width: 460px; text-align: center; line-height: 2; color: var(--off); }
+    .expired__title { font-size: 20px; font-weight: 700; margin-bottom: 18px; }
+    .expired__body { font-size: 14px; }
+    .expired__owner { margin-top: 24px; font-size: 13px; font-weight: 700; }
+    body.is-expired .layout,
+    body.is-expired .toast,
+    body.is-expired .save-status { display: none !important; }
+
+    /* ── 注意書き ── */
+    .footnote {
+      margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line);
+      font-size: 13px; color: #A9A5A0; line-height: 1.9;
+    }
+    .footnote__lead { margin-bottom: 12px; }
+    .footnote__list { list-style: none; margin: 0 0 14px; padding: 0; }
+    .footnote__list li { padding-left: 14px; position: relative; margin-bottom: 6px; }
+    .footnote__list li::before {
+      content: '\25aa\fe0f'; position: absolute; left: 0;
+      font-size: 8px; opacity: .55;
+    }
+    .footnote__ban { margin: 18px 0; color: #A9A5A0; }
+    .footnote__ban-title {
+      font-weight: 700; margin-bottom: 8px; letter-spacing: .08em; color: var(--off);
+    }
+    .footnote__ban strong { font-weight: 700; color: var(--off); }
+    .footnote__ban-note { margin-top: 12px; }
+    .footnote__sub { font-size: 12px; color: #8A8681; }
+    .footnote__owner {
+      margin-top: 14px; color: var(--off); font-weight: 700; letter-spacing: .05em;
+    }
+
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Noto Sans JP', sans-serif;
@@ -422,6 +460,29 @@
 </head>
 <body>
 
+<div class="expired" id="expiredScreen" hidden>
+  <div class="expired__box">
+    <p class="expired__title">この配布は終了しました</p>
+    <p class="expired__body">ワンデーLP講座の受講生向けの<br>配布期間が終了しました。<br>ご利用ありがとうございました。</p>
+    <p class="expired__owner">制作・管理：海老原あい</p>
+  </div>
+</div>
+
+<script>
+  /* ══════════ 配布期限 ══════════
+     この日を過ぎると使えなくなります。
+     延ばすときは下の日付だけ書き換えてください。 */
+  var TOOL_EXPIRY = '2026-12-31';
+  (function () {
+    var end = new Date(TOOL_EXPIRY + 'T23:59:59+09:00');
+    if (new Date() > end) {
+      document.body.classList.add('is-expired');
+      var el = document.getElementById('expiredScreen');
+      if (el) el.hidden = false;
+    }
+  })();
+</script>
+
 <div class="save-status" id="saveStatus">入力内容を自動保存しました</div>
 
 <div class="layout">
@@ -619,12 +680,78 @@
       <button class="bigbtn" id="copyPromptBtn">📋 プロンプトを生成してコピー</button>
     </section>
 
+    <div class="footnote">
+      <p class="footnote__lead">このツールは、ワンデーLP講座の受講生に配布したものです。</p>
+
+      <div class="footnote__ban">
+        <p class="footnote__ban-title">禁止事項</p>
+        <ul class="footnote__list">
+          <li>第三者への転載・再配布・共有を<strong>禁止</strong>します<br>（SNS・オープンチャット・グループへのリンク共有を含みます）</li>
+          <li>販売・転売を<strong>禁止</strong>します</li>
+          <li>複製・改変を<strong>禁止</strong>します</li>
+          <li><strong>講座・セミナー・コンサルなど、他者に教える目的での使用を禁止</strong>します</li>
+          <li>その他いっさいの商用利用を<strong>禁止</strong>します</li>
+        </ul>
+        <p class="footnote__ban-note">著作権は制作者に帰属します。<br>無断での転載・再配布・販売・商用利用を確認した場合は、<strong>利用の停止・ツールの公開停止</strong>、および<strong>法的措置を含めた対応</strong>をとります。</p>
+      </div>
+
+      <p class="footnote__sub">このツールの利用期限：2026年12月31日</p>
+      <p class="footnote__owner">制作・管理：海老原あい</p>
+    </div>
+
   </main>
 </div>
 
 <div class="toast" id="toast">コピーしました</div>
 
 <script>
+  // ══════════ ログの送信先（reel-prep と同じシート） ══════════
+  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzZ378Pq6X3dEZImNmz5yHGyzATB7FpZZw9YaL9NX5Li1_89LGy-N_Mz447llHONJwzxQ/exec';
+
+  // ══════════ 端末ごとの識別ID（名前は取らない） ══════════
+  const USER_KEY = 'reelPrepUserId';
+  function getUserId() {
+    try {
+      let id = localStorage.getItem(USER_KEY);
+      if (!id) {
+        id = (self.crypto && crypto.randomUUID)
+          ? crypto.randomUUID().slice(0, 8)
+          : Math.random().toString(36).slice(2, 10);
+        localStorage.setItem(USER_KEY, id);
+      }
+      return id;
+    } catch (e) { return '(不明)'; }
+  }
+
+  function logValue(id) {
+    const el = document.getElementById(id);
+    return el ? (el.value || '').trim() : '';
+  }
+
+  function sendLog() {
+    const payload = {
+      'ツール':      'LP事前準備シート',
+      '利用者ID':    getUserId(),
+      'サービス名':  logValue('serviceName'),
+      '肩書き':      logValue('title'),
+      '料金':        logValue('price'),
+      '講座形式':    logValue('format'),
+      '対象者':      logValue('target'),
+      'ゴール':      logValue('goal'),
+      'キャッチコピー': logValue('catchMain'),
+      '申込URL':     logValue('applyUrl'),
+      'SNS URL':     logValue('snsUrl')
+    };
+    try {
+      fetch(ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+    } catch (e) {}
+  }
+
   // ═══════════ Field IDs ═══════════
   const FIELDS = [
     'existingLp', 'ref1', 'ref2', 'ref3', 'des1', 'des2', 'des3',
@@ -693,6 +820,7 @@
   // ═══════════ Step 4: Generate Claude prompt ═══════════
   document.getElementById('copyPromptBtn').addEventListener('click', async () => {
     const prompt = buildPrompt();
+    sendLog();
     try {
       await navigator.clipboard.writeText(prompt);
       showToast('✅ プロンプトをコピーしました！Claudeに貼り付けてください');

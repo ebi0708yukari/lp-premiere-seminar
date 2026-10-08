@@ -518,7 +518,7 @@
         <div class="section__num">1</div>
         <h2 class="section__title">参考リンクを貼っておこう</h2>
       </div>
-      <p class="section__lead">既存LP・構成参考・デザイン参考を貼っておきましょう。当日すぐ引き出せます。</p>
+      <p class="section__lead">既存LP・デザイン参考を貼っておきましょう。当日すぐ引き出せます。</p>
 
       <div class="subhead">既存LPのURL</div>
       <div class="field">
@@ -526,32 +526,10 @@
         <input type="url" id="existingLp" placeholder="https://...（なければ空欄でOK）">
       </div>
 
-      <div class="subhead">構成参考（こんな流れのLPにしたい）</div>
-      <div class="field">
-        <label class="field__label">構成参考 ①</label>
-        <input type="url" id="ref1" placeholder="https://...">
-      </div>
-      <div class="field">
-        <label class="field__label">構成参考 ②</label>
-        <input type="url" id="ref2" placeholder="https://...">
-      </div>
-      <div class="field">
-        <label class="field__label">構成参考 ③</label>
-        <input type="url" id="ref3" placeholder="https://...">
-      </div>
-
       <div class="subhead">デザイン参考（こんなビジュアルにしたい）</div>
       <div class="field">
-        <label class="field__label">デザイン参考 ①</label>
+        <label class="field__label">デザイン参考 <span class="field__hint">1つに絞って貼ってください</span></label>
         <input type="url" id="des1" placeholder="https://...">
-      </div>
-      <div class="field">
-        <label class="field__label">デザイン参考 ②</label>
-        <input type="url" id="des2" placeholder="https://...">
-      </div>
-      <div class="field">
-        <label class="field__label">デザイン参考 ③</label>
-        <input type="url" id="des3" placeholder="https://...">
       </div>
     </section>
 
@@ -754,7 +732,7 @@
 
   // ═══════════ Field IDs ═══════════
   const FIELDS = [
-    'existingLp', 'ref1', 'ref2', 'ref3', 'des1', 'des2', 'des3',
+    'existingLp', 'des1',
     'serviceName', 'title', 'price', 'format', 'target', 'goal',
     'catchMain', 'catchSub',
     'pain1', 'pain2', 'pain3',
@@ -837,8 +815,7 @@
   });
 
   function buildPrompt() {
-    const refs = joinNonEmpty([v('ref1'), v('ref2'), v('ref3')], '\n  - ');
-    const designs = joinNonEmpty([v('des1'), v('des2'), v('des3')], '\n  - ');
+    const designRef = v('des1') || '（なし）';
     const pains = joinNonEmpty([v('pain1'), v('pain2'), v('pain3')], '\n  - ');
     const gains = joinNonEmpty([v('gain1'), v('gain2'), v('gain3')], '\n  - ');
 
@@ -877,10 +854,7 @@ ${v('bio') || '（未入力）'}
 
 ■ 参考リンク
 - 既存LP：${v('existingLp') || '（なし）'}
-- 構成参考：
-  - ${refs || '（なし）'}
-- デザイン参考：
-  - ${designs || '（なし）'}
+- デザイン参考：${designRef}
 
 ■ 使いたい素材
 - 顔写真ファイル名：${v('facePhoto') || '（未指定）'}
